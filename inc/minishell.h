@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 11:22:46 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 16:41:26 by vheymans         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -21,9 +10,10 @@
 
 /*
 **	LIBRARY
-*/
 
-# include "libft/libft.h"
+
+# include "../lft/libft.h"
+*/
 
 /*
 **	INCLUDES
@@ -55,7 +45,6 @@
 # define S_Q '\''
 # define D_Q '\"'
 
-
 /*
 **	STRUCTS
 */
@@ -71,7 +60,7 @@ typedef struct s_seq	t_seq;
 */
 typedef struct s_shell
 {
-	t_list	*env;
+	//t_list	*env;
 	t_seq	**seq;
 	int		n_cmds;
 	char	*input;
