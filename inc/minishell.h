@@ -10,10 +10,10 @@
 
 /*
 **	LIBRARY
-
+*/
 
 # include "../lft/libft.h"
-*/
+
 
 /*
 **	INCLUDES
@@ -60,7 +60,7 @@ typedef struct s_seq	t_seq;
 */
 typedef struct s_shell
 {
-	//t_list	*env;
+	t_list	*env;
 	t_seq	**seq;
 	int		n_cmds;
 	char	*input;
