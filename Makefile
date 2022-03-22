@@ -6,7 +6,7 @@
 #    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:32:58 by hlehmann          #+#    #+#              #
-#    Updated: 2022/03/22 15:41:22 by hlehmann         ###   ########.fr        #
+#    Updated: 2022/03/22 15:43:43 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = minishell
 CC = gcc
 FLAGS = -Wall -Werror -Wextra
 RM = rm -f
-LFT = ./libft
+LFT = ./lft
 
-SRC = main.c \
+SRC = src/main.c \
 
 OBJ = $(SRC:.c=.o)
 
