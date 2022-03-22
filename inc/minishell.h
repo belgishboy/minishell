@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:22:46 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 15:13:46 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:43:38 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 **	LIBRARY
 */
 
-# include "libft/libft.h"
+# include "../lft/libft.h"
 
 /*
 **	INCLUDES
