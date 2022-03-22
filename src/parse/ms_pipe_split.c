@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 15:36:44 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:47:36 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,3 +14,7 @@
 **Handles all the spliting of the input 
 */
 
+int pipe_quote(int pos, char c, char *in)
+{
+	return (0);
+}
