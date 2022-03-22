@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 16:56:14 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 17:57:54 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,23 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
 	return (count);
 }
 
-int		pipe_split(t_shell *shell, char *in)
+/**
+ * pipe_splits splits `in` by pipes
+ * @param shell [t_shell *] shell struct
+ * @param in [char *] input string
+ * @param pos1 [int] because I have too many lines
+ * @param pos2 [int] because I have too many lines
+ * @return 1 if error in pipe count, 0 if succes
+*/
+int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)
 {
 	int	n_pipes;
-	int	pos1;
-	int	pos2;
 
 	shell->n_cmds = count_pipe(in);
 	if (shell->n_cmds < 1)
 		return (1);
 	shell->seq = malloc(shell->n_cmds * sizeof(t_seq *));
 	n_pipes = 0;
-	pos1 = 0;
-	pos2 = 0;
 	while (n_pipes < shell->n_cmds)
 	{
 		while (in[pos2] && in[pos2] != PIPE)
@@ -82,12 +86,25 @@ int		pipe_split(t_shell *shell, char *in)
 		if (!in[pos2] || in[pos2 + 1] != PIPE)
 		{
 			shell->seq[n_pipes] = malloc(sizeof(t_seq));
-			shell->seq[n_pipes]->seq = ft_substr(in, pos1, pos2 - pos1);
-			n_pipes ++;
+			shell->seq[n_pipes ++]->seq = ft_substr(in, pos1, pos2 - pos1);
 			pos1 = ++ pos2;
 		}
 		while (in[pos2] == PIPE && in[pos2])
 			pos2 ++;
+	}
+	return (0);
+}
+
+int main(int argc, char **argv)
+{
+	argc ++;
+	t_shell *s = malloc(sizeof(t_shell *) * 1);
+	pipe_split(s, argv[1], 0, 0);
+	int i = 0;
+	while (i < s->n_cmds)
+	{
+		printf("%d] %s\n", i + 1, s->seq[i]->seq);
+		i ++;
 	}
 	return (0);
 }
