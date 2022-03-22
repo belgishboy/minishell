@@ -6,11 +6,11 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 15:27:33 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:45:29 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 /**
  * Main Shell Function
@@ -33,7 +33,10 @@ int		shell(char **env)
 int	main(int argc, char **argv, char **env)
 {
 	if (argc != 1 && strncmp(argv[0], "./minishell", strlen(argv[0])))
-		ft_error("fuck", 2);
+	{
+		printf("error\n");
+		return (0);
+	}
 	shell(env);
 	return (0);
 }

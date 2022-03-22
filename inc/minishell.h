@@ -23,7 +23,7 @@
 **	LIBRARY
 */
 
-# include "libft/libft.h"
+# include "../lft/libft.h"
 
 /*
 **	INCLUDES
