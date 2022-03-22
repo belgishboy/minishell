@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:22:46 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 15:13:46 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:41:26 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@
 ** MACROS
 */
 
+# define PROMT "minishell v1.0$"
 # define PIPE '|'
+# define S_Q '\''
+# define D_Q '\"'
 
 
 /*
@@ -60,15 +63,17 @@
 typedef struct s_seq	t_seq;
 
 /*
-**Main Struct
-@param env linked t_list for enviroment
-@param seq Seq Struct array 
-@param input string containing the whole input from the user
+** Main Struct
+ * @param env linked t_list for enviroment
+ * @param seq Seq Struct array 
+ * @param n_cmds [int] nbr of pipe splits needed
+ * @param input string containing the whole input from the user
 */
 typedef struct s_shell
 {
 	t_list	*env;
 	t_seq	**seq;
+	int		n_cmds;
 	char	*input;
 } t_shell;
 
