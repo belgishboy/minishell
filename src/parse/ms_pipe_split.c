@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 16:49:18 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:56:14 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		pipe_split(t_shell *shell, char *in)
 	{
 		while (in[pos2] && in[pos2] != PIPE)
 		{
-			if (in[pos2] == 34 || in[pos2] == '\'')
+			if (in[pos2] == D_Q || in[pos2] == S_Q)
 				pos2 = quote_check(pos2, in[pos2], in);
 			pos2 ++;
 		}
