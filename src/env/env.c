@@ -74,14 +74,14 @@ void	ms_env(t_shell *s)
 		temp = temp->next;
 	}
 }
-// gcc env.c ../../lft/libft.a && ./a.out
-int main(int argc, char **argv, char **env)
-{
-	if (argc == 1000 || !argv[0])
-		return (1110);
-	printf("%i\b", argc);
+// // gcc env.c ../../lft/libft.a && ./a.out
+// int main(int argc, char **argv, char **env)
+// {
+// 	if (argc == 1000 || !argv[0])
+// 		return (1110);
+// 	printf("%i\b", argc);
 
-	t_shell s;
-	s.env = create_env(env);
-	ms_env(&s);
-}
+// 	t_shell s;
+// 	s.env = create_env(env);
+// 	ms_env(&s);
+// }
