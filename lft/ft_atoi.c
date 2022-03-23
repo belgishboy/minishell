@@ -3,53 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 10:40:42 by cdahlhof          #+#    #+#             */
-/*   Updated: 2021/12/08 17:58:01 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//🌊
-// Takes the initial portion of "str" and returns its integer value
-int	ft_atoi(const char *str)
+#include "libft.h"
+
+int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	result;
-	int	sign;
+	size_t	i;
+	int		sign;
+	int		num;
 
 	i = 0;
-	result = 0;
 	sign = 1;
-	while (str[i] && ((9 <= str[i] && str[i] <= 13) || str[i] == 32) != 0)
+	num = 0;
+	while ((nptr[i] > 8 && nptr[i] < 14) || nptr[i] == 32)
 		i++;
-	if (str[i] == '-')
-		sign = -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] && '0' <= str[i] && str[i] <= '9')
+	if (nptr[i] == 43 || nptr[i] == 45)
 	{
-		result = (result * 10) + (str[i] - '0');
+		if (nptr[i] == 45)
+			sign *= -1;
 		i++;
 	}
-	return (result * sign);
+	while (nptr[i] > 47 && nptr[i] < 58)
+	{
+		num = num * 10 + nptr[i] - '0';
+		i++;
+	}
+	return (num * sign);
 }
-// #include <stdio.h>
-// #include <stdlib.h>
-// int main(void)
-// {
-// 	char str1[] = "  -123";
-// 	char str2[] = "  -2147483648";
-// 	char str3[] = "4294967294";
-// 	char str4[] = "-10000000000000000000";
-// 	char str5[] = "  -12g3";
-// 	char str6[] = "  -1-23";
-// 	//the function breaks with inputs larger than 19/20ish numericons but thats
-// 	//the edge of the edge and to be frank i don't know where or how atoi does
-// 	//this
-// 	//no one cares
-// 	printf("%d\t%d\n%d\t%d\n%d\t%d\n%d\t%d\n%d\t%d\n%d\t%d\n", atoi(str1),
-// 	ft_atoi(str1), atoi(str2), ft_atoi(str2), atoi(str3), ft_atoi(str3),
-// 	 atoi(str4), ft_atoi(str4), atoi(str5), ft_atoi(str5), atoi(str6),
-// 	 ft_atoi(str6));
-// }

@@ -3,34 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 13:34:13 by clems             #+#    #+#             */
-/*   Updated: 2021/12/08 18:01:10 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// allocate memory that consists only of '\0' bytes
-//	if (!nb || !size || nmemb * n > sizeof(int))
-//		return (NULL);
-//		↑ cases which are in the manual but molinette failed me for some reason
-void	*ft_calloc(size_t nmemb, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*dest;
-	int		l;
-	int		i;
 
-	l = nmemb * n;
-	dest = malloc(l);
+	dest = (void *)malloc(nmemb * size);
 	if (!dest)
-		return (0);
-	i = 0;
-	while (i < l)
-	{
-		((unsigned char*)dest)[i] = 0;
-		i++;
-	}
+		return (NULL);
+	ft_bzero(dest, nmemb * size);
 	return (dest);
 }
