@@ -37,6 +37,12 @@
 # include <readline/history.h>
 
 /*
+** GLOBAL VARIABLE
+*/
+
+int	err_num;
+
+/*
 ** MACROS
 */
 

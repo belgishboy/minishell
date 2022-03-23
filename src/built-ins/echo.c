@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/22 18:14:18 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:32:05 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	echo(char **array)
 		printf("%s ", array[i]);
 		i++;
 	}
+	printf("\b");
 	if (nl)
 		printf("\n");
 }

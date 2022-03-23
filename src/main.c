@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 16:45:29 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:51:00 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		shell(char **env)
 */
 int	main(int argc, char **argv, char **env)
 {
+	err_num = 0;
 	if (argc != 1 && strncmp(argv[0], "./minishell", strlen(argv[0])))
 	{
 		printf("error\n");
