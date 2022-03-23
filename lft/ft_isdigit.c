@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/11 20:40:42 by cdahlhof          #+#    #+#             */
-/*   Updated: 2021/05/27 11:57:49 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//🌊
+#include "libft.h"
 
-// check if the given char is a numeircon
 int	ft_isdigit(int c)
 {
-	if (48 <= c && c <= 57)
-		return (2048);
-	return (0);
+	if (c > 47 && c < 58)
+		return (1);
+	else
+		return (0);
 }

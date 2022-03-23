@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 11:20:33 by clems             #+#    #+#             */
-/*   Updated: 2021/12/02 11:04:24 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// append an element at the end of the given list
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*finit;
+	t_list	*i;
 
-	if (lst)
+	i = NULL;
+	if (!new)
+		return ;
+	if (!(*lst))
+		*lst = new;
+	else
 	{
-		if (*lst)
-		{
-			finit = ft_lstlast(*lst);
-			finit->next = new;
-		}
-		else
-			*lst = new;
+		i = ft_lstlast((*lst));
+		i->next = new;
 	}
 }

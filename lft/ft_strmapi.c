@@ -3,48 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/23 18:06:17 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:34:01 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// apply a given function to every char of s
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*res;
-	int		i;
+	char	*dest;
+	size_t	i;
 
-	res = ft_calloc(ft_strlen((char *)s) + 1, sizeof(char));
-	if (res == NULL)
+	if (!s || !f)
+		return (NULL);
+	dest = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!dest)
 		return (NULL);
 	i = 0;
 	while (s[i])
 	{
-		res[i] = (*f)(i, s[i]);
+		dest[i] = f(i, s[i]);
 		i++;
 	}
-	return (res);
+	dest[i] = '\0';
+	return (dest);
 }
-//char	testfunction(unsigned int i,char c)
-//{
-//	unsigned int	j;
-//
-//	j = 0;
-//	while (j < i)
-//	{
-//		j++;
-//		c++;
-//	}
-//	return (c);
-//}
-//#include <stdio.h>
-//int main(void)
-//{
-//	char	str[8] = "1234567";
-//	char	*res = ft_strmapi(str, testfunction);
-//	printf("%s\n", res);
-//}

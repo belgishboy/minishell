@@ -3,40 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 16:08:51 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:04:27 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// return a pointer to the first instance of c in the s, checking only n bytes
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	unsigned char	*d;
+	size_t			i;
 
+	d = (unsigned char *)s;
 	i = 0;
-	while (i < n)
+	while (n > i)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return ((void *)(s + i));
+		if (d[i] == (unsigned char)c)
+			return (d + i);
 		i++;
 	}
 	return (NULL);
 }
-//int main()
-//{
-//	char	satz[] = "abcdefghijklmnopqrstuvwxyz0123456789";
-//	char	*pc;
-//	char	c = 'h';
-//	pc = ft_memchr(satz, c, 36);
-//	write(1, &c, 1);
-//	write(1, "\t", 1);
-//	write(1, pc, 10);
-//	//in the test i write 10 chars from the result onwars to prove the first 
-//	// one was found. if this leads to a seg fault in testing the function
-//	// is not stupid, the tester is ,_,
-//	// or i am for not using printf instead ♥
-//}

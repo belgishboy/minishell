@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/11 20:40:42 by cdahlhof          #+#    #+#             */
-/*   Updated: 2021/05/27 11:56:07 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//🌊
+#include "libft.h"
 
-// check if the given char is part of either standart alphabet
 int	ft_isalpha(int c)
 {
-	if ((('A' <= c) && (c <= 'Z')) || (('a' <= c) && (c <= 'z')))
-		return (1024);
-	return (0);
+	if ((c > 64 && c < 91)
+		|| (c > 96 && c < 123))
+		return (1);
+	else
+		return (0);
 }

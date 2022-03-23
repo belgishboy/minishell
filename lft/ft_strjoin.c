@@ -3,37 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 17:58:42 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:28:05 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// concatenate two strings into one new string
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	total_length;
-	size_t	length_dst;
-	size_t	length_src;
-	char	*res;
+	size_t	len1;
+	size_t	len2;
+	char	*dest;
 
-	length_dst = ft_strlen((char *)s1);
-	length_src = ft_strlen((char *)s2);
-	total_length = length_src + length_dst;
-	res = malloc(total_length + 1);
-	if (res == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	ft_strlcpy(res, s1, length_dst + 1);
-	ft_strlcpy(&res[(length_dst)], s2, length_src + 1);
-	return (res);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	dest = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!dest)
+		return (NULL);
+	ft_memcpy(dest, s1, len1);
+	ft_memcpy(&dest[len1], s2, len2);
+	dest[len1 + len2] = '\0';
+	return (dest);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	char	strang[] = "Zer";
-//	char	strung[] = "schmetterling";
-//	printf("%s\n%s\n%s\n", strang, strung, ft_strjoin(strang, strung));
-//}
