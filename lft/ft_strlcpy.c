@@ -3,36 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 13:46:26 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:35:50 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// copy size bytes from src to dest, overwriting dest
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	while (src[i] && (i + 1) < size)
+	if (size == 0)
 	{
-		if (!(size == 0))
-			dst[i] = src[i];
+		while (src[i] != '\0')
+			i++;
+		return (i);
+	}
+	while (i < size - 1 && src[i] != '\0')
+	{
+		dst[i] = src[i];
 		i++;
 	}
-	if (!(size == 0))
+	if (i < size)
 		dst[i] = '\0';
-	return (ft_strlen((char *)src));
+	while (src[i] != '\0')
+		i++;
+	return (i);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	char	source[] = "szduf8kbn, ml";
-//	char	*dest = malloc(100 * sizeof(char));
-//	ft_strlcpy(dest, source, 7);
-//	printf("%s\n%s\n", source, dest);
-//}

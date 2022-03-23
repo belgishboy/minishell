@@ -3,38 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 14:35:12 by clems             #+#    #+#             */
-/*   Updated: 2022/01/10 19:30:31 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//	compare the given inputs byte by byte returning 0 if they equal, and a 
-//	number depending on which of them has a first instance that respectively
-//	is bigger or less than the other
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	if (!s1 || !s2)
-		return (0);
 	i = 0;
-	while (n - i > 0 && (s1[i] || s2[i]))
+	if (n == 0)
+		return (0);
+	while (s1[i] == s2[i])
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i ++;
+		if ((s1[i] == '\0' && s2[i] == '\0') || i == n - 1)
+			return (0);
+		i++;
 	}
-	return (0);
-}
-#include <stdio.h>
-int	main()
-{
-	char	satz1[50] = "something in the path=";
-	char	satz2[50] = "something in the path";
-	int i = ft_strncmp(satz1, satz2, ft_strlen(satz2));
-	printf("%s\n%s\n%d\n", satz1, satz2, i);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

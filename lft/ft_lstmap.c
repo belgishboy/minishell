@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/27 16:57:03 by clems             #+#    #+#             */
-/*   Updated: 2021/12/02 11:04:47 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,24 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	void			*f_;
-	t_list			*res;
-	t_list			*new;
-	t_list			*org;
+	t_list	*dest;
 
-	res = NULL;
-	new = NULL;
-	org = lst;
-	while (lst)
+	if (lst == NULL)
+		return (NULL);
+	dest = ft_lstnew(f(lst->content));
+	if (dest == NULL)
+		return (NULL);
+	if (lst->next != NULL)
 	{
-		f_ = f(lst->content);
-		if (f_)
+		dest->next = ft_lstmap(lst->next, f, del);
+		if (dest->next == NULL)
 		{
-			new = ft_lstnew(f_);
-			if (!new)
-			{
-				ft_lstclear(&lst, del);
-				return (NULL);
-			}
-			ft_lstadd_back(&res, new);
+			del(dest->content);
+			free(dest);
+			return (NULL);
 		}
-		lst = lst->next;
 	}
-	lst = org;
-	return (res);
+	else
+		dest->next = NULL;
+	return (dest);
 }

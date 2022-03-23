@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_c_e_set_bonus.c                                 :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 18:31:01 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 11:54:29 by clems            ###   ########.fr       */
+/*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
+/*   Updated: 2022/03/22 18:14:18 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-// check if the given char is part of the set
-int	ft_c_e_set_bonus(char c, char const *set)
+void	echo(char **array)
 {
-	size_t	i;
+	int	i;
+	int	nl;
 
-	i = 0;
-	while (i < ft_strlen((char *)set))
+	i = 1;
+	nl = 1;
+	if (ft_strncmp(array[i], "-n", ft_strlen(array[i])))
 	{
-		if (c == set[i])
-			return (1);
+		nl = 0;
 		i++;
 	}
-	return (0);
+	while (array[i])
+	{
+		printf("%s ", array[i]);
+		i++;
+	}
+	if (nl)
+		printf("\n");
 }

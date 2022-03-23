@@ -3,35 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 19:15:46 by clems             #+#    #+#             */
-/*   Updated: 2021/05/29 17:03:37 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// set n bytes of src to the value of c
-void	*ft_memset(void *str, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t	i;
+	unsigned char	*d;
+	size_t			i;
 
 	i = 0;
-	while (i < n)
+	d = (unsigned char *)s;
+	while (n > i)
 	{
-		((unsigned char *)str)[i] = c;
+		d[i] = c;
 		i++;
 	}
-	return (str);
+	return (s);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	char	*destination;
-//	destination = malloc(100 * sizeof(char));
-//	ft_memset(destination, '4', 100);
-//	printf("%s\n", destination);
-//	ft_memset(destination, '2', 100);
-//	printf("%s\n", destination);
-//}

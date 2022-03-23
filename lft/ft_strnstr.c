@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_s1ns1.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 1921/05/12 15:01:44 by clems             #+#    #+#             */
-/*   Updated: 2021/06/04 17:26:08 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// return a pointer to the first matching instance of s2 in s1
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	size_t	a;
+	size_t	j;
 
 	i = 0;
-	if (!*s2)
-		return ((char *)s1);
-	while (*(s1 + i) && i < n)
+	if (needle[i] == '\0')
+		return ((char *)haystack);
+	while (haystack[i] != '\0' && i < len)
 	{
-		a = 0;
-		while (*(s2 + a) && *(s1 + i + a)
-			&& *(s2 + a) == *(s1 + i + a) && a < n - i)
-			a++;
-		if (!*(s2 + a))
-			return ((char *)s1 + i);
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j < len)
+		{
+			if (needle[j + 1] == '\0')
+				return ((char *)(haystack + i));
+			j++;
+		}
 		i++;
 	}
 	return (NULL);
 }
-//#include <stdio.h>
-//#include <bsd/string.h>
-//int main()
-//{
-//	char	haystack[] = "lorem ipsum dolor sit amet";
-//	char	needle[]	= "ipsum";
-//	int		i = 11;
-//	printf("%s\t%s\n%s\n", haystack, needle, ft_strnstr(haystack, needle, i));
-//	printf("%s\t%s\n%s\n", haystack, needle, strnstr(haystack, needle, i));
-//}

@@ -87,6 +87,21 @@ typedef struct s_seq
 }	t_seq;
 
 /*
+**Environment Content Struct
+@param key variable name
+@param value variable content
+@param p flag determining printability
+
+** p: 0 - dont print, 1 - print, -1 - print only key
+*/
+typedef struct s_cont
+{
+	char	*key;
+	char	*value;
+	int		p;
+}	t_cont;
+
+/*
 **	FUNCTIONS
 */
 
