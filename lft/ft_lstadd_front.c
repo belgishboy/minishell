@@ -3,24 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 11:48:04 by clems             #+#    #+#             */
-/*   Updated: 2021/12/02 11:00:04 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// add an element to the beginning of the list, newsetting the list beginpointer
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst)
-	{
-		if (*lst)
-		{
-			new->next = *lst;
-			*lst = new;
-		}
-	}
+	if (*lst && new)
+		new->next = *lst;
+	*lst = new;
 }

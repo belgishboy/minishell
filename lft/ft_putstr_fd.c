@@ -3,30 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 15:22:43 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:20:32 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// write a given string to a given file-directory
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (s == NULL)
 		return ;
-	while (s[i])
+	while (s[i] != '\0')
 	{
-		ft_putchar_fd(s[i], fd);
+		write(fd, &s[i], 1);
 		i++;
 	}
 }
-//int main()
-//{
-//	ft_putendl_fd("examlpleString", 1);
-//}

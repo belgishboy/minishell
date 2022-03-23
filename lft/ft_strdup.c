@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 17:11:01 by clems             #+#    #+#             */
-/*   Updated: 2021/05/28 14:41:05 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// create a duplicate string of s
 char	*ft_strdup(const char *s)
 {
 	char	*dest;
+	size_t	i;
+	size_t	len;
 
-	dest = ft_calloc(ft_strlen((char *)s) + 1, 1);
-	if (dest == NULL)
-		return (NULL);
-	ft_strlcpy(dest, s, ft_strlen((char *)s) + 1);
+	len = ft_strlen(s);
+	dest = (char *)malloc(sizeof(*s) * (len + 1));
+	i = 0;
+	while (len > i)
+	{
+		dest[i] = s[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	char	source[] = "szduf8kbn, ml";
-//	char	*dest = malloc(100 * sizeof(char));
-//	dest	=	ft_strdup(source);
-//	printf("%s\n%s\n", source, dest);
-//}

@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/13 17:16:07 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 12:19:39 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// write a given string to a given file-directory, putting a
-// newline char at the end
 void	ft_putendl_fd(char *s, int fd)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
+	if (s == NULL)
+		return ;
+	while (s[i] != '\0')
 	{
-		ft_putchar_fd(s[i], fd);
+		write(fd, &s[i], 1);
 		i++;
 	}
 	write(fd, "\n", 1);
 }
-//int main()
-//{
-//	ft_putendl_fd("examlpleString", 1);
-//}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 17:14:04 by clems             #+#    #+#             */
-/*   Updated: 2021/12/09 12:05:57 by cdahlhof         ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*res;
-	size_t	lsub;
+	char	*dest;
+	size_t	i;
+	size_t	size;
 
-	if (!s)
-		return (0);
-	if ((unsigned int)ft_strlen(s) <= start)
-		return (ft_calloc(1, 1));
-	else if ((size_t)((int)ft_strlen((char *)s) - start) > len)
-		lsub = len;
-	else
-		lsub = (size_t)((int)ft_strlen((char *)s) - start);
-	res = ft_calloc(lsub + 1, 1);
-	if (!res)
+	if (s == NULL)
 		return (NULL);
-	ft_memcpy(res, &s[start], len);
-	return (res);
-}
-#include <stdio.h>
-int main()
-{
-	char	str[] = "123456789123456";
-	printf("%s\t%s\n", str, ft_substr(str, 0, 1));
+	i = 0;
+	size = ft_strlen(s);
+	if (start >= (unsigned int)size || !s)
+		len = 0;
+	else if (size < (start + len))
+		len = size - start;
+	dest = (char *)malloc(sizeof(char) * (len + 1));
+	if (dest == NULL)
+		return (NULL);
+	while (i < len)
+		dest[i++] = s[start++];
+	dest[i] = '\0';
+	return (dest);
 }

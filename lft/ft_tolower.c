@@ -3,27 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 10:40:42 by cdahlhof          #+#    #+#             */
-/*   Updated: 2021/05/26 21:46:38 by clems            ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//🌊
+#include "libft.h"
 
 int	ft_tolower(int c)
 {
-	if (65 <= c && c <= 90)
-		return (c + 32);
+	if (c > 64 && c < 91)
+		c += 32;
 	return (c);
 }
-//#include <stdio.h>
-//int main()
-//{
-//	char	c[] = {'a','I','T','e','4','K'};
-//	printf("%s\n", c);
-//	for(int i = 0; i < 6; i++)
-//		c[i] = ft_tolower(c[i]);
-//	printf("%s\n", c);
-//}

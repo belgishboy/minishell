@@ -3,32 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clems <clems@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 19:09:00 by clems             #+#    #+#             */
-/*   Updated: 2021/05/27 19:24:37 by clems            ###   ########.fr       */
+/*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// count and return the length of a list
 int	ft_lstsize(t_list *lst)
 {
-	int		i;
-	t_list	*current;
+	int	i;
 
-	i = 1;
-	current = lst;
-	if (lst)
+	i = 0;
+	while (lst != NULL)
 	{
-		while ((current->next) != NULL)
-		{
-			current = current->next;
-			i++;
-		}
+		i++;
+		lst = lst->next;
 	}
-	else
-		return (0);
 	return (i);
 }
