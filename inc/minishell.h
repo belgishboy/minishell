@@ -14,7 +14,6 @@
 
 # include "../lft/libft.h"
 
-
 /*
 **	INCLUDES
 */
