@@ -20,7 +20,6 @@ t_cont	*envar(char *p_var)
 		var->key = ft_strdup(p_var);
 		var->value = ft_strdup("");
 	}
-	var->p = 1;
 	return (var);
 }
 
@@ -39,7 +38,7 @@ void	delvar(t_list *elem)
 				free(var->value);
 			free(var);
 		}
-		free(elem)
+		free(elem);
 	}
 }
 
@@ -67,13 +66,37 @@ void	ms_env(t_shell *s)
 	temp = s->env;
 	while (temp)
 	{
-		if (((t_cont *)temp->content)->p == 1)
-			printf("%s=%s\n", ((t_cont *)temp->content)->key, ((t_cont *)temp->content)->value);
-		if (((t_cont *)temp->content)->p == -1)
-			printf("%s=\n", ((t_cont *)temp->content)->key);
+		if (((t_cont *)temp->content)->value[0])
+			printf("%s=%s\n", ((t_cont *)temp->content)->key, \
+							((t_cont *)temp->content)->value);
 		temp = temp->next;
 	}
 }
+
+char	**env_copy(t_list *p_env)
+{
+	char	**env;
+	t_list	*temp;
+	int		i;
+
+	temp = p_env;
+	i = 0;
+	env = ft_calloc((ft_lstsize(p_env) + 1), sizeof(char *));
+	while (i < ft_lstsize(p_env))
+	{
+		env[i] = ft_calloc(ft_strlen(((t_cont *)temp->content)->key) + \
+							ft_strlen(((t_cont *)temp->content)->value) + 2, 1);
+		ft_strlcpy(env[i], ((t_cont *)temp->content)->key, \
+							ft_strlen(((t_cont *)temp->content)->key) + 1);
+		env[i][ft_strlen(env[i])] = '=';
+		ft_strlcpy(env[i] + ft_strlen(env[i]), ((t_cont *)temp->content)->\
+								value, ft_strlen(((t_cont *)temp->content)->\
+																value) + 1);
+		temp = temp->next;
+	}
+	return (env);
+}
+
 // // gcc env.c ../../lft/libft.a && ./a.out
 // int main(int argc, char **argv, char **env)
 // {
@@ -84,4 +107,13 @@ void	ms_env(t_shell *s)
 // 	t_shell s;
 // 	s.env = create_env(env);
 // 	ms_env(&s);
+// 	printf("\n\n\n");
+// 	char **copy = env_copy(s.env);
+// 	for (int i = 0; copy[i]; i++)
+// 	{
+// 		printf("copy:%s\n", copy[i]);
+// 		free (copy[i]);
+// 	}
+// 	free(copy);
+// 	return (0);
 // }
