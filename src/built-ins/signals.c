@@ -6,11 +6,13 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:19:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/24 14:23:16 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:29:15 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+//#include "../../inc/minishell.h"
+#include <stdio.h>
+#include <signal.h>
 
 void	sighandler(int signum, siginfo_t *info, void *context)
 {
@@ -19,10 +21,14 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 	if (signum == SIGINT)
 	{
 		printf("\n");
+		printf("called sigint handler\n");
 		//call the prompt function
 	}
 	else if (signum == SIGQUIT)
+	{
 		//call our exit-function
+		printf("called the sigquit handler\n");
+	}
 }
 
 void	init_sig(void)
@@ -33,4 +39,16 @@ void	init_sig(void)
 	sig.sa_sigaction = sighandler;
 	sigaction(SIGINT, &sig, NULL);
 	sigaction(SIGQUIT, &sig, NULL);
+}
+
+int	main(void)
+{
+	printf("this is the start of the program\n");
+	init_sig();
+	printf("initialized sig handler\n");
+	while (1)
+	{
+	
+	}
+	return (0);
 }
