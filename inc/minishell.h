@@ -63,7 +63,7 @@ typedef struct s_shell
 	t_seq	**seq;
 	int		n_cmds;
 	char	*input;
-} t_shell;
+}	t_shell;
 
 /*
 **Sequence struct
@@ -102,15 +102,17 @@ typedef struct s_cont
 }	t_cont;
 
 /*
-**	FUNCTIONS
+ * FUNCTIONS
 */
 
-
+//	PARSE
+int		ft_white(char c);
+int		is_whspace(char *s, int dir);
+int		pipe_quote(int pos, char c, char *in);
 /*
 **	MAIN
 */
 
 int		shell(char **env);
-
 
 #endif
