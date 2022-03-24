@@ -71,8 +71,8 @@ typedef struct s_shell
 	char	*input;
 }	t_shell;
 
-/*
-**Sequence struct
+/**
+ * Sequence struct
 @param seq string befor being split
 @param split string array containing the splitted sequence
 @param path_cmd string (for bash) exe path and cmd
@@ -115,6 +115,9 @@ typedef struct s_cont
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
 int		pipe_quote(int pos, char c, char *in);
+int		pipe_split(t_shell *shell, char *in, int pos1, int pos2);
+int		is_split(char c);
+int		arg_split(char *s, t_seq *seq, int pos1, int i);
 /*
 **	MAIN
 */

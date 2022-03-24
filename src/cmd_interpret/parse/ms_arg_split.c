@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:29:21 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 14:40:53 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:24:37 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,13 @@ int	count_split(char *s)
 }
 
 /**
- * @param s [char *] sequance being split
- * @param seq [t_seq *] sequance struct
- * @param pos1 [int] because I have too many lines
- * @param i [int] because I have too many lines
+ * @param s		[char *] sequance being split
+ * @param seq	[t_seq *] sequance struct
+ * @param pos1	[int] always '0' (because I have too many lines)
+ * @param i		[int] always '0' (because I have too many lines)
  * @return [int] 0 if successful, 1 if malloc failed
 */
-int	ms_cmd_split(char *s, t_seq *seq, int pos1, int i)
+int	arg_split(char *s, t_seq *seq, int pos1, int i)
 {
 	int	pos2;
 
@@ -143,7 +143,7 @@ int main(void)
 {
 	t_seq *seq = malloc(sizeof(t_seq));
 	seq->seq = strdup("i hate  > this 'shit'bla thi's");
-	ms_cmd_split(seq->seq, seq, 0, 0);
+	arg_split(seq->seq, seq, 0, 0);
 	int i = 0;
 	printf("[%s]\n\n", seq->seq);
 	while (seq->split[i])
