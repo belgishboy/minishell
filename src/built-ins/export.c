@@ -40,17 +40,19 @@ void	export_all(t_list *env)
 	i = 0;
 	while (c_env[i])
 	{
-		c_env[i] = ft_realloc(c_env[i], ft_strlen(c_env[i]), 2);
+		c_env[i] = ft_realloc(c_env[i], ft_strlen(c_env[i]), 3);
 		if (!ft_strchr(c_env[i], '='))
-			printf("declare -x %s\"\"\n");
+			printf("declare -x %s\"\"\n", c_env[i]);
 		else
 		{
-			ft_memmove(ft_strchr(c_env[i], '=') + 1, ft_strchr(c_env[i], '='), ft_strlen(ft_strchr(c_env[i], '=')));
 			tmp = ft_strchr(c_env[i], '=');
-			*tmp = '"';
+			ft_memmove(tmp + 1, tmp, ft_strlen(tmp));
+			*tmp = '=';
+			*(tmp + 1) = '"';
 			c_env[i][ft_strlen(c_env[i])] = '"';
 			printf("declare -x %s\n", c_env[i]);
 		}
+		free(c_env[i]);
 		i++;
 	}
 	free(c_env);
@@ -63,7 +65,8 @@ t_list	*finder(t_list *env, char *key)
 	temp = env;
 	while (temp)
 	{
-		if (!ft_strncmp(((t_cont *)temp->content)->key, key, ft_strlen(((t_cont *)temp->content)->key)))
+		if (!ft_strncmp(((t_cont *)temp->content)->key, key, \
+			ft_strlen(((t_cont *)temp->content)->key)))
 			break ;
 		temp = temp->next;
 	}
@@ -88,55 +91,34 @@ void	ms_export(t_shell *s, t_seq *q)
 		{
 			free(((t_cont *)new->content)->value);
 			if (ft_strchr(q->cmd_args[i], '='))
-				((t_cont *)new->content)->value = ft_strdup(ft_strchr(q->cmd_args[i], '=') + 1);
+				((t_cont *)new->content)->value = \
+					ft_strdup(ft_strchr(q->cmd_args[i], '=') + 1);
 			else
 				((t_cont *)new->content)->value = ft_strdup("");
 		}
 		else
-		{
-			ft_lstadd_back(&s->env, ft_lstnew(envar(q->cmd_args[i])));
-			printf("added %s\n", q->cmd_args[i]);
-		}
 			ft_lstadd_back(&s->env, ft_lstnew(envar(q->cmd_args[i])));
 		i++;
 	}
 }
 
-// void	update_env_wd(char *n_val, t_shell *s, int flag)
+// // gcc env.c ../../lft/libft.a && ./a.out
+// int main(int argc, char **argv, char **env)
 // {
-// 	t_list	*var;
-// 	char	*case;
+// 	if (argc == 1000 || !argv[0])
+// 		return (1110);
+// 	printf("%i\b", argc);
 
-// 	if (flag = 1)
-// 		case = "PWD";
-// 	else
-// 		case = "OLDPWD";
-// 	var = finder(s->env, case);
-// 	if (var)
-// 	{
-// 		free(((t_cont *)var->content)->value);
-// 		if (ft_strchr(q->cmd_args[i], '='))
-// 			((t_cont *)var->content)->value = ft_strdup(ft_strchr(q->cmd_args[i], '=') + 1);
-// 		else
-// 			((t_cont *)var->content)->value = ft_strdup("");
-// 	}
+// 	t_shell s;
+// 	s.env = create_env(env);
+// 	ms_env(&s);
+// 	printf("created \n\n\n");
+// 	t_seq q;
+// 	q.cmd_args = ft_split("export lal HEHEHE pfad=weg pfad=strecke", ' ');
+// 	ms_export(&s, &q);
+// 	printf("added 2 \n\n\n");
+// 	ms_env(&s);
+// 	q.cmd_args = ft_split("export ", ' ');
+// 	ms_export(&s, &q);
+// 	return (0);
 // }
-
-// gcc env.c ../../lft/libft.a && ./a.out
-int main(int argc, char **argv, char **env)
-{
-	if (argc == 1000 || !argv[0])
-		return (1110);
-	printf("%i\b", argc);
-
-	t_shell s;
-	s.env = create_env(env);
-	ms_env(&s);
-	t_seq q;
-	q.cmd_args = ft_split("lal pfad=weg", ' ');
-	ms_export(&s, &q);
-	q.cmd_args = ft_split("", ' ');
-	ms_export(&s, &q);
-	ms_env(&s);
-	return (0);
-}

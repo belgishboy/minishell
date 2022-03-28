@@ -50,7 +50,7 @@ t_list	*create_env(char **p_env)
 	if (!env || !p_env[0])
 		return (NULL);
 	env = ft_lstnew((void *)envar(p_env[1]));
-	i = 1;
+	i = 2;
 	while (p_env[i])
 	{
 		ft_lstadd_back(&env, ft_lstnew(envar(p_env[i])));
@@ -93,6 +93,7 @@ char	**env_copy(t_list *p_env)
 								value, ft_strlen(((t_cont *)temp->content)->\
 																value) + 1);
 		temp = temp->next;
+		i++;
 	}
 	return (env);
 }
