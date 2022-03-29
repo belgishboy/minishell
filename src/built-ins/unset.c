@@ -6,7 +6,7 @@ int	keyerror(char *input)
 
 	i = 0;
 	if (!ft_isalpha(input[i]) && input[i] != '_')
-			return (1);
+		return (1);
 	while (input[i] && input[i] != '=')
 	{
 		if (!ft_isalnum(input[i]) && input[i] != '_')
@@ -26,8 +26,8 @@ void	ms_unset(t_shell *s, t_seq *q)
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '='))
-			printf("minishell: export: `%s\': not a valid identifier\n", q->cmd_args[i]);
+		if (keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '='))
+			printf("minishell: unset: `%s\': invalid\n", q->cmd_args[i]);
 		else if (new)
 		{
 			tmp = s->env;
@@ -35,7 +35,7 @@ void	ms_unset(t_shell *s, t_seq *q)
 				s->env = tmp->next;
 			else
 			{
-				while(tmp->next != new)
+				while (tmp->next != new)
 					tmp = tmp->next;
 				tmp->next = new->next;
 			}
