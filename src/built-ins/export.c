@@ -61,13 +61,20 @@ void	export_all(t_list *env)
 t_list	*finder(t_list *env, char *key)
 {
 	t_list	*temp;
+	int		cmp;
+	int		klen;
 
+	if (ft_strchr(key, '='))
+		klen = ft_strlen(key) - ft_strlen(ft_strchr(key, '='));
+	else
+		klen = ft_strlen(key);
 	temp = env;
 	while (temp)
 	{
-		if (!ft_strncmp(((t_cont *)temp->content)->key, key, \
-			ft_strlen(((t_cont *)temp->content)->key)))
+		if (!ft_strncmp(key, ((t_cont *)temp->content)->key, klen))
+		{
 			break ;
+		}
 		temp = temp->next;
 	}
 	return (temp);
@@ -79,15 +86,14 @@ void	ms_export(t_shell *s, t_seq *q)
 	int		i;
 
 	if (!q->cmd_args[1])
-	{
-		export_all(s->env);
-		return ;
-	}
+		return (export_all(s->env));
 	i = 1;
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (new)
+		if (keyerror(q->cmd_args[i]))
+			printf("minishell: export: `%s\': not a valid identifier\n", q->cmd_args[i]);
+		else if (new)
 		{
 			free(((t_cont *)new->content)->value);
 			if (ft_strchr(q->cmd_args[i], '='))
@@ -103,22 +109,22 @@ void	ms_export(t_shell *s, t_seq *q)
 }
 
 // // gcc env.c ../../lft/libft.a && ./a.out
-// int main(int argc, char **argv, char **env)
-// {
-// 	if (argc == 1000 || !argv[0])
-// 		return (1110);
-// 	printf("%i\b", argc);
+int main(int argc, char **argv, char **env)
+{
+	if (argc == 1000 || !argv[0])
+		return (1110);
+	printf("%i\b", argc);
 
-// 	t_shell s;
-// 	s.env = create_env(env);
-// 	ms_env(&s);
-// 	printf("created \n\n\n");
-// 	t_seq q;
-// 	q.cmd_args = ft_split("export lal HEHEHE pfad=weg pfad=strecke", ' ');
-// 	ms_export(&s, &q);
-// 	printf("added 2 \n\n\n");
-// 	ms_env(&s);
-// 	q.cmd_args = ft_split("export ", ' ');
-// 	ms_export(&s, &q);
-// 	return (0);
-// }
+	t_shell s;
+	s.env = create_env(env);
+	ms_env(&s);
+	printf("created \n\n\n");
+	t_seq q;
+	q.cmd_args = ft_split("export lal pfad=wegge pfad=weg pfadler=heyo", ' ');
+	ms_export(&s, &q);
+	printf("added 2 \n\n\n");
+	q.cmd_args = ft_split("unset pfad=weg pfad", ' ');
+	ms_unset(&s, &q);
+	ms_env(&s);
+	return (0);
+}

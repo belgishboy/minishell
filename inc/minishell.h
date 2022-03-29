@@ -117,6 +117,8 @@ t_list	*create_env(char **p_env);
 char	**env_copy(t_list *p_env);
 //	find and if found return an element of env
 t_list	*finder(t_list *env, char *key);
+//	check the argument on syntaxrules in the env
+int	keyerror(char *input);
 
 //	PARSE
 int		ft_white(char c);
@@ -131,6 +133,8 @@ int		pipe_quote(int pos, char c, char *in);
 void	ms_env(t_shell *s);
 //	add / edit the given arguments in the env
 void	ms_export(t_shell *s, t_seq *q);
+//	remove the arguments from the env
+void	ms_unset(t_shell *s, t_seq *q);
 
 int		shell(char **env);
 
