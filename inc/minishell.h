@@ -14,7 +14,6 @@
 
 # include "../lft/libft.h"
 
-
 /*
 **	INCLUDES
 */
@@ -35,6 +34,12 @@
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
+
+/*
+** GLOBAL VARIABLE
+*/
+
+int	err_num;
 
 /*
 ** MACROS
@@ -64,7 +69,7 @@ typedef struct s_shell
 	t_seq	**seq;
 	int		n_cmds;
 	char	*input;
-} t_shell;
+}	t_shell;
 
 /*
 **Sequence struct
@@ -99,7 +104,7 @@ typedef struct s_cont
 }	t_cont;
 
 /*
-**	FUNCTIONS
+ * FUNCTIONS
 */
 
 //	prepares the variable given to be element of the environment
@@ -111,6 +116,11 @@ t_list	*create_env(char **p_env);
 //	creates a string-array copy of the environment
 char	**env_copy(t_list *p_env);
 
+//	PARSE
+int		ft_white(char c);
+int		is_whspace(char *s, int dir);
+int		pipe_quote(int pos, char c, char *in);
+
 /*
 **	MAIN
 */
@@ -119,6 +129,5 @@ char	**env_copy(t_list *p_env);
 void	ms_env(t_shell *s);
 
 int		shell(char **env);
-
 
 #endif
