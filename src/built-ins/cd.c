@@ -6,13 +6,13 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/29 02:29:57 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/03/29 04:30:01 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	update_OLD(t_shell *shell)
+void	update_old(t_shell *shell)
 {
 	t_list	*old;
 	t_list	*new;
@@ -54,5 +54,4 @@ void	cd(char **array, t_shell *shell)
 	check = getcwd(newpwd, MAX_DIR);
 	if (check != NULL)
 		return (1);
-	
 }
