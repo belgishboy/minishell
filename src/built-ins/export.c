@@ -92,7 +92,8 @@ void	ms_export(t_shell *s, t_seq *q)
 	{
 		new = finder(s->env, q->cmd_args[i]);
 		if (keyerror(q->cmd_args[i]))
-			printf("minishell: export: `%s\': not a valid identifier\n", q->cmd_args[i]);
+			printf(\
+		"minishell: export: `%s\': not a valid identifier\n", q->cmd_args[i]);
 		else if (new)
 		{
 			free(((t_cont *)new->content)->value);
@@ -109,22 +110,22 @@ void	ms_export(t_shell *s, t_seq *q)
 }
 
 // // gcc env.c ../../lft/libft.a && ./a.out
-int main(int argc, char **argv, char **env)
-{
-	if (argc == 1000 || !argv[0])
-		return (1110);
-	printf("%i\b", argc);
+// int main(int argc, char **argv, char **env)
+// {
+// 	if (argc == 1000 || !argv[0])
+// 		return (1110);
+// 	printf("%i\b", argc);
 
-	t_shell s;
-	s.env = create_env(env);
-	ms_env(&s);
-	printf("created \n\n\n");
-	t_seq q;
-	q.cmd_args = ft_split("export lal pfad=wegge pfad=weg pfadler=heyo", ' ');
-	ms_export(&s, &q);
-	printf("added 2 \n\n\n");
-	q.cmd_args = ft_split("unset pfad=weg pfad", ' ');
-	ms_unset(&s, &q);
-	ms_env(&s);
-	return (0);
-}
+// 	t_shell s;
+// 	s.env = create_env(env);
+// 	ms_env(&s);
+// 	printf("created \n\n\n");
+// 	t_seq q;
+// 	q.cmd_args = ft_split("export lal pfad=wegge pfad=weg pfadler=heyo", ' ');
+// 	ms_export(&s, &q);
+// 	printf("added 2 \n\n\n");
+// 	q.cmd_args = ft_split("unset pfad=weg pfad", ' ');
+// 	ms_unset(&s, &q);
+// 	ms_env(&s);
+// 	return (0);
+// }
