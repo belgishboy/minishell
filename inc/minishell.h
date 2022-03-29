@@ -115,6 +115,8 @@ void	delvar(t_list *elem);
 t_list	*create_env(char **p_env);
 //	creates a string-array copy of the environment
 char	**env_copy(t_list *p_env);
+//	find and if found return an element of env
+t_list	*finder(t_list *env, char *key);
 
 //	PARSE
 int		ft_white(char c);
@@ -125,8 +127,10 @@ int		pipe_quote(int pos, char c, char *in);
 **	MAIN
 */
 
-//	disply the environment
+//	display the environment
 void	ms_env(t_shell *s);
+//	add / edit the given arguments in the env
+void	ms_export(t_shell *s, t_seq *q);
 
 int		shell(char **env);
 
