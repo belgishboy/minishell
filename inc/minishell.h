@@ -96,28 +96,37 @@ typedef struct s_seq
 **Environment Content Struct
 @param key variable name
 @param value variable content
-@param p flag determining printability
-
-** p: 0 - dont print, 1 - print, -1 - print only key
 */
 typedef struct s_cont
 {
 	char	*key;
 	char	*value;
-	int		p;
 }	t_cont;
 
 /*
  * FUNCTIONS
 */
 
+//	prepares the variable given to be element of the environment
+t_cont	*envar(char *p_var);
+//	deletion function for execution ft_lstclear in the environment
+void	delvar(t_list *elem);
+//	translate the given environment into a list
+t_list	*create_env(char **p_env);
+//	creates a string-array copy of the environment
+char	**env_copy(t_list *p_env);
+
 //	PARSE
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
 int		pipe_quote(int pos, char c, char *in);
+
 /*
 **	MAIN
 */
+
+//	disply the environment
+void	ms_env(t_shell *s);
 
 int		shell(char **env);
 
