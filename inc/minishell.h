@@ -128,7 +128,8 @@ int		pipe_quote(int pos, char c, char *in);
 /*
 **	MAIN
 */
-
+//	replace variable names with their values
+void	interpret(t_shell *s, char **line);
 //	display the environment
 void	ms_env(t_shell *s);
 //	add / edit the given arguments in the env
