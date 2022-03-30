@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:29:21 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 15:24:37 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:38:52 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	count_split(char *s)
 */
 int	arg_split(char *s, t_seq *seq, int pos1, int i)
 {
+	printf("arg splitting\n");
 	int	pos2;
 
 	seq->nbr_arg = count_split(s);
@@ -135,6 +136,9 @@ int	arg_split(char *s, t_seq *seq, int pos1, int i)
 		seq->split[i ++] = ft_substr(s, pos1, pos2 - pos1);
 		pos1 = pos2;
 	}
+	for (int i = 0; seq->split[i]; i ++)
+		printf("%d] [%s]\n", i + 1, seq->split[i]);
+	printf("done arg splitting\n");
 	return (0);
 }
 

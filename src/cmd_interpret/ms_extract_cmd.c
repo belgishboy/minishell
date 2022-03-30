@@ -6,30 +6,18 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 15:49:54 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:30:06 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /**
- * @param seq [t_seq *] seq to be initilized
-*/
-void	init_seq(t_seq *seq)
-{
-	seq->split = NULL;
-	seq->cmd_args = NULL;
-	seq->fd[0] = STDIN_FILENO;
-	seq->fd[1] = STDOUT_FILENO;
-	seq->wht_cmd = -1;
-	seq->nbr_arg = -1;
-}
-
-/**
  * 
 */
 int	extract_cmd(t_shell *sh)
 {
+	printf("extracting cmds\n");
 	int	flag;
 	int	i;
 
@@ -38,11 +26,24 @@ int	extract_cmd(t_shell *sh)
 	if (pipe_split(sh, sh->input, 0, 0))
 		flag = -1;
 	else
+		parse(sh);
+	printf("done extracting cmds\n");
+	return (0);
+}
+
+int	main(void)
+{
+	t_shell	*sh = malloc(sizeof(t_shell));
+	int	i = 1;
+
+	while (1)
 	{
-		while (sh->seq[i])
-		{
-			init_seq(sh->seq[i]);
-		}
-		
+		sh->input = readline(PROMT);
+		if (ft_strncmp(sh->input, "EXIT", 4) == 0)
+			break ;
+		extract_cmd(sh);
+		printf("\nDONE %d\n\n", i);
+		i ++;
 	}
+	return (0);
 }

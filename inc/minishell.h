@@ -118,6 +118,12 @@ int		pipe_quote(int pos, char c, char *in);
 int		pipe_split(t_shell *shell, char *in, int pos1, int pos2);
 int		is_split(char c);
 int		arg_split(char *s, t_seq *seq, int pos1, int i);
+char	*rmv_quotes(char *s, int f);
+char	*ft_get_path( char **cmd, char **path);
+int		init_fd(t_seq *seq, char **sp);
+char	**ft_path(void); //Remove
+int		parse(t_shell *sh);
+
 /*
 **	MAIN
 */
