@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/29 04:30:01 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:39:54 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ void	cd(char **array, t_shell *shell)
 	char	*oldpwd;
 	char	*newpwd;
 	char	*check;
+	int		check_two;
 
+	check_two = 0;
 	check = NULL;
 	check = getcwd(oldpwd, MAX_DIR);
-	if (check != NULL)
-		return (1);
-	update_OLD(shell);
-	// is this a leak? line 49
-	check = NULL;
-	//do I have to close the dir as well?
-	check = opendir(array[1]);
 	if (check == NULL)
-		return (1);
+		err_num = 1;
+	update_OLD(shell);
+//	check = opendir(array[1]);
+	check_two = chdir(array[1]);
+	else if (check_two)
+		err_num = 1;
 	check = NULL;
 	check = getcwd(newpwd, MAX_DIR);
-	if (check != NULL)
-		return (1);
+	else	if (check != NULL)
+		err_num = 1;
 }
