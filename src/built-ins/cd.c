@@ -38,7 +38,9 @@ void	cd(char **array, t_shell *shell)
 	char	*oldpwd;
 	char	*newpwd;
 	char	*check;
+	int		check_two;
 
+	check_two = 0;
 	check = NULL;
 	check = getcwd(oldpwd, MAX_DIR);
 	if (check != NULL)

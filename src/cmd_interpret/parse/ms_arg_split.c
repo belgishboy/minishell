@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:29:21 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 14:40:53 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:30:54 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,15 @@ int	count_split(char *s)
 }
 
 /**
- * @param s [char *] sequance being split
- * @param seq [t_seq *] sequance struct
- * @param pos1 [int] because I have too many lines
- * @param i [int] because I have too many lines
+ * @param s		[char *] sequance being split
+ * @param seq	[t_seq *] sequance struct
+ * @param pos1	[int] always '0' (because I have too many lines)
+ * @param i		[int] always '0' (because I have too many lines)
  * @return [int] 0 if successful, 1 if malloc failed
 */
-int	ms_cmd_split(char *s, t_seq *seq, int pos1, int i)
+int	arg_split(char *s, t_seq *seq, int pos1, int i)
 {
+	//printf("arg splitting\n");
 	int	pos2;
 
 	seq->nbr_arg = count_split(s);
@@ -135,6 +136,9 @@ int	ms_cmd_split(char *s, t_seq *seq, int pos1, int i)
 		seq->split[i ++] = ft_substr(s, pos1, pos2 - pos1);
 		pos1 = pos2;
 	}
+	/*for (int i = 0; seq->split[i]; i ++)
+		printf("%d] [%s]\n", i + 1, seq->split[i]);
+	printf("done arg splitting\n");*/
 	return (0);
 }
 
@@ -143,7 +147,7 @@ int main(void)
 {
 	t_seq *seq = malloc(sizeof(t_seq));
 	seq->seq = strdup("i hate  > this 'shit'bla thi's");
-	ms_cmd_split(seq->seq, seq, 0, 0);
+	arg_split(seq->seq, seq, 0, 0);
 	int i = 0;
 	printf("[%s]\n\n", seq->seq);
 	while (seq->split[i])
