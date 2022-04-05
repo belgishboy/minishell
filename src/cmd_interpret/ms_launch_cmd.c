@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_launch_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 16:14:14 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 17:23:58 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	launch_cmd(t_shell *sh)
 		if (err_num != 0)
 			return (write(tmp_fd[1], "dup2 Top failed\n", 16));//CLEMENS
 		ft_pipe(sh, sh->seq[i]);
+		i++;
 	}
 	dup2(tmp_fd[0], STDIN_FILENO);
 	dup2(tmp_fd[1], STDOUT_FILENO);
