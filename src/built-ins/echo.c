@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/23 16:32:05 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/31 03:32:38 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	echo(char **array)
+#include "../../inc/minishell.h"
+
+void	ms_echo(char **array)
 {
 	int	i;
 	int	nl;

@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:30:27 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/22 17:50:00 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/31 03:32:57 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/minishell.h"
 
 void	pwd(t_list *env)
 {
@@ -18,7 +20,7 @@ void	pwd(t_list *env)
 	check = NULL;
 	check = getcwd(path, MAX_PATH);
 	if (!check)
-		return (1);
+		return ;
 	printf("%s\n", path);
-	return (0);
+	return ;
 }
