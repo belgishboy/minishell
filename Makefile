@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+         #
+#    By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:32:58 by hlehmann          #+#    #+#              #
 #    Updated: 2022/04/05 13:39:45 by hlehmann         ###   ########.fr        #
