@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_launch_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 14:07:39 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:26:50 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	launch_cmd(t_shell *sh)
 
 	tmp_in = dup(0);
 	tmp_out = dup(1);
-	
+	return (0);
 }

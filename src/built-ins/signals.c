@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:19:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/31 03:22:34 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:07:20 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_sig(void)
 // 	printf("initialized sig handler\n");
 // 	while (1)
 // 	{
-		
 // 	}
 // 	return (0);
 // }
