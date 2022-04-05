@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:47:08 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/30 18:23:00 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:31:44 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	**ft_path(void)
 {
 	char	**path;
 
-	path = ft_split(getenv("PATH="), ':');
+	path = ft_split(getenv("PATH="), ':');//CLEMENS
 	if (!path)
 		return (NULL);
 	ft_add_slash(path);

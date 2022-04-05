@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 11:30:36 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:30:05 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	parse(t_shell *sh)//clean
 		init_seq(sh->seq[i]);
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
 		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
-			return ((i + 1) * -1);
+			return ((i + 1) * -1);//ERROR 
 		init_fd(sh->seq[i], sh->seq[i]->split);// need to take out the '>'
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)

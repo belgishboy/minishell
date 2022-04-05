@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 12:08:28 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:19:31 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int		shell(char **env)
 	err_num = 0;
 	while (1)
 	{
-		s.input = readline("henneshell@vinnihamster$ ");
+		s.input = readline(PROMT);
+		if (!ft_strncmp(s.input, "exit", 4))
+			return (0);
 		interpret(&s, &s.input);
 		printf("%s\n", s.input);
 		extract_cmd(&s);
