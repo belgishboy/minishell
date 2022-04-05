@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 15:53:55 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:37:53 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	init_seq(t_seq *seq)
 {
 	seq->split = NULL;
 	seq->cmd_args = NULL;
-	seq->fd[0] = STDIN_FILENO;
-	seq->fd[1] = STDOUT_FILENO;
+	seq->fd[0] = 0;
+	seq->fd[1] = 1;
 	seq->wht_cmd = 1;
 	seq->nbr_arg = -1;
 }
