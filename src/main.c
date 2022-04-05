@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/31 02:55:15 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:55:31 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ int		shell(char **env)
 	{
 		line = readline("henneshell@vinnihamster$ ");
 		interpret(&s, &line);
-		//parsing
-		//execution
 		printf("%s\n", line);
 		free(line);
-		
+		extract_cmd(&s);
+		//execution
 	}
 }
 

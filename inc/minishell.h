@@ -129,6 +129,10 @@ int	keyerror(char *input);
 
 void	init_sig(void);
 
+// EXTRACT
+
+int		extract_cmd(t_shell *sh);
+
 //	PARSE
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
