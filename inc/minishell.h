@@ -149,15 +149,14 @@ int		parse(t_shell *sh);
 // Launch
 
 int		launch_cmd(t_shell *sh);
-void	ft_pipe(t_seq *seq, char **env);
+void	ft_pipe(t_shell *sh, t_seq *seq);
+void	ms_exec_builtins(t_shell *s, t_seq *q);
 
 /*
 **	MAIN
 */
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
-//	execute build_ins
-void	ms_exec_builtins(t_shell *s, t_seq *q);
 //	display the arguments given
 void	ms_echo(char **array);
 //	try to change directory to the first argument given

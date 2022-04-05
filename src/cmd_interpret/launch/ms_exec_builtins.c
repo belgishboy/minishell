@@ -1,4 +1,4 @@
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 void	ms_exec_builtins(t_shell *s, t_seq *q)
 {
@@ -6,7 +6,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q)
 
 	p_env = env_copy(s->env);
 	if (q->wht_cmd == 1)
-		execve(q->path_cmd, q->cmd_args,p_env); 
+		execve(q->path_cmd, q->cmd_args, p_env); 
 	else
 	{
 		if (q->wht_cmd == 2)
@@ -22,7 +22,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q)
 		else if (q->wht_cmd == 7)
 			ms_env(s, q);
 		else if (q->wht_cmd == 8)
-			exit(42) // work in progress
+			exit(42); // work in progress
 		exit(0); //KILL CHILD
 	}
 	del_list(p_env);
