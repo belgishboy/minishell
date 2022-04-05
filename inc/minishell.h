@@ -153,7 +153,7 @@ int		parse(t_shell *sh);
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
 //	display the environment
-void	ms_env(t_shell *s);
+void	ms_env(t_shell *s, t_seq *q);
 //	add / edit the given arguments in the env
 int		ms_export(t_shell *s, t_seq *q);
 //	remove the arguments from the env

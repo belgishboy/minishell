@@ -65,7 +65,9 @@ void	ms_env(t_shell *s, t_seq *q)
 
 	if (q->cmd_args[1])
 	{
-		printf("env: %s")
+		printf("env: %s: we don't take arguments\n", q->cmd_args[1]);
+		err_num = 127;
+		return ;
 	}
 	temp = s->env;
 	while (temp)
@@ -75,6 +77,7 @@ void	ms_env(t_shell *s, t_seq *q)
 							((t_cont *)temp->content)->value);
 		temp = temp->next;
 	}
+	err_num = 0;
 }
 
 char	**env_copy(t_list *p_env)

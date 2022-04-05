@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 12:01:01 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:08:28 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		shell(char **env)
 		printf("%s\n", s.input);
 		extract_cmd(&s);
 		//execution
+		free(s.input);
 	}
 }
 
