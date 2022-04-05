@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 15:26:50 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:25:21 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int		shell(char **env)
 		if (!ft_strncmp(s.input, "exit", 4))
 			return (0);
 		interpret(&s, &s.input);
-		printf("%s\n", s.input);
+		//printf("%s\n", s.input);
 		extract_cmd(&s);
+		launch_cmd(&s);
 		//execution
 		free(s.input);
 	}
