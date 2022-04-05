@@ -6,35 +6,35 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:43:10 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 15:48:33 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:18:52 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-void	ft_pipe(t_seq *seq, char **env)
+void	ft_pipe(t_shell *sh, t_seq *seq)
 {
 	pid_t	pid;
 	int		fd[2];
 
 	if (pipe(fd))
-		ft_error("Pipe Falure", STDERR_FILENO);
+		write(2, "Pipe Falure\n", 12); //CLEMENS
 	pid = fork();
 	if (pid < 0)
-		ft_error("The Fork failed", STDERR_FILENO);
+		write(2, "The Fork failed\n", 16);
 	if (!pid)
 	{
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
-			ft_error("dup2 Child failed", STDERR_FILENO);
-		execve(seq->path_cmd, seq->cmd_args, env);
+			write(2, "dup2 Child failed\n", 18);
+		ms_exec_builtins(sh, seq);
 		exit(127);
 	}
 	else
 	{
 		close(fd[1]);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
-			ft_error("dup2 Parent failed", STDERR_FILENO);
+			write(2, "dup2 Parent failed\n", 19);
 		waitpid(pid, NULL, 0);
 		close(fd[0]);
 	}
