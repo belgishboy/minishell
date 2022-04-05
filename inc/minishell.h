@@ -14,7 +14,6 @@
 
 # include "../lft/libft.h"
 
-
 /*
 **	INCLUDES
 */
@@ -70,7 +69,7 @@ typedef struct s_shell
 	t_seq	**seq;
 	int		n_cmds;
 	char	*input;
-} t_shell;
+}	t_shell;
 
 /*
 **Sequence struct
@@ -94,15 +93,50 @@ typedef struct s_seq
 }	t_seq;
 
 /*
-**	FUNCTIONS
+**Environment Content Struct
+@param key variable name
+@param value variable content
+*/
+typedef struct s_cont
+{
+	char	*key;
+	char	*value;
+}	t_cont;
+
+/*
+ * FUNCTIONS
 */
 
+//	prepares the variable given to be element of the environment
+t_cont	*envar(char *p_var);
+//	deletion function for execution ft_lstclear in the environment
+void	delvar(t_list *elem);
+//	translate the given environment into a list
+t_list	*create_env(char **p_env);
+//	creates a string-array copy of the environment
+char	**env_copy(t_list *p_env);
+//	find and if found return an element of env
+t_list	*finder(t_list *env, char *key);
+//	check the argument on syntaxrules in the env
+int	keyerror(char *input);
+
+//	PARSE
+int		ft_white(char c);
+int		is_whspace(char *s, int dir);
+int		pipe_quote(int pos, char c, char *in);
 
 /*
 **	MAIN
 */
+//	replace variable names with their values
+void	interpret(t_shell *s, char **line);
+//	display the environment
+void	ms_env(t_shell *s);
+//	add / edit the given arguments in the env
+void	ms_export(t_shell *s, t_seq *q);
+//	remove the arguments from the env
+void	ms_unset(t_shell *s, t_seq *q);
 
 int		shell(char **env);
-
 
 #endif

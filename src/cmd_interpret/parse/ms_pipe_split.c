@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/22 17:57:54 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/03/24 14:41:00 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * Handles all the spliting between pipes of the input 
 */
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 /**
  * returns the pos in string where the quote's end
@@ -50,7 +50,7 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
 		{
 			if (in[i + 1] != PIPE)
 				count ++;
-			if (in[i + 1] && in[i + 1] == PIPE)
+			if (in[i + 1] && in[i + 1] == PIPE)// check
 				return (-1);
 		}
 		i ++;
@@ -66,21 +66,21 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
  * @param pos2 [int] because I have too many lines
  * @return 1 if error in pipe count, 0 if succes
 */
-int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)
+int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be split here?
 {
 	int	n_pipes;
 
 	shell->n_cmds = count_pipe(in);
 	if (shell->n_cmds < 1)
 		return (1);
-	shell->seq = malloc(shell->n_cmds * sizeof(t_seq *));
+	shell->seq = ft_calloc(shell->n_cmds + 1, sizeof(t_seq *));
 	n_pipes = 0;
 	while (n_pipes < shell->n_cmds)
 	{
 		while (in[pos2] && in[pos2] != PIPE)
 		{
 			if (in[pos2] == D_Q || in[pos2] == S_Q)
-				pos2 = quote_check(pos2, in[pos2], in);
+				pos2 = pipe_quote(pos2 + 1, in[pos2], in);
 			pos2 ++;
 		}
 		if (!in[pos2] || in[pos2 + 1] != PIPE)
@@ -95,16 +95,19 @@ int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)
 	return (0);
 }
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
 	argc ++;
-	t_shell *s = malloc(sizeof(t_shell *) * 1);
+	t_shell *s;
+	s = malloc(sizeof(t_shell) * 1);
+	printf("pipe split start\n");
 	pipe_split(s, argv[1], 0, 0);
+	printf("pipe split done [%d]\n", s->n_cmds);
 	int i = 0;
-	while (i < s->n_cmds)
+	while (s->seq[i])
 	{
-		printf("%d] %s\n", i + 1, s->seq[i]->seq);
+		printf("%d] [%s]\n", i + 1, s->seq[i]->seq);
 		i ++;
 	}
 	return (0);
-}
+}*/
