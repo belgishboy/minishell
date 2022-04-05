@@ -44,7 +44,10 @@ int	err_num;
 /*
 ** MACROS
 */
-
+# ifndef MAX_PATH
+#  define MAX_PATH 1000
+# endif
+# define MAX_DIR 1000
 # define PROMT "minishell v1.0$"
 # define PIPE '|'
 # define S_Q '\''
@@ -115,10 +118,16 @@ void	delvar(t_list *elem);
 t_list	*create_env(char **p_env);
 //	creates a string-array copy of the environment
 char	**env_copy(t_list *p_env);
+//	frees a previously allocated char**
+void	del_list(char **list);
 //	find and if found return an element of env
 t_list	*finder(t_list *env, char *key);
 //	check the argument on syntaxrules in the env
 int	keyerror(char *input);
+
+//	signals
+
+void	init_sig(void);
 
 //	PARSE
 int		ft_white(char c);
@@ -142,7 +151,7 @@ void	interpret(t_shell *s, char **line);
 //	display the environment
 void	ms_env(t_shell *s);
 //	add / edit the given arguments in the env
-void	ms_export(t_shell *s, t_seq *q);
+int		ms_export(t_shell *s, t_seq *q);
 //	remove the arguments from the env
 void	ms_unset(t_shell *s, t_seq *q);
 
