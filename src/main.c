@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 11:55:31 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:01:01 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@
 int		shell(char **env)
 {
 	t_shell	s;
-	char *line;
 
 	init_sig();
 	s.env = create_env(env);
 	err_num = 0;
 	while (1)
 	{
-		line = readline("henneshell@vinnihamster$ ");
-		interpret(&s, &line);
-		printf("%s\n", line);
-		free(line);
+		s.input = readline("henneshell@vinnihamster$ ");
+		interpret(&s, &s.input);
+		printf("%s\n", s.input);
 		extract_cmd(&s);
 		//execution
 	}
