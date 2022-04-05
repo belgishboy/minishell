@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+         #
+#    By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:32:58 by hlehmann          #+#    #+#              #
-#    Updated: 2022/04/05 09:59:53 by cdahlhof         ###   ########.fr        #
+#    Updated: 2022/04/05 12:01:39 by vheymans         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,28 @@ CC = gcc
 FLAGS = ##-Wall -Werror -Wextra -l readline
 RM = rm -f
 LFT = ./lft
+SR = ./src/
+BI = $(SR)built-ins/
+CMI = $(SR)cmd_interpret/
+PR = $(CMI)parse/ms_
 
-SRC =	src/main.c \
-		src/built-ins/echo.c \
-		src/built-ins/env.c \
-		src/built-ins/export.c \
-		src/built-ins/pwd.c \
-		src/built-ins/signals.c \
-		src/built-ins/unset.c \
-		src/cmd_interpret/parse/ms_arg_split.c \
-		src/cmd_interpret/parse/ms_pipe_split.c \
-		src/cmd_interpret/parse/ms_whitespace.c \
-		src/cmd_interpret/ms_extract_cmd.c \
-		src/cmd_interpret/ms_launch_cmd.c \
-		src/cmd_interpret/vars.c \
+SRC =	$(SR)main.c \
+		$(BI)echo.c \
+		$(BI)env.c \
+		$(BI)export.c \
+		$(BI)pwd.c \
+		$(BI)signals.c \
+		$(BI)unset.c \
+		$(PR)arg_split.c \
+		$(PR)cmd.c \
+		$(PR)parse.c \
+		$(PR)pipe_split.c \
+		$(PR)rmv_quotes.c \
+		$(PR)whitespace.c \
+		$(PR)fd.c \
+		$(CMI)ms_extract_cmd.c \
+		$(CMI)ms_launch_cmd.c \
+		$(CMI)vars.c \
 
 OBJ = $(SRC:.c=.o)
 
