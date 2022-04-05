@@ -6,14 +6,16 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 11:51:01 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:57:04 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /**
- * 
+ * does all of the extracting
+ * @param sh [t_shell *] shell
+ * @return [int] 0 if successful, something else
 */
 int	extract_cmd(t_shell *sh)
 {
