@@ -29,7 +29,20 @@ void	sort_list(char ***plist, int n)
 	}
 }
 
-void	export_all(t_list *env)
+void	del_list(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list && list[i])
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
+}
+
+int	export_all(t_list *env)
 {
 	char	**c_env;
 	int		i;
@@ -52,16 +65,15 @@ void	export_all(t_list *env)
 			c_env[i][ft_strlen(c_env[i])] = '"';
 			printf("declare -x %s\n", c_env[i]);
 		}
-		free(c_env[i]);
 		i++;
 	}
-	free(c_env);
+	del_list(c_env);
+	return (0);
 }
 
 t_list	*finder(t_list *env, char *key)
 {
 	t_list	*temp;
-	int		cmp;
 	int		klen;
 
 	if (ft_strchr(key, '='))
@@ -80,7 +92,7 @@ t_list	*finder(t_list *env, char *key)
 	return (temp);
 }
 
-void	ms_export(t_shell *s, t_seq *q)
+int	ms_export(t_shell *s, t_seq *q)
 {
 	t_list	*new;
 	int		i;
@@ -92,14 +104,15 @@ void	ms_export(t_shell *s, t_seq *q)
 	{
 		new = finder(s->env, q->cmd_args[i]);
 		if (keyerror(q->cmd_args[i]))
-			printf(\
-		"minishell: export: `%s\': not a valid identifier\n", q->cmd_args[i]);
+			return ((printf(\
+			"minishell: export: `%s\': not a valid identifier\n", \
+			q->cmd_args[i]) * 0) + 1);
 		else if (new)
 		{
 			free(((t_cont *)new->content)->value);
 			if (ft_strchr(q->cmd_args[i], '='))
 				((t_cont *)new->content)->value = \
-					ft_strdup(ft_strchr(q->cmd_args[i], '=') + 1);
+				ft_strdup(ft_strchr(q->cmd_args[i], '=') + 1);
 			else
 				((t_cont *)new->content)->value = ft_strdup("");
 		}
@@ -107,6 +120,7 @@ void	ms_export(t_shell *s, t_seq *q)
 			ft_lstadd_back(&s->env, ft_lstnew(envar(q->cmd_args[i])));
 		i++;
 	}
+	return (0);
 }
 
 // // gcc env.c ../../lft/libft.a && ./a.out
@@ -115,7 +129,6 @@ void	ms_export(t_shell *s, t_seq *q)
 // 	if (argc == 1000 || !argv[0])
 // 		return (1110);
 // 	printf("%i\b", argc);
-
 // 	t_shell s;
 // 	s.env = create_env(env);
 // 	ms_env(&s);

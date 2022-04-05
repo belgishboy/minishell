@@ -47,7 +47,7 @@ t_list	*create_env(char **p_env)
 	int		i;
 	t_list	*env;
 
-	if (!env || !p_env[0])
+	if (!p_env[0])
 		return (NULL);
 	env = ft_lstnew((void *)envar(p_env[1]));
 	i = 2;
@@ -59,10 +59,16 @@ t_list	*create_env(char **p_env)
 	return (env);
 }
 
-void	ms_env(t_shell *s)
+void	ms_env(t_shell *s, t_seq *q)
 {
 	t_list	*temp;
 
+	if (q->cmd_args[1])
+	{
+		printf("env: %s: we don't take arguments\n", q->cmd_args[1]);
+		err_num = 127;
+		return ;
+	}
 	temp = s->env;
 	while (temp)
 	{
@@ -71,6 +77,7 @@ void	ms_env(t_shell *s)
 							((t_cont *)temp->content)->value);
 		temp = temp->next;
 	}
+	err_num = 0;
 }
 
 char	**env_copy(t_list *p_env)

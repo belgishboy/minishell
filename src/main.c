@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/23 15:51:00 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:19:31 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,22 @@
 */
 int		shell(char **env)
 {
-	
+	t_shell	s;
+
+	init_sig();
+	s.env = create_env(env);
+	err_num = 0;
+	while (1)
+	{
+		s.input = readline(PROMT);
+		if (!ft_strncmp(s.input, "exit", 4))
+			return (0);
+		interpret(&s, &s.input);
+		printf("%s\n", s.input);
+		extract_cmd(&s);
+		//execution
+		free(s.input);
+	}
 }
 
 /**

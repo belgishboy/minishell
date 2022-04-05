@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:19:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/24 14:29:15 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/31 03:22:34 by cdahlhof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../../inc/minishell.h"
+#include "../../inc/minishell.h"
 #include <stdio.h>
 #include <signal.h>
 
@@ -41,14 +41,14 @@ void	init_sig(void)
 	sigaction(SIGQUIT, &sig, NULL);
 }
 
-int	main(void)
-{
-	printf("this is the start of the program\n");
-	init_sig();
-	printf("initialized sig handler\n");
-	while (1)
-	{
-	
-	}
-	return (0);
-}
+// int	main(void)
+// {
+// 	printf("this is the start of the program\n");
+// 	init_sig();
+// 	printf("initialized sig handler\n");
+// 	while (1)
+// 	{
+		
+// 	}
+// 	return (0);
+// }

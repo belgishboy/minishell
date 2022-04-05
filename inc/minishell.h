@@ -44,7 +44,10 @@ int	err_num;
 /*
 ** MACROS
 */
-
+# ifndef MAX_PATH
+#  define MAX_PATH 1000
+# endif
+# define MAX_DIR 1000
 # define PROMT "minishell v1.0$"
 # define PIPE '|'
 # define S_Q '\''
@@ -71,8 +74,8 @@ typedef struct s_shell
 	char	*input;
 }	t_shell;
 
-/*
-**Sequence struct
+/**
+ * Sequence struct
 @param seq string befor being split
 @param split string array containing the splitted sequence
 @param path_cmd string (for bash) exe path and cmd
@@ -115,15 +118,34 @@ void	delvar(t_list *elem);
 t_list	*create_env(char **p_env);
 //	creates a string-array copy of the environment
 char	**env_copy(t_list *p_env);
+//	frees a previously allocated char**
+void	del_list(char **list);
 //	find and if found return an element of env
 t_list	*finder(t_list *env, char *key);
 //	check the argument on syntaxrules in the env
 int	keyerror(char *input);
 
+//	signals
+
+void	init_sig(void);
+
+// EXTRACT
+
+int		extract_cmd(t_shell *sh);
+
 //	PARSE
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
 int		pipe_quote(int pos, char c, char *in);
+int		pipe_split(t_shell *shell, char *in, int pos1, int pos2);
+int		is_split(char c);
+int		arg_split(char *s, t_seq *seq, int pos1, int i);
+char	*rmv_quotes(char *s, int f);
+char	*ft_get_path( char **cmd, char **path);
+int		init_fd(t_seq *seq, char **sp);
+char	**ft_path(void); //Remove
+int		parse(t_shell *sh);
+
 
 /*
 **	MAIN
@@ -131,9 +153,9 @@ int		pipe_quote(int pos, char c, char *in);
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
 //	display the environment
-void	ms_env(t_shell *s);
+void	ms_env(t_shell *s, t_seq *q);
 //	add / edit the given arguments in the env
-void	ms_export(t_shell *s, t_seq *q);
+int		ms_export(t_shell *s, t_seq *q);
 //	remove the arguments from the env
 void	ms_unset(t_shell *s, t_seq *q);
 
