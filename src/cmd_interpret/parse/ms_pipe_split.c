@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 14:41:00 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:31:17 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
  * pipe_splits splits `in` by pipes
  * @param shell [t_shell *] shell struct
  * @param in [char *] input string
- * @param pos1 [int] because I have too many lines
- * @param pos2 [int] because I have too many lines
+ * @param pos1 [int] always '0' (because I have too many lines)
+ * @param pos2 [int] always '0' (because I have too many lines)
  * @return 1 if error in pipe count, 0 if succes
 */
 int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be split here?
 {
+	//printf("pipe splitting\n");
 	int	n_pipes;
 
 	shell->n_cmds = count_pipe(in);
@@ -92,6 +93,9 @@ int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be sp
 		while (in[pos2] == PIPE && in[pos2])
 			pos2 ++;
 	}
+	/*for (int i = 0; shell->seq[i]; i ++)
+		printf("%d] [%s]\n", i + 1, shell->seq[i]->seq);
+	printf("done pipe splitting\n");*/
 	return (0);
 }
 
