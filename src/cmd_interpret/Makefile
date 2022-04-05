@@ -19,6 +19,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(SRC)
+	make bonus -C $(LFT)
 	$(CC) $(FLAGS) $(SRC) $(LFT)/libft.a -o $(NAME)
 
 clean:

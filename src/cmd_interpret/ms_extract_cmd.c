@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/30 18:30:06 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:38:00 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(void)
 		if (ft_strncmp(sh->input, "EXIT", 4) == 0)
 			break ;
 		extract_cmd(sh);
-		printf("\nDONE %d\n\n", i);
+		//printf("\nDONE %d\n\n", i);
 		i ++;
 	}
 	return (0);

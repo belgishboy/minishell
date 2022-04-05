@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/30 19:05:59 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:30:36 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	count_args(char **split)
 */
 int	arg_parsing(char **split, t_seq *seq)
 {
-	printf("arg_parsing cmds\n");
+	//printf("arg_parsing cmds\n");
 	int	i;
 	int	x;
 	int	arg_cnt;
@@ -74,7 +74,7 @@ int	arg_parsing(char **split, t_seq *seq)
 		return (1);
 	i = 0;
 	x = 0;
-	printf("arg_cnt = [%d]\n", arg_cnt);//DELETE
+	//printf("arg_cnt = [%d]\n", arg_cnt);//DELETE
 	while (i < arg_cnt)
 	{
 		while (is_split(split[x][0]) == 3)
@@ -86,7 +86,7 @@ int	arg_parsing(char **split, t_seq *seq)
 		i ++;
 		x ++;
 	}
-	printf("done arg_parsing cmds\n");
+	//printf("done arg_parsing cmds\n");
 	return (0);
 }
 
@@ -108,9 +108,9 @@ void	init_seq(t_seq *seq)
  * @param sh [t_shell *] shell struct
  * @return 0 if successful, # of what seq[#] if fail
 */
-int	parse(t_shell *sh)
+int	parse(t_shell *sh)//clean
 {
-	printf("parsing cmds\n");
+	//printf("parsing cmds\n");
 	int	i;
 
 	i = 0;
@@ -120,13 +120,13 @@ int	parse(t_shell *sh)
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
 		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
 			return ((i + 1) * -1);
-		init_fd(sh->seq[i], sh->seq[i]->cmd_args);
+		init_fd(sh->seq[i], sh->seq[i]->split);// need to take out the '>'
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)
 			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path());
-		printf("path_cmd = %s\n\n\n", sh->seq[i]->path_cmd);
+		//printf("path_cmd = %s\n\n\n", sh->seq[i]->path_cmd);
 		i ++;
 	}
-	printf("done parsing cmds\n");
+	//printf("done parsing cmds\n");
 	return (0);
 }
