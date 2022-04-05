@@ -166,6 +166,8 @@ void	ms_env(t_shell *s, t_seq *q);
 int		ms_export(t_shell *s, t_seq *q);
 //	remove the arguments from the env
 void	ms_unset(t_shell *s, t_seq *q);
+//	print the current working directory
+void	pwd(void);
 
 int		shell(char **env);
 

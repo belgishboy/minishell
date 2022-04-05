@@ -6,13 +6,13 @@
 #    By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 15:32:58 by hlehmann          #+#    #+#              #
-#    Updated: 2022/04/05 15:26:50 by cdahlhof         ###   ########.fr        #
+#    Updated: 2022/04/05 13:39:45 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-FLAGS = ##-Wall -Werror -Wextra -l readline
+FLAGS = -Wall -Werror -Wextra -l readline
 RM = rm -f
 LFT = ./lft
 SR = ./src/
