@@ -82,7 +82,7 @@ typedef struct s_shell
  * @param cmd_arg argumants (for bash) for the cmd
  * @param fd int array contains input and output fd
  * @param wht_cmd [int] 0 if shell cmd, + if ours
- * @param nbr_arg [int] number of arguments
+ * @param nbr_arg [int] number of argument
 */
 typedef struct s_seq
 {
@@ -146,6 +146,10 @@ int		init_fd(t_seq *seq, char **sp);
 char	**ft_path(void); //Remove
 int		parse(t_shell *sh);
 
+// Launch
+
+int		launch_cmd(t_shell *sh);
+void	ft_pipe(t_seq *seq, char **env);
 
 /*
 **	MAIN
