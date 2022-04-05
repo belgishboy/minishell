@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 13:24:00 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:23:41 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be sp
 		while (in[pos2] == PIPE && in[pos2])
 			pos2 ++;
 	}
-	for (int i = 0; shell->seq[i]; i ++)
+	/*for (int i = 0; shell->seq[i]; i ++)
 		printf("%d] [%s]\n", i + 1, shell->seq[i]->seq);
-	printf("done pipe splitting\n");
+	printf("done pipe splitting\n");*/
 	return (0);
 }
 
