@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ms_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
 /*   Updated: 2022/04/05 14:37:53 by vheymans         ###   ########.fr       */
@@ -33,8 +33,6 @@ int	init_cmd(t_seq *seq)
 		seq->wht_cmd = 7;
 	else if (ft_strncmp(seq->split[0], "exit", 5) == 0)
 		seq->wht_cmd = 8;
-	else if (ft_strncmp(seq->split[0], "$?", 3) == 0)
-		seq->wht_cmd = 9;
 	else
 		seq->wht_cmd = 1;
 	return (0);

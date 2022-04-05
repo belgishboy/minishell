@@ -156,12 +156,22 @@ void	ft_pipe(t_seq *seq, char **env);
 */
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
+//	execute build_ins
+void	ms_exec_builtins(t_shell *s, t_seq *q);
+//	display the arguments given
+void	ms_echo(char **array);
+//	try to change directory to the first argument given
+void	cd(char **array, t_shell *shell);
+//	display current working directory
+void	pwd();
 //	display the environment
 void	ms_env(t_shell *s, t_seq *q);
 //	add / edit the given arguments in the env
 int		ms_export(t_shell *s, t_seq *q);
 //	remove the arguments from the env
 void	ms_unset(t_shell *s, t_seq *q);
+//	print the current working directory
+void	pwd(void);
 
 int		shell(char **env);
 
