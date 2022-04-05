@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/31 03:23:52 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:09:17 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	cd(char **array, t_shell *shell)
 	if (check != NULL)
 		return ;
 	updateold(shell);
-	// is this a leak? line 49
 	check = NULL;
-	//do I have to close the dir as well?
 	opendir(array[1]);
 	if (check == NULL)
 		return ;
