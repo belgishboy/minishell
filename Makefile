@@ -7,6 +7,7 @@ SR = ./src/
 BI = $(SR)built-ins/
 CMI = $(SR)cmd_interpret/
 LU = $(CMI)launch/
+CL = $(CMI)clean/
 PR = $(CMI)parse/ms_
 
 SRC =	$(SR)main.c \
@@ -29,6 +30,7 @@ SRC =	$(SR)main.c \
 		$(LU)ms_exec_builtins.c \
 		$(LU)ms_pipe.c \
 		$(CMI)vars.c \
+		$(CL)ms_free_seq.c \
 
 OBJ = $(SRC:.c=.o)
 

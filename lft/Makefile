@@ -41,6 +41,7 @@ SRCS =	ft_memset.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 		ft_realloc.c \
+		ft_free_2dstr.c \
 
 OBJS = $(SRCS:.c=.o)
 
