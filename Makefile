@@ -34,6 +34,9 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
+#$(NAME): $(SRC)
+#	$(CC) $(FLAGS) $(SRC) -o $(NAME) -L /usr/local/lib -I /usr/local/include -lreadline
+
 $(NAME): $(SRC)
 	make bonus -C $(LFT)
 	$(CC) $(FLAGS) $(SRC) $(LFT)/libft.a -o $(NAME) -I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline	

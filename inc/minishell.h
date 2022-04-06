@@ -32,8 +32,10 @@
 # include <string.h> // strerror
 # include <termios.h> // tcsetattr, tcgetattr
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
-# include "/Users/hlehmann/goinfre/.brew/Cellar/readline/8.2.1/inlcude/readline/readline.h"
-# include "/Users/hlehmann/goinfre/.brew/Cellar/readline/8.1.2/include/readline/history.h"
+# include <readline/readline.h>
+# include <readline/history.h>
+//# include </Users/hlehmann/goinfre/.brew/opt/readline/inlcude/readline/readline.h>
+//# include </Users/hlehmann/goinfre/.brew/opt/readline/include/readline/history.h>
 
 /*
 ** GLOBAL VARIABLE
