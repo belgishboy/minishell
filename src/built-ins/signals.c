@@ -8,8 +8,7 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 	(void) context;
 	if (signum == SIGINT)
 	{
-		printf("\b\b\n");
-		rl_replace_line("", 0);
+		printf("\b\b \n");
 		rl_on_new_line();
 		rl_redisplay();
 	}
