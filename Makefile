@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/22 15:32:58 by hlehmann          #+#    #+#              #
-#    Updated: 2022/04/05 13:39:45 by hlehmann         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 NAME = minishell
 CC = gcc
@@ -18,9 +7,11 @@ LFT = ./lft
 SR = ./src/
 BI = $(SR)built-ins/
 CMI = $(SR)cmd_interpret/
+LU = $(CMI)launch/
 PR = $(CMI)parse/ms_
 
 SRC =	$(SR)main.c \
+		$(BI)cd.c \
 		$(BI)echo.c \
 		$(BI)env.c \
 		$(BI)export.c \
@@ -36,6 +27,8 @@ SRC =	$(SR)main.c \
 		$(PR)fd.c \
 		$(CMI)ms_extract_cmd.c \
 		$(CMI)ms_launch_cmd.c \
+		$(LU)ms_exec_builtins.c \
+		$(LU)ms_pipe.c \
 		$(CMI)vars.c \
 
 OBJ = $(SRC:.c=.o)

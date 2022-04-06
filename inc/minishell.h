@@ -59,8 +59,8 @@ int	err_num;
 
 typedef struct s_seq	t_seq;
 
-/*
-** Main Struct
+/**
+ * Main Struct
  * @param env linked t_list for enviroment
  * @param seq Seq Struct array 
  * @param n_cmds [int] nbr of pipe splits needed
@@ -76,13 +76,13 @@ typedef struct s_shell
 
 /**
  * Sequence struct
-@param seq string befor being split
-@param split string array containing the splitted sequence
-@param path_cmd string (for bash) exe path and cmd
-@param cmd_arg argumants (for bash) for the cmd
-@param fd int array contains input and output fd
-@param wht_cmd [int] 0 if shell cmd, + if ours
-@param nbr_arg [int] number of arguments
+ * @param seq string befor being split
+ * @param split string array containing the splitted sequence
+ * @param path_cmd string (for bash) exe path and cmd
+ * @param cmd_arg argumants (for bash) for the cmd
+ * @param fd int array contains input and output fd
+ * @param wht_cmd [int] 0 if shell cmd, + if ours
+ * @param nbr_arg [int] number of argument
 */
 typedef struct s_seq
 {
@@ -146,12 +146,23 @@ int		init_fd(t_seq *seq, char **sp);
 char	**ft_path(void); //Remove
 int		parse(t_shell *sh);
 
+// Launch
+
+int		launch_cmd(t_shell *sh);
+void	ft_pipe(t_shell *sh, t_seq *seq);
+void	ms_exec_builtins(t_shell *s, t_seq *q);
 
 /*
 **	MAIN
 */
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
+//	display the arguments given
+void	ms_echo(char **array);
+//	try to change directory to the first argument given
+void	cd(char **array, t_shell *shell);
+//	display current working directory
+void	pwd();
 //	display the environment
 void	ms_env(t_shell *s, t_seq *q);
 //	add / edit the given arguments in the env

@@ -6,18 +6,20 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 11:51:01 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:24:04 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /**
- * 
+ * does all of the extracting
+ * @param sh [t_shell *] shell
+ * @return [int] 0 if successful, something else
 */
 int	extract_cmd(t_shell *sh)
 {
-	printf("extracting cmds\n");
+	//printf("extracting cmds\n");
 	int	flag;
 	int	i;
 
@@ -27,6 +29,6 @@ int	extract_cmd(t_shell *sh)
 		flag = -1;
 	else
 		parse(sh);
-	printf("done extracting cmds\n");
+	//printf("done extracting cmds\n");
 	return (0);
 }

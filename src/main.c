@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 13:19:31 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:25:21 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int		shell(char **env)
 	while (1)
 	{
 		s.input = readline(PROMT);
+		add_history(s.input);
 		if (!ft_strncmp(s.input, "exit", 4))
 			return (0);
 		interpret(&s, &s.input);
-		printf("%s\n", s.input);
+		//printf("%s\n", s.input);
 		extract_cmd(&s);
+		launch_cmd(&s);
 		//execution
 		free(s.input);
 	}
