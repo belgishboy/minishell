@@ -8,14 +8,14 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 	(void) context;
 	if (signum == SIGINT)
 	{
-		printf("\b\b \n");
+		printf("%s  \n", PROMT);
 		rl_on_new_line();
 		rl_redisplay();
 	}
-	else if (signum == SIGQUIT)
-	{
-		printf("\b\b");
-	}
+//	else if (signum == SIGQUIT)
+//	{
+//		printf("testing if this works pls \n");
+//	}
 }
 
 void	init_sig(void)
