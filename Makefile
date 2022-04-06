@@ -1,4 +1,3 @@
-
 NAME = minishell
 CC = gcc
 FLAGS = #-Wall -Werror -Wextra -l readline
@@ -35,9 +34,21 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
+#$(NAME): $(SRC)
+#	$(CC) $(FLAGS) $(SRC) -o $(NAME) -L /usr/local/lib -I /usr/local/include -lreadline
+
 $(NAME): $(SRC)
 	make bonus -C $(LFT)
 	$(CC) $(FLAGS) $(SRC) $(LFT)/libft.a -o $(NAME) -I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline	
+
+#$(NAME): $(OBJ)
+#	$(CC) -o $(NAME) $(FLAGS) $(OBJ) -I./lft -L./lft -I./inc -lft -lreadline
+
+#$(NAME): $(OBJ)
+#	    $(CC) $(CFLAGS) $(OBJ) -L/usr/local/opt/readline/lib -lreadline -o $(NAME)
+
+#%.o: %.c
+#	    $(CC) $(CFLAGS) -I/usr/local/opt/readline/include/ -c $< -o $@
 
 clean:
 	make clean -C $(LFT)

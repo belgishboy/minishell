@@ -34,6 +34,8 @@
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
+//# include </Users/hlehmann/goinfre/.brew/opt/readline/inlcude/readline/readline.h>
+//# include </Users/hlehmann/goinfre/.brew/opt/readline/include/readline/history.h>
 
 /*
 ** GLOBAL VARIABLE
