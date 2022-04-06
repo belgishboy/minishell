@@ -154,6 +154,10 @@ void	ft_pipe(t_shell *sh, t_seq *seq);
 void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2]);
 void	ms_exec_builtins(t_shell *s, t_seq *q);
 
+// Clean
+
+void	clean_seq(t_shell *sh);
+
 /*
 **	MAIN
 */
