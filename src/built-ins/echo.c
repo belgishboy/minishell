@@ -6,13 +6,40 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/31 03:32:38 by cdahlhof         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:23:33 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 void	ms_echo(char **array)
+{
+	int	i;
+	int	flag;
+
+	i = 1;
+	flag = 0;
+	if (!array[1])
+	{
+		printf("\n");
+		return ;
+	}
+	if (ft_strlen(array[1]) == 2 && !ft_strncmp(array[1], "-n", 2))
+	{
+		flag++;
+		i++;
+	}
+	while (array[i])
+	{
+		printf("%s ", array[i]);
+		i++;
+	}
+	printf("\b");
+	if (!flag)
+		printf("\n");
+}
+
+/*void	ms_echo(char **array)
 {
 	int	i;
 	int	nl;
@@ -32,4 +59,4 @@ void	ms_echo(char **array)
 	printf("\b");
 	if (nl)
 		printf("\n");
-}
+}*/

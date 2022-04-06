@@ -41,7 +41,7 @@ void	delvar(t_list *elem)
 
 	if (elem)
 	{
-	var = elem->content;
+		var = elem->content;
 		if (var)
 		{
 			if (var->key)
