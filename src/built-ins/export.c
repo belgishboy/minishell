@@ -79,7 +79,7 @@ t_list	*finder(t_list *env, char *key)
 	if (ft_strchr(key, '='))
 		klen = ft_strlen(key) - ft_strlen(ft_strchr(key, '='));
 	else
-		klen = ft_strlen(key);
+		klen = ft_strlen(key) + 1;
 	temp = env;
 	while (temp)
 	{
