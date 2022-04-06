@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/05 15:09:17 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/06 09:00:31 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	cd(char **array, t_shell *shell)
 
 	check_two = 0;
 	check = NULL;
+	oldpwd = NULL;
+	newpwd = NULL;
 	check = getcwd(oldpwd, MAX_DIR);
 	if (check != NULL)
 		return ;

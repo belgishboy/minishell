@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 14:19:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/05 15:07:20 by hlehmann         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../inc/minishell.h"
 #include <stdio.h>
 #include <signal.h>
@@ -20,14 +8,14 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 	(void) context;
 	if (signum == SIGINT)
 	{
-		printf("\n");
-		printf("called sigint handler\n");
-		//call the prompt function
+		printf("\b\b\n");
+		rl_replace_line("", NULL);
+		rl_on_new_line();
+		rl_redisplay();
 	}
 	else if (signum == SIGQUIT)
 	{
-		//call our exit-function
-		printf("called the sigquit handler\n");
+		printf("\b\b");
 	}
 }
 
