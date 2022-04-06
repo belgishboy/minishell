@@ -22,7 +22,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q)
 		else if (q->wht_cmd == 7)
 			ms_env(s, q);
 		else if (q->wht_cmd == 8)
-			exit(42); // work in progress
+			ms_exit(s, q);
 		exit(0); //KILL CHILD
 	}
 	del_list(p_env);
