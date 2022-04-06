@@ -138,6 +138,7 @@ int		extract_cmd(t_shell *sh);
 //	PARSE
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
+char	*trm_whtsp(char *s, int dir);
 int		pipe_quote(int pos, char c, char *in);
 int		pipe_split(t_shell *shell, char *in, int pos1, int pos2);
 int		is_split(char c);
@@ -152,6 +153,7 @@ int		parse(t_shell *sh);
 
 int		launch_cmd(t_shell *sh);
 void	ft_pipe(t_shell *sh, t_seq *seq);
+void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2]);
 void	ms_exec_builtins(t_shell *s, t_seq *q);
 
 /*
