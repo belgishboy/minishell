@@ -136,6 +136,7 @@ int		extract_cmd(t_shell *sh);
 //	PARSE
 int		ft_white(char c);
 int		is_whspace(char *s, int dir);
+char	*trm_whtsp(char *s, int dir);
 int		pipe_quote(int pos, char c, char *in);
 int		pipe_split(t_shell *shell, char *in, int pos1, int pos2);
 int		is_split(char c);
