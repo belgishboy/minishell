@@ -121,7 +121,7 @@ int	parse(t_shell *sh)//clean
 		init_fd(sh->seq[i], sh->seq[i]->split);// need to take out the '>'
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)
-			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path());
+			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path(sh));
 		//printf("path_cmd = %s\n\n\n", sh->seq[i]->path_cmd);
 		i ++;
 	}
