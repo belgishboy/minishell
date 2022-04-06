@@ -146,7 +146,7 @@ int		arg_split(char *s, t_seq *seq, int pos1, int i);
 char	*rmv_quotes(char *s, int f);
 char	*ft_get_path( char **cmd, char **path);
 int		init_fd(t_seq *seq, char **sp);
-char	**ft_path(void); //Remove
+char	**ft_path(t_shell *s);
 int		parse(t_shell *sh);
 
 // Launch

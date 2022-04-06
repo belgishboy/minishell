@@ -52,12 +52,12 @@ int	ft_add_slash(char **array)
 **Creates the 2d array containing all the possible paths
 */
 
-char **ft_path(void)
+char **ft_path(t_shell *s)
 {
 	char **path;
 	t_list *pth;
 
-	pth = finder(g_s.env, "PATH=");
+	pth = finder(s->env, "PATH=");
 	path = ft_split(((t_cont*)pth->content)->value, ':');
 	if (!path)
 		return (NULL);
