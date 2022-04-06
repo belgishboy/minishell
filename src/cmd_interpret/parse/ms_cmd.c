@@ -52,11 +52,13 @@ int	ft_add_slash(char **array)
 **Creates the 2d array containing all the possible paths
 */
 
-char	**ft_path(void)
+char **ft_path(void)
 {
-	char	**path;
+	char **path;
+	t_list *pth;
 
-	path = ft_split(getenv("PATH="), ':');//CLEMENS
+	pth = finder(g_s.env, "PATH=");
+	path = ft_split(((t_cont*)pth->content)->value, ':');
 	if (!path)
 		return (NULL);
 	ft_add_slash(path);
