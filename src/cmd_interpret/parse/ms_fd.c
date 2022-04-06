@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 14:38:57 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:09:13 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_fd(t_seq *seq, char **sp)
 			if (seq->fd[0] != 0)
 				close(seq->fd[0]);
 			if (!access(sp[i], F_OK))
-				seq->fd[0] = open(&sp[i][1], O_RDONLY, 0777);
+				seq->fd[0] = open(trm_whtsp(&sp[i][1], 1), O_RDONLY, 0777);
 			else
 				return (1);
 		}
@@ -37,7 +37,7 @@ int	init_fd(t_seq *seq, char **sp)
 		{
 			if (seq->fd[1] != 1)
 				close(seq->fd[1]);
-			seq->fd[1] = open(&sp[i][1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			seq->fd[1] = open(trm_whtsp(&sp[i][1], 1), O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		}
 		i ++;
 	}

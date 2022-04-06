@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:38:34 by vheymans          #+#    #+#             */
-/*   Updated: 2022/03/24 14:41:07 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:05:11 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_whspace(char *s, int dir)
  * if dir = 1 from the front, if -1 then from the back, if 2 then from both
  * @return [char *] returns a string with whitespace trimed
 */
-char	*trim_whitespace(char *s, int dir)
+char	*trm_whtsp(char *s, int dir)
 {
 	char	*trim;
 	int		pos1;
@@ -80,7 +80,7 @@ char	*trim_whitespace(char *s, int dir)
 	if (pos2 <= pos1)
 		return (""); //Return empty string if string only whitespace?
 	trim = ft_substr(s, pos1, pos2 - pos1);
-	free(s);
+	//free(s);
 	return (trim);
 }
 
