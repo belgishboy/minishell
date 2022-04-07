@@ -30,6 +30,7 @@ char	*ft_get_path( char **cmd, char **path)
 	ft_strlcpy(temp, *cmd, ft_strlen(*cmd) + 1);
 	if (!access(*cmd, X_OK) && !access(*cmd, F_OK))
 		return (temp);
+	ms_error(127, ft_strjoin("no such file or directory: ", *cmd), "\n", 1);
 	free(temp);
 	return (NULL);
 }
