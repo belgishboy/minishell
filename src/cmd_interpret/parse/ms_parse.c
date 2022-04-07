@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 14:31:24 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:27:35 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	count_args(char **split)
 */
 int	arg_parsing(char **split, t_seq *seq)
 {
-	//printf("arg_parsing cmds\n");
 	int	i;
 	int	x;
 	int	arg_cnt;
@@ -72,7 +71,6 @@ int	arg_parsing(char **split, t_seq *seq)
 		return (1);
 	i = 0;
 	x = 0;
-	//printf("arg_cnt = [%d]\n", arg_cnt);//DELETE
 	while (i < arg_cnt)
 	{
 		while (is_split(split[x][0]) == 3)
@@ -84,7 +82,6 @@ int	arg_parsing(char **split, t_seq *seq)
 		i ++;
 		x ++;
 	}
-	//printf("done arg_parsing cmds\n");
 	return (0);
 }
 
@@ -106,9 +103,8 @@ void	init_seq(t_seq *seq)
  * @param sh [t_shell *] shell struct
  * @return 0 if successful, # of what seq[#] if fail
 */
-int	parse(t_shell *sh)//clean
+int	parse(t_shell *sh)
 {
-	//printf("parsing cmds\n");
 	int	i;
 
 	i = 0;
@@ -121,10 +117,8 @@ int	parse(t_shell *sh)//clean
 		init_fd(sh->seq[i], sh->seq[i]->split);// need to take out the '>'
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)
-			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path());
-		//printf("path_cmd = %s\n\n\n", sh->seq[i]->path_cmd);
+			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path(sh));
 		i ++;
 	}
-	//printf("done parsing cmds\n");
 	return (0);
 }

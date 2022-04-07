@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_extract_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:29:50 by vheymans         ###   ########.fr       */
+/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/02/13 16:57:26 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "libft.h"
 
-/**
- * does all of the extracting
- * @param sh [t_shell *] shell
- * @return [int] 0 if successful, something else
-*/
-int	extract_cmd(t_shell *sh)
+int	ft_isnumeric(char *num)
 {
-	int	flag;
 	int	i;
 
-	flag = 0;
 	i = 0;
-	if (pipe_split(sh, sh->input, 0, 0))
-		flag = -1;
-	else
-		parse(sh);
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]))
+			return (1);
+		i++;
+	}
 	return (0);
 }

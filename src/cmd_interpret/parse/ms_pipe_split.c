@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 16:23:41 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:28:27 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,32 +85,12 @@ int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be sp
 		}
 		if (!in[pos2] || in[pos2 + 1] != PIPE)
 		{
-			shell->seq[n_pipes] = malloc(sizeof(t_seq));
+			shell->seq[n_pipes] = ft_calloc(sizeof(t_seq), 1);
 			shell->seq[n_pipes ++]->seq = ft_substr(in, pos1, pos2 - pos1);
 			pos1 = ++ pos2;
 		}
 		while (in[pos2] == PIPE && in[pos2])
 			pos2 ++;
 	}
-	/*for (int i = 0; shell->seq[i]; i ++)
-		printf("%d] [%s]\n", i + 1, shell->seq[i]->seq);
-	printf("done pipe splitting\n");*/
 	return (0);
 }
-
-/*int main(int argc, char **argv)
-{
-	argc ++;
-	t_shell *s;
-	s = malloc(sizeof(t_shell) * 1);
-	printf("pipe split start\n");
-	pipe_split(s, argv[1], 0, 0);
-	printf("pipe split done [%d]\n", s->n_cmds);
-	int i = 0;
-	while (s->seq[i])
-	{
-		printf("%d] [%s]\n", i + 1, s->seq[i]->seq);
-		i ++;
-	}
-	return (0);
-}*/

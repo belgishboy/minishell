@@ -23,6 +23,7 @@ SRCS =	ft_memset.c \
 		ft_atoi.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
+		ft_isnumeric.c \
 		ft_isalnum.c \
 		ft_isascii.c \
 		ft_isprint.c \
@@ -41,6 +42,7 @@ SRCS =	ft_memset.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 		ft_realloc.c \
+		ft_free_2dstr.c \
 
 OBJS = $(SRCS:.c=.o)
 

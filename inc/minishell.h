@@ -146,7 +146,7 @@ int		arg_split(char *s, t_seq *seq, int pos1, int i);
 char	*rmv_quotes(char *s, int f);
 char	*ft_get_path( char **cmd, char **path);
 int		init_fd(t_seq *seq, char **sp);
-char	**ft_path(void); //Remove
+char	**ft_path(t_shell *s);
 int		parse(t_shell *sh);
 
 // Launch
@@ -154,7 +154,11 @@ int		parse(t_shell *sh);
 int		launch_cmd(t_shell *sh);
 void	ft_pipe(t_shell *sh, t_seq *seq);
 void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2]);
-void	ms_exec_builtins(t_shell *s, t_seq *q);
+void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid);
+
+// Clean
+
+void	clean_seq(t_shell *sh);
 
 /*
 **	MAIN
@@ -162,20 +166,20 @@ void	ms_exec_builtins(t_shell *s, t_seq *q);
 //	replace variable names with their values
 void	interpret(t_shell *s, char **line);
 //	display the arguments given
-void	ms_echo(char **array);
+void	ms_echo(char **array, pid_t pid);
 //	try to change directory to the first argument given
-void	cd(char **array, t_shell *shell);
+void	cd(char **array, t_shell *shell, pid_t pid);
 //	display current working directory
-void	pwd();
+void	pwd(pid_t pid);
 //	display the environment
-void	ms_env(t_shell *s, t_seq *q);
+void	ms_env(t_shell *s, t_seq *q, pid_t pid);
 //	add / edit the given arguments in the env
-int		ms_export(t_shell *s, t_seq *q);
+int		ms_export(t_shell *s, t_seq *q, pid_t pid);
 //	remove the arguments from the env
-void	ms_unset(t_shell *s, t_seq *q);
-//	print the current working directory
-void	pwd(void);
+void	ms_unset(t_shell *s, t_seq *q, pid_t pid);
 
 int		shell(char **env);
+
+void	ms_exit(t_shell *s, t_seq *q, pid_t pid);
 
 #endif

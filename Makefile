@@ -1,18 +1,20 @@
 NAME = minishell
 CC = gcc
-FLAGS = #-Wall -Werror -Wextra -l readline
+FLAGS = -Wall -Werror -Wextra -l readline
 RM = rm -f
 LFT = ./lft
 SR = ./src/
 BI = $(SR)built-ins/
 CMI = $(SR)cmd_interpret/
 LU = $(CMI)launch/
+CL = $(CMI)clean/
 PR = $(CMI)parse/ms_
 
 SRC =	$(SR)main.c \
 		$(BI)cd.c \
 		$(BI)echo.c \
 		$(BI)env.c \
+		$(BI)exit.c \
 		$(BI)export.c \
 		$(BI)pwd.c \
 		$(BI)signals.c \
@@ -29,6 +31,7 @@ SRC =	$(SR)main.c \
 		$(LU)ms_exec_builtins.c \
 		$(LU)ms_pipe.c \
 		$(CMI)vars.c \
+		$(CL)ms_free_seq.c \
 
 OBJ = $(SRC:.c=.o)
 

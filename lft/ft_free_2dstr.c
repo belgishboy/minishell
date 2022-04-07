@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_extract_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_free_2dstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:29:50 by vheymans         ###   ########.fr       */
+/*   Created: 2021/12/15 16:35:52 by vheymans          #+#    #+#             */
+/*   Updated: 2022/04/06 16:20:07 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "libft.h"
 
 /**
- * does all of the extracting
- * @param sh [t_shell *] shell
- * @return [int] 0 if successful, something else
+ * frees each of *s and then s
+ * @param s [char **]
+ * @return void
 */
-int	extract_cmd(t_shell *sh)
+void	free_2dstr(char **s)
 {
-	int	flag;
 	int	i;
 
-	flag = 0;
 	i = 0;
-	if (pipe_split(sh, sh->input, 0, 0))
-		flag = -1;
-	else
-		parse(sh);
-	return (0);
+	while (s[i])
+	{
+		free(s[i]);
+		i ++;
+	}
+	free(s);
 }

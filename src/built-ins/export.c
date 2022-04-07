@@ -79,7 +79,7 @@ t_list	*finder(t_list *env, char *key)
 	if (ft_strchr(key, '='))
 		klen = ft_strlen(key) - ft_strlen(ft_strchr(key, '='));
 	else
-		klen = ft_strlen(key);
+		klen = ft_strlen(key) + 1;
 	temp = env;
 	while (temp)
 	{
@@ -92,7 +92,7 @@ t_list	*finder(t_list *env, char *key)
 	return (temp);
 }
 
-int	ms_export(t_shell *s, t_seq *q)
+int	ms_export(t_shell *s, t_seq *q, pid_t pid)
 {
 	t_list	*new;
 	int		i;
@@ -103,7 +103,7 @@ int	ms_export(t_shell *s, t_seq *q)
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (keyerror(q->cmd_args[i]))
+		if (keyerror(q->cmd_args[i]) && !pid) // need another case, error function call neccess
 			return ((printf(\
 			"minishell: export: `%s\': not a valid identifier\n", \
 			q->cmd_args[i]) * 0) + 1);
