@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-void	pwd(void)
+void	pwd(pid_t pid)
 {
 	char	path[MAX_PATH];
 	char	*check;
@@ -21,6 +21,8 @@ void	pwd(void)
 	check = getcwd(path, MAX_PATH);
 	if (!check)
 		return ;
-	printf("%s\n", path);
+	if (!pid)
+		printf("%s\n", path);
+	err_num = 0;
 	return ;
 }
