@@ -25,7 +25,7 @@ int		shell(char **env)
 	err_num = 0;
 	while (1)
 	{
-		s.input = readline(PROMT);
+		s.input = readline(PROMPT);
 		if (!s.input)
 			return (err_num);
 		add_history(s.input);
