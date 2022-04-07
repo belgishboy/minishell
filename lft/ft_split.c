@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 16:54:48 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/05/13 16:57:26 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:25:09 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*ft_copy(char const *s, char c, int a)
 
 	i = 0;
 	j = 0;
-	word = (char *)malloc(sizeof(char) * ft_length(s, c, a) + 1);
+	word = (char *)ft_calloc(sizeof(char), ft_length(s, c, a) + 1);
 	if (!word)
 		return (NULL);
 	while (s[i] && s[i] == c)
@@ -105,7 +105,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = ft_words(s, c);
-	dest = (char **)malloc(sizeof(char *) * (words + 1));
+	dest = (char **)ft_calloc(sizeof(char *), (words + 1));
 	if (!dest)
 		return (NULL);
 	i = 0;
