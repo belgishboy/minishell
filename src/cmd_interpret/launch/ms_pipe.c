@@ -56,6 +56,7 @@ void	ft_pipe(t_shell *sh, t_seq *seq)
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			write(1, "dup2 Child failed\n", 18);
+		ms_exec_builtins(sh, seq, pid);
 		exit(127);
 	}
 	else
@@ -63,6 +64,7 @@ void	ft_pipe(t_shell *sh, t_seq *seq)
 		close(fd[1]);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
 			write(1, "dup2 Parent failed\n", 19);
+		ms_exec_builtins(sh, seq, pid);
 		waitpid(pid, NULL, 0);
 		close(fd[0]);
 	}

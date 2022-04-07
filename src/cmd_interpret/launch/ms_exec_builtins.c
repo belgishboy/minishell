@@ -5,7 +5,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 	char	**p_env;
 
 	p_env = env_copy(s->env);
-	if (q->wht_cmd == 1)
+	if (q->wht_cmd == 1 && !pid)
 		execve(q->path_cmd, q->cmd_args, p_env);
 	else
 	{
