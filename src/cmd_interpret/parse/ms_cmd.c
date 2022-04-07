@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:47:08 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:26:05 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:52:47 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ char	*ft_get_path( char **cmd, char **path)
 		free(temp);
 		x ++;
 	}
+	temp = (char *) malloc(ft_strlen(*cmd) * sizeof(char));
+	ft_strlcpy(temp, *cmd, ft_strlen(*cmd) + 1);
+	if (!access(*cmd, X_OK) && !access(*cmd, F_OK))
+		return (temp);
+	free(temp);
 	return (NULL);
 }
 
