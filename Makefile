@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-FLAGS = #-Wall -Werror -Wextra -l readline
+FLAGS = -Wall -Werror -Wextra -l readline
 RM = rm -f
 LFT = ./lft
 SR = ./src/
