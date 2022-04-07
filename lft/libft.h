@@ -67,9 +67,9 @@ void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void		*ft_realloc(void *old, size_t old_len, size_t add_len);
-
-//Vincent
-
 void		free_2dstr(char **s);
+int			ft_isnumeric(char *num);
+
+//
 
 #endif

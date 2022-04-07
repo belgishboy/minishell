@@ -182,4 +182,6 @@ void	pwd(void);
 
 int		shell(char **env);
 
+void	ms_exit(t_shell *s, t_seq *q);
+
 #endif

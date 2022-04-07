@@ -14,6 +14,7 @@ SRC =	$(SR)main.c \
 		$(BI)cd.c \
 		$(BI)echo.c \
 		$(BI)env.c \
+		$(BI)exit.c \
 		$(BI)export.c \
 		$(BI)pwd.c \
 		$(BI)signals.c \
