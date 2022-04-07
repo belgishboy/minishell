@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:59:43 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:10:25 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:32:19 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	free_seq(t_seq *seq)// close the fd?
 {
 	if (seq->seq)
 		free(seq->seq);
-	if (seq->split[0])
+	if (seq->split && seq->split[0])
 		free_2dstr(seq->split);
 	else if (seq->split)
 		free(seq->split);
 	if (seq->path_cmd)
 		free(seq->path_cmd);
-	if (seq->cmd_args[0])
+	if (seq->cmd_args && seq->cmd_args[0])
 		free_2dstr(seq->cmd_args);
 	else if (seq->cmd_args)
 		free(seq->cmd_args);

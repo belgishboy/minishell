@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:38:34 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 16:05:11 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:29:32 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,3 @@ char	*trm_whtsp(char *s, int dir)
 	//free(s);
 	return (trim);
 }
-
-/*int	main(int argc, char **argv)
-{
-	argc ++;
-	int i = 1;
-	while (argv[i])
-		printf("[%d] before : [%s] :: after :[%s]\n\n", i, argv[i], trim_whitespace(argv[i++], -1));
-	return (0);
-}*/
