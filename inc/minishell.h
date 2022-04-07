@@ -50,7 +50,7 @@ int	err_num;
 #  define MAX_PATH 1000
 # endif
 # define MAX_DIR 1000
-# define PROMT "minishell v1.0$"
+# define PROMPT "\e[32mminishell \e[31mv1.0\e[0m $ "
 # define PIPE '|'
 # define S_Q '\''
 # define D_Q '\"'
@@ -112,20 +112,15 @@ typedef struct s_cont
  * FUNCTIONS
 */
 
-//	prepares the variable given to be element of the environment
+//	environment
+
 t_cont	*envar(char *p_var);
-//	deletion function for execution ft_lstclear in the environment
 void	delvar(t_list *elem);
-//	translate the given environment into a list
 t_list	*create_env(char **p_env);
-//	creates a string-array copy of the environment
 char	**env_copy(t_list *p_env);
-//	frees a previously allocated char**
 void	del_list(char **list);
-//	find and if found return an element of env
 t_list	*finder(t_list *env, char *key);
-//	check the argument on syntaxrules in the env
-int	keyerror(char *input);
+int		keyerror(char *input);
 
 //	signals
 
@@ -159,27 +154,21 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid);
 // Clean
 
 void	clean_seq(t_shell *sh);
+void	ms_error(int error, char *sub, char *msg, int p);
 
 /*
 **	MAIN
 */
-//	replace variable names with their values
 void	interpret(t_shell *s, char **line);
-//	display the arguments given
 void	ms_echo(char **array, pid_t pid);
-//	try to change directory to the first argument given
 void	cd(char **array, t_shell *shell, pid_t pid);
-//	display current working directory
 void	pwd(pid_t pid);
-//	display the environment
 void	ms_env(t_shell *s, t_seq *q, pid_t pid);
-//	add / edit the given arguments in the env
-int		ms_export(t_shell *s, t_seq *q, pid_t pid);
-//	remove the arguments from the env
+void	ms_export(t_shell *s, t_seq *q, pid_t pid);
 void	ms_unset(t_shell *s, t_seq *q, pid_t pid);
 
 int		shell(char **env);
 
-void	ms_exit(t_shell *s, t_seq *q, pid_t pid);
+int		ms_exit(t_shell *s, t_seq *q, pid_t pid);
 
 #endif

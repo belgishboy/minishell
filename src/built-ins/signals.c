@@ -8,7 +8,7 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 	(void) context;
 	if (signum == SIGINT)
 	{
-		printf("%s  \n", PROMT);
+		printf("%s  \n", PROMPT);
 		rl_on_new_line();
 		rl_redisplay();
 	}

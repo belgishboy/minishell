@@ -12,6 +12,11 @@
 
 #include "../../inc/minishell.h"
 
+/**
+ * @brief check if the given char* fits the name reqirements of env variables
+ * @param input [char*]
+ * @return [int] 0->passes 1->fails
+*/
 int	keyerror(char *input)
 {
 	int	i;
@@ -28,6 +33,12 @@ int	keyerror(char *input)
 	return (0);
 }
 
+/**
+ * @brief remove variables to the environment
+ * @param s [t_shell*] shell
+ * @param q [t_seq*]	sequence
+ * @param pid [pid_t]	child-or-not pid
+*/
 void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 {
 	t_list	*new;
@@ -39,7 +50,7 @@ void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 	{
 		new = finder(s->env, q->cmd_args[i]);
 		if ((keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '=')) && !pid)
-			printf("minishell: unset: `%s\': invalid\n", q->cmd_args[i]);
+			ms_error(1, ft_strjoin("unset: ", q->cmd_args[i]), "not a valid identifier\n", (int)pid);
 		else if (new)
 		{
 			tmp = s->env;

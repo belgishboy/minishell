@@ -12,7 +12,14 @@
 
 #include "../../inc/minishell.h"
 
-//	insert a string at a position in another string, replacing the <key>
+/**
+ * @brief join two strings, with the second one being inserted into the first 
+ * 			at a position and replacing an amount of characters
+ * @param line [char*] base string later freed
+ * @param add	[char*] inserted string
+ * @param pos [int] starting position of the insertion
+ * @param skipc [int] number of chars to be replaced
+*/
 char	*insert_string(char *line, char *add, int pos, int skipc)
 {
 	int		i;
@@ -40,6 +47,7 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 	free(line);
 	return (new);
 }
+
 
 int	extract_rep(char *line, t_list *env, char **replace)
 {
@@ -69,10 +77,13 @@ int	extract_rep(char *line, t_list *env, char **replace)
 	return (i);
 }
 
-/*
-**	a function to interpret $-indicators fo their replacements
+/**
+ * @brief edit the given string and replace indicators of
+ * 			variables with the value of the variable
+ * @param s [t_shell*] our shell
+ * @param line [char**] address of the given line, for reallocation
+ * @return [void]
 */
-
 void	interpret(t_shell *s, char **line)
 {
 	int		i;
