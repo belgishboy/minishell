@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_free_seq.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/07 11:59:43 by vheymans          #+#    #+#             */
+/*   Updated: 2022/04/07 11:59:46 by vheymans         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -20,11 +31,8 @@ void	clean_seq(t_shell *sh)
 	i = 0;
 	while (sh->seq[i])
 	{
-		printf("free 2d seq[%d]\n", i);
 		free_seq(sh->seq[i]);
-		printf("2d done\n free seq[%d]\n", i);
 		free(sh->seq[i]);
-		printf("free seq[%d] done\n", i);
 		i ++;
 	}
 	free(sh->seq);
