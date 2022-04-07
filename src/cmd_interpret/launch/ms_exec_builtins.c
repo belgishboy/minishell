@@ -23,7 +23,8 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 			ms_env(s, q, pid);
 		else if (q->wht_cmd == 8)
 			ms_exit(s, q, pid);
-		exit(0); //KILL CHILD
+		if (!pid)
+			exit(0); //KILL CHILD
 	}
 	del_list(p_env);
 }
