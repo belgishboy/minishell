@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 16:24:04 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:29:50 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 */
 int	extract_cmd(t_shell *sh)
 {
-	//printf("extracting cmds\n");
 	int	flag;
 	int	i;
 
@@ -29,6 +28,5 @@ int	extract_cmd(t_shell *sh)
 		flag = -1;
 	else
 		parse(sh);
-	//printf("done extracting cmds\n");
 	return (0);
 }

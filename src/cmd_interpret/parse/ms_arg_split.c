@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:29:21 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 16:23:12 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:26:40 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,6 @@ int	is_split(char c)
 		return (3);
 	return (0);
 }
-
-/**
- * returns the pos in string where the quote's end
- * @param pos [int] pos of the start of the quote
- * @param c [char] if double or single quotes
- * @param in [char *] string being checked
- * @return [int] pos of end of quote
-
-int	arg_quote(int pos, char c, char *in)
-{
-	pos ++;
-	while (in[pos] && in[pos] != c)
-	{
-		pos++;
-	}
-	if (in[pos])
-		pos ++;
-	return (pos);
-}*/
 
 int	red_check(int i, char *s)
 {
@@ -111,7 +92,6 @@ int	count_split(char *s)
 */
 int	arg_split(char *s, t_seq *seq, int pos1, int i)
 {
-	//printf("arg splitting\n");
 	int	pos2;
 
 	seq->nbr_arg = count_split(s);
@@ -136,21 +116,5 @@ int	arg_split(char *s, t_seq *seq, int pos1, int i)
 		seq->split[i ++] = ft_substr(s, pos1, pos2 - pos1);
 		pos1 = pos2;
 	}
-	/*for (int i = 0; seq->split[i]; i ++)
-		printf("%d] [%s]\n", i + 1, seq->split[i]);
-	printf("done arg splitting\n");*/
 	return (0);
 }
-
-/*
-int main(void)
-{
-	t_seq *seq = malloc(sizeof(t_seq));
-	seq->seq = strdup("i hate  > this 'shit'bla thi's");
-	arg_split(seq->seq, seq, 0, 0);
-	int i = 0;
-	printf("[%s]\n\n", seq->seq);
-	while (seq->split[i])
-		printf("[%d] [%s]\n", i, seq->split[i ++]);
-	return (0);
-}*/
