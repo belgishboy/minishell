@@ -14,13 +14,12 @@ void	cleanup_env(t_list *l)
 	}
 }
 
-void	ms_exit(t_shell *s, t_seq *q)
+void	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 {
-	printf("exiting, but yet in a child process lol\n");
 	if (q->cmd_args[1])
 	{
 		if (!ft_isnumeric(q->cmd_args[1]))
-			err_num = 255;
+			err_num = 255;// error code yes printing in later error function
 		else if (q->cmd_args[2])
 		{
 			err_num = 1;

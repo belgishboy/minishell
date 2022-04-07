@@ -28,7 +28,7 @@ int	keyerror(char *input)
 	return (0);
 }
 
-void	ms_unset(t_shell *s, t_seq *q)
+void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 {
 	t_list	*new;
 	t_list	*tmp;
@@ -38,7 +38,7 @@ void	ms_unset(t_shell *s, t_seq *q)
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '='))
+		if ((keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '=')) && !pid)
 			printf("minishell: unset: `%s\': invalid\n", q->cmd_args[i]);
 		else if (new)
 		{

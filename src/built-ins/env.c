@@ -71,11 +71,11 @@ t_list	*create_env(char **p_env)
 	return (env);
 }
 
-void	ms_env(t_shell *s, t_seq *q)
+void	ms_env(t_shell *s, t_seq *q, pid_t pid)
 {
 	t_list	*temp;
 
-	if (q->cmd_args[1])
+	if (q->cmd_args[1] && !pid)
 	{
 		printf("env: %s: we don't take arguments\n", q->cmd_args[1]);
 		err_num = 127;
@@ -84,7 +84,7 @@ void	ms_env(t_shell *s, t_seq *q)
 	temp = s->env;
 	while (temp)
 	{
-		if (((t_cont *)temp->content)->value[0])
+		if (((t_cont *)temp->content)->value[0] && !pid)
 			printf("%s=%s\n", ((t_cont *)temp->content)->key, \
 							((t_cont *)temp->content)->value);
 		temp = temp->next;

@@ -33,7 +33,7 @@ void	updatenew(t_shell *shell, char *new_pwd)
 	((t_cont *)new->content)->value = new_pwd;
 }
 
-void	cd(char **array, t_shell *shell)
+void	cd(char **array, t_shell *shell, pid_t pid)
 {
 	char	*oldpwd;
 	char	*newpwd;

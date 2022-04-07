@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-void	ms_echo(char **array)
+void	ms_echo(char **array, pid_t pid)
 {
 	int	i;
 	int	flag;
@@ -29,13 +29,14 @@ void	ms_echo(char **array)
 		flag++;
 		i++;
 	}
-	while (array[i])
+	while (array[i] && !pid)
 	{
 		printf("%s ", array[i]);
 		i++;
 	}
-	printf("\b");
-	if (!flag)
+	if (!pid)
+		printf("\b");
+	if (!flag && !pid)
 		printf("\n");
 }
 
