@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 16:36:50 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:51:29 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ int		shell(char **env)
 			return (err_num);
 		add_history(s.input);
 		interpret(&s, &s.input);
-		//printf("%s\n", s.input);
 		extract_cmd(&s);
 		launch_cmd(&s);
-		//execution
 		free(s.input);
 	}
 }
@@ -52,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 	err_num = 0;
 	if (argc != 1 && strncmp(argv[0], "./minishell", strlen(argv[0])))
 	{
-		printf("error\n");
+		printf("error\n");//CLEMENS
 		return (0);
 	}
 	shell(env);
