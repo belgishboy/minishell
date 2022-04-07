@@ -61,6 +61,10 @@ fclean: clean
 	make fclean -C $(LFT)
 	$(RM) $(NAME)
 
+bonus:
+	echo PS1='"''\e[32mMinishell \e[31mBonus \e[0m§ ''"' > ~/.bashrc
+	gcc $(SR)bonus.c -o minishell
+
 re: fclean all
 
 .PHONY: all clean fclean re
