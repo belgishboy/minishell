@@ -27,6 +27,6 @@ int	extract_cmd(t_shell *sh)
 	if (pipe_split(sh, sh->input, 0, 0))
 		flag = -1;
 	else
-		flag = parse(sh);
+		flag = parse(sh, 0);
 	return (flag);
 }

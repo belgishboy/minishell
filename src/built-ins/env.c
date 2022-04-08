@@ -28,7 +28,7 @@ t_cont	*envar(char *p_var)
 	if (eq)
 	{
 		i = ft_strlen(p_var) - ft_strlen(eq);
-		var->key = malloc(i * sizeof(char));
+		var->key = ft_calloc(i + 1, sizeof(char));
 		ft_strlcpy(var->key, p_var, i + 1);
 		var->value = ft_strdup(p_var + i + 1);
 	}
@@ -130,7 +130,7 @@ char	**env_copy(t_list *p_env)
 	while (i < ft_lstsize(p_env))
 	{
 		env[i] = ft_calloc(ft_strlen(((t_cont *)temp->content)->key) + \
-							ft_strlen(((t_cont *)temp->content)->value) + 2, 1);
+							ft_strlen(((t_cont *)temp->content)->value) + 3, 1);
 		ft_strlcpy(env[i], ((t_cont *)temp->content)->key, \
 							ft_strlen(((t_cont *)temp->content)->key) + 1);
 		env[i][ft_strlen(env[i])] = '=';
