@@ -1,5 +1,10 @@
 #include "../../../inc/minishell.h"
-
+/**
+ * @brief execute the builtins and commands respectively in child and parent
+ * @param s [t_shell*] shell
+ * @param q [t_seq*]	sequence
+ * @param pid [pid_t]	child-or-not pid
+*/
 void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 {
 	char	**p_env;
@@ -16,7 +21,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 		else if (q->wht_cmd == 4)
 			pwd(pid);
 		else if (q->wht_cmd == 5)
-			err_num = ms_export(s, q, pid);
+			ms_export(s, q, pid);
 		else if (q->wht_cmd == 6)
 			ms_unset(s, q, pid);
 		else if (q->wht_cmd == 7)
@@ -24,7 +29,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 		else if (q->wht_cmd == 8)
 			ms_exit(s, q, pid);
 		if (!pid)
-			exit(0); //KILL CHILD
+			exit(0);
 	}
 	del_list(p_env);
 }
