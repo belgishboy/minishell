@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 16:27:51 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:43:10 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int	launch_cmd(t_shell *sh)
 	close(tmp_fd[0]);
 	close(tmp_fd[1]);
 	clean_seq(sh);
+	close_fd();
 	return (0);
 }
