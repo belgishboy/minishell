@@ -6,11 +6,50 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 16:09:13 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:01:48 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
+
+int	fd_infile(t_seq *seq, char *arg)
+{
+	if (arg[1] == '<')
+	{
+		// printf("Error, We didn't do '<<'\n");
+		return (0);
+	}
+	else
+	{
+		if (seq->fd[0] != 0)
+			close(seq->fd[0]);
+		if (!access(arg, F_OK))
+			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDONLY, 0777);
+		else
+		{
+			err_num = access(arg, F_OK);//CLEMENS
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int	fd_outfile(t_seq *seq, char *arg)
+{
+	if (seq->fd[1] != 1)
+		close(seq->fd[1]);
+	if (arg[1] == '>')
+	{
+		seq->fd[1] = open(trm_whtsp(&arg[2], 1), \
+			O_RDWR | O_APPEND | O_CREAT, 0777);
+	}
+	else
+	{
+		seq->fd[1] = open(trm_whtsp(&arg[1], 1), \
+			O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	}
+	return (0);
+}
 
 /**
  * @param seq [t_seq *] seq being operated on
@@ -26,18 +65,13 @@ int	init_fd(t_seq *seq, char **sp)
 	{
 		if (sp[i][0] == '<')
 		{
-			if (seq->fd[0] != 0)
-				close(seq->fd[0]);
-			if (!access(sp[i], F_OK))
-				seq->fd[0] = open(trm_whtsp(&sp[i][1], 1), O_RDONLY, 0777);
-			else
+			if (fd_infile(seq, sp[i]))
 				return (1);
 		}
 		else if (sp[i][0] == '>')
 		{
-			if (seq->fd[1] != 1)
-				close(seq->fd[1]);
-			seq->fd[1] = open(trm_whtsp(&sp[i][1], 1), O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			if (fd_outfile(seq, sp[i]))
+				return (1);
 		}
 		i ++;
 	}
