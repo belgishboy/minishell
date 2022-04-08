@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/08 17:59:37 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:29:06 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void    cd(char **array, t_shell *shell, pid_t pid)
 	updatenew(shell, newpwd);
 	if (check == NULL)
 		return ;
+	free(oldpwd);
+	free(newpwd);
 }
 /*
 void	cd(char **array, t_shell *shell, pid_t pid)
