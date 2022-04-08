@@ -39,6 +39,7 @@ void	cd(char **array, t_shell *shell, pid_t pid)
 	char	*newpwd;
 	char	*check;
 	int		check_two;
+	(void) pid;
 
 	check_two = 0;
 	check = NULL;

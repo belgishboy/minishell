@@ -12,6 +12,10 @@
 
 #include "../../inc/minishell.h"
 
+/**
+ * @brief display the current working directory
+ * @param pid [pid_t]	child-or-not pid
+*/
 void	pwd(pid_t pid)
 {
 	char	path[MAX_PATH];

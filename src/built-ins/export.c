@@ -1,5 +1,10 @@
 #include "../../inc/minishell.h"
 
+/**
+ * @brief sort a list of n strings by ascii value
+ * @param plist [char***] pointer to string-array
+ * @param n [int] numer of string
+*/
 void	sort_list(char ***plist, int n)
 {
 	int		i[2];
@@ -29,6 +34,10 @@ void	sort_list(char ***plist, int n)
 	}
 }
 
+/**
+ * @brief free an array of strings
+ * @param list [char**] array to free
+*/
 void	del_list(char **list)
 {
 	int	i;
@@ -42,7 +51,12 @@ void	del_list(char **list)
 	free(list);
 }
 
-int	export_all(t_list *env)
+/**
+ * @brief display all environment variables with a prefix and sorted
+ * @param env [t_list*] our environment
+ * @return [void]
+*/
+void	export_all(t_list *env)
 {
 	char	**c_env;
 	int		i;
@@ -68,9 +82,15 @@ int	export_all(t_list *env)
 		i++;
 	}
 	del_list(c_env);
-	return (0);
+	err_num = 0;
 }
 
+/**
+ * @brief find and return the pointer of an element of our env
+ * @param env [t_list*] our shells environment
+ * @param key [char*] identifier of the searched element
+ * @return [t_list*] found element or NULL
+*/
 t_list	*finder(t_list *env, char *key)
 {
 	t_list	*temp;
@@ -92,21 +112,25 @@ t_list	*finder(t_list *env, char *key)
 	return (temp);
 }
 
-int	ms_export(t_shell *s, t_seq *q, pid_t pid)
+/**
+ * @brief add or update variables to the environment
+ * @param s [t_shell*] shell
+ * @param q [t_seq*]	sequence
+ * @param pid [pid_t]	child-or-not pid
+*/
+void	ms_export(t_shell *s, t_seq *q, pid_t pid)
 {
 	t_list	*new;
 	int		i;
 
-	if (!q->cmd_args[1])
+	if (!q->cmd_args[1] && !pid)
 		return (export_all(s->env));
 	i = 1;
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (keyerror(q->cmd_args[i]) && !pid) // need another case, error function call neccess
-			return ((printf(\
-			"minishell: export: `%s\': not a valid identifier\n", \
-			q->cmd_args[i]) * 0) + 1);
+		if (keyerror(q->cmd_args[i]))
+			ms_error(1, ft_strjoin("export: ", q->cmd_args[i]), "not a valid identifier\n", (int)pid);
 		else if (new)
 		{
 			free(((t_cont *)new->content)->value);
@@ -120,7 +144,7 @@ int	ms_export(t_shell *s, t_seq *q, pid_t pid)
 			ft_lstadd_back(&s->env, ft_lstnew(envar(q->cmd_args[i])));
 		i++;
 	}
-	return (0);
+	err_num = 0;
 }
 
 // // gcc env.c ../../lft/libft.a && ./a.out
