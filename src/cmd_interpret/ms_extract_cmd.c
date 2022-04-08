@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:29:50 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:51:06 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	extract_cmd(t_shell *sh)
 	if (pipe_split(sh, sh->input, 0, 0))
 		flag = -1;
 	else
-		parse(sh);
-	return (0);
+		flag = parse(sh);
+	return (flag);
 }

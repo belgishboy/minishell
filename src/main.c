@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 11:51:29 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:57:19 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 /**
  * Main Shell Function
- * 
+ * @param env [char **] envroment 
+ * @return [int] 0 if successfull
 */
-int		shell(char **env)
+int	shell(char **env)
 {
 	t_shell	s;
 
@@ -30,8 +31,8 @@ int		shell(char **env)
 			return (err_num);
 		add_history(s.input);
 		interpret(&s, &s.input);
-		extract_cmd(&s);
-		launch_cmd(&s);
+		if (!extract_cmd(&s))
+			launch_cmd(&s);
 		free(s.input);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:27:35 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 12:50:02 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,12 @@ int	parse(t_shell *sh)
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
 		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
 			return ((i + 1) * -1);//ERROR 
-		init_fd(sh->seq[i], sh->seq[i]->split);// need to take out the '>'
+		if (init_fd(sh->seq[i], sh->seq[i]->split))
+			return (1);
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)
-			sh->seq[i]->path_cmd = ft_get_path(sh->seq[i]->cmd_args, ft_path(sh));
+			sh->seq[i]->path_cmd = \
+				ft_get_path(sh->seq[i]->cmd_args, ft_path(sh));
 		i ++;
 	}
 	return (0);
