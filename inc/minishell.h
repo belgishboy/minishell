@@ -142,7 +142,7 @@ char	*rmv_quotes(char *s, int f);
 char	*ft_get_path( char **cmd, char **path);
 int		init_fd(t_seq *seq, char **sp);
 char	**ft_path(t_shell *s);
-int		parse(t_shell *sh);
+int		parse(t_shell *sh, int i);
 
 // Launch
 
