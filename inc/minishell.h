@@ -155,6 +155,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid);
 
 void	clean_seq(t_shell *sh);
 void	ms_error(int error, char *sub, char *msg, int p);
+int		close_fd(void);
 
 /*
 **	MAIN

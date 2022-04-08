@@ -32,6 +32,7 @@ SRC =	$(SR)main.c \
 		$(LU)ms_pipe.c \
 		$(CMI)vars.c \
 		$(CL)ms_free_seq.c \
+		$(CL)ms_close_fd.c \
 
 OBJ = $(SRC:.c=.o)
 
