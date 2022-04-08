@@ -12,7 +12,7 @@
 */
 void	ms_error(int error, char *sub, char *msg, int p)
 {
-	err_num = (unsigned char) error;
+	err_num = ((unsigned short) error) % 256;
 	if (msg)
 	{
 		if (p != 0)

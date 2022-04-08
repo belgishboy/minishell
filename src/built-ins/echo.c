@@ -38,6 +38,7 @@ void	ms_echo(char **array, pid_t pid)
 		printf("\b");
 	if (!flag && !pid)
 		printf("\n");
+	err_num = 0;
 }
 
 /*void	ms_echo(char **array)

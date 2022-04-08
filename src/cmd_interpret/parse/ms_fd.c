@@ -27,7 +27,7 @@ int	fd_infile(t_seq *seq, char *arg)
 			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDONLY, 0777);
 		else
 		{
-			err_num = access(arg, F_OK);//CLEMENS
+			ms_error(access(arg, F_OK), ft_strdup(""), "\b\bno such file or directory\n", 1);
 			return (1);
 		}
 	}

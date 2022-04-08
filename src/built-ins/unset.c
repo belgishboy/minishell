@@ -66,4 +66,5 @@ void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 		}
 		i++;
 	}
+	err_num = 0;
 }
