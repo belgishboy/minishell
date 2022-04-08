@@ -1,6 +1,4 @@
 #include "../../inc/minishell.h"
-#include <stdio.h>
-#include <signal.h>
 
 void	sighandler(int signum, siginfo_t *info, void *context)
 {
@@ -23,10 +21,14 @@ void	sigint_handler(int signum)
 		check *= -1;
 	if (signum == SIGINT && check < 0)
 	{
-		printf("\b\b\n  %s", PROMPT);
-		// rl_on_new_line();
-		// rl_replace_line("", 0);
-		// rl_redisplay();
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_redisplay();
+		rl_on_new_line();
+	}
+	else if (signum == SIGQUIT)
+	{
+		return ;
 	}
 }
 
@@ -40,14 +42,3 @@ void	init_sig(void)
 	sigaction(SIGQUIT, &sig, NULL);
 	sigaction(SIGUSR1, &sig, NULL);
 }
-
-// int	main(void)
-// {
-// 	printf("this is the start of the program\n");
-// 	init_sig();
-// 	printf("initialized sig handler\n");
-// 	while (1)
-// 	{
-// 	}
-// 	return (0);
-// }
