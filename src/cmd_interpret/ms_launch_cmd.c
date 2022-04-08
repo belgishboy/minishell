@@ -29,7 +29,8 @@ int	launch_cmd(t_shell *sh)
 	tmp_fd[0] = dup(0);
 	tmp_fd[1] = dup(1);
 	i = 0;
-	while (i < sh->n_cmds - 1)
+	// err_num = 0;
+	while (i < sh->n_cmds - 1 && !err_num)
 	{
 		if (dup2(sh->seq[i]->fd[0], STDIN_FILENO) == -1 || dup2(sh->seq[i]->fd[1], STDOUT_FILENO) == -1)
 		{

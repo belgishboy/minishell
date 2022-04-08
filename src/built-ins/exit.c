@@ -12,7 +12,7 @@
 */
 void	ms_error(int error, char *sub, char *msg, int p)
 {
-	err_num = (unsigned char) error;
+	err_num = ((unsigned short) error) % 256;
 	if (msg)
 	{
 		if (p != 0)
@@ -68,6 +68,7 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		cleanup_env(s->env);
 	if (s->input)
 		free(s->input);
-	close_fd();
+	if (pid)
+		printf("exit\n");
 	exit(err_num);
 }

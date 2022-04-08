@@ -57,7 +57,7 @@ int	extract_rep(char *line, t_list *env, char **replace)
 
 	i = 0;
 	if (line[0] == '?')
-		*replace = ft_itoa(err_num);
+		*replace = ft_itoa(((unsigned short)err_num % 256));
 	if (line[0] == '0')
 		*replace = ft_strdup("minishell");
 	if (line[0] == '0' || line[0] == '?')

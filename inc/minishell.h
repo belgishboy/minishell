@@ -36,7 +36,6 @@
 # include <readline/history.h>
 //# include </Users/hlehmann/goinfre/.brew/opt/readline/inlcude/readline/readline.h>
 //# include </Users/hlehmann/goinfre/.brew/opt/readline/include/readline/history.h>
-
 /*
 ** GLOBAL VARIABLE
 */
@@ -125,6 +124,7 @@ int		keyerror(char *input);
 //	signals
 
 void	init_sig(void);
+void	sigint_handler(int signum);
 
 // EXTRACT
 
