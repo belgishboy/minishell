@@ -68,5 +68,6 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		cleanup_env(s->env);
 	if (s->input)
 		free(s->input);
+	close_fd();
 	exit(err_num);
 }

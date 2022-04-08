@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:38:34 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:29:32 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:44:47 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ char	*trm_whtsp(char *s, int dir)
 	else
 		pos2 = ft_strlen(s);
 	if (pos2 <= pos1)
-		return (""); //Return empty string if string only whitespace?
+		return ("");
 	trim = ft_substr(s, pos1, pos2 - pos1);
-	//free(s);
+	if (s)
+		free(s);
 	return (trim);
 }
