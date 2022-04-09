@@ -57,16 +57,18 @@ int	extract_rep(char *line, t_list *env, char **replace)
 		*replace = ft_itoa(((unsigned short)err_num % 256));
 	if (line[0] == '0')
 		*replace = ft_strdup("minishell");
-	if (line[0] == '0' || line[0] == '?')
+	if (line[0] == '\0')
+		*replace = ft_strdup("$");
+	if (line[0] == '0' || line[0] == '?' || line[0] == '\0')
 		return (2);
 	var = de_key(env, line);
 	if (!var)
+	{
 		*replace = ft_strdup("");
-	if (var)
-		*replace = ft_strdup(((t_cont *)var->content)->value);
-	if (var)
-		return ((int)ft_strlen((t_cont *)var->content)->key);
-		*replace = ft_strdup("");
+		return (42);
+	}
+	*replace = ft_strdup(((t_cont *)var->content)->value);
+	return ((int)ft_strlen(((t_cont *)var->content)->key));
 } 
 
 /**
