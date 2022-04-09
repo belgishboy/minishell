@@ -130,13 +130,13 @@ char	**env_copy(t_list *p_env)
 	while (i < ft_lstsize(p_env))
 	{
 		env[i] = ft_calloc(ft_strlen(((t_cont *)temp->content)->key) + \
-							ft_strlen(((t_cont *)temp->content)->value) + 3, 1);
+							ft_strlen(((t_cont *)temp->content)->value) + 5, 1);
 		ft_strlcpy(env[i], ((t_cont *)temp->content)->key, \
-							ft_strlen(((t_cont *)temp->content)->key));
+							ft_strlen(((t_cont *)temp->content)->key) + 1);
 		env[i][ft_strlen(env[i])] = '=';
 		ft_strlcpy(env[i] + ft_strlen(env[i]), ((t_cont *)temp->content)->\
 								value, ft_strlen(((t_cont *)temp->content)->\
-																value));
+																value) + 1);
 		temp = temp->next;
 		i++;
 	}
