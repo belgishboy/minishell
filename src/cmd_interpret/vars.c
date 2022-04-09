@@ -51,31 +51,25 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 
 int	extract_rep(char *line, t_list *env, char **replace)
 {
-	int		i;
-	char	*key;
-	t_list	*envar;
+	t_list	*var;
 
-	i = 0;
 	if (line[0] == '?')
 		*replace = ft_itoa(((unsigned short)err_num % 256));
 	if (line[0] == '0')
 		*replace = ft_strdup("minishell");
-	if (line[0] == '0' || line[0] == '?')
+	if (line[0] == '\0')
+		*replace = ft_strdup("$");
+	if (line[0] == '0' || line[0] == '?' || line[0] == '\0')
 		return (2);
-	if (!ft_isalpha(line[0]) && line[0] != '_')
+	var = de_key(env, line);
+	if (!var)
 	{
 		*replace = ft_strdup("");
-		return (0);
+		return (42);
 	}
-	while (line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
-		i++;
-	key = malloc((i + 1) * sizeof(char));
-	ft_strlcpy(key, line, i);
-	envar = finder(env, key);
-	free(key);
-	*replace = ft_strdup(((t_cont *)envar->content)->value);
-	return (i);
-}
+	*replace = ft_strdup(((t_cont *)var->content)->value);
+	return ((int)ft_strlen(((t_cont *)var->content)->key));
+} 
 
 /**
  * @brief edit the given string and replace indicators of
@@ -95,19 +89,19 @@ void	interpret(t_shell *s, char **line)
 	state = 0;
 	while ((*line)[i])
 	{
-		if ((*line)[i] == '\'')
-		{
-			if (state == 0)
-				state = 1;
-			else
-				state = 0;
-		}
+		if ((*line)[i] == '\'' && state == 0)
+			state = 1;
+		else if ((*line)[i] == '\'' && state == 1)
+			state = 0;
 		if ((*line)[i] == '$' && state == 0)
 		{
 			keylen = extract_rep(&(*line)[i + 1], s->env, &replacement);
-			(*line) = insert_string((*line), replacement, i, keylen + 2);
-			i += ft_strlen(replacement);
-			free(replacement);
+			if (replacement)
+			{
+				(*line) = insert_string((*line), replacement, i, keylen + 2);
+				i += ft_strlen(replacement);
+				free(replacement);
+			}
 		}
 		i++;
 	}

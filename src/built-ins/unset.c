@@ -68,3 +68,26 @@ void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 	}
 	err_num = 0;
 }
+
+/**
+ * @brief get a line consisting of key and value and return the env
+ * 			element, if it exists
+ * @param env [t_list*] our environment
+ * @param line [char*] the input to search part of for
+*/
+t_list	*de_key(t_list *env, char *line)
+{
+	int		i;
+	char	*key;
+	t_list	*res;
+
+	i = 0;
+	if (!(ft_isalpha(line[0]) || line[0] == '_'))
+		return (NULL);
+	while (line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
+		i++;
+	key = ft_substr(line, 0, i);
+	res = finder(env, key);
+	free(key);
+	return (res);
+}
