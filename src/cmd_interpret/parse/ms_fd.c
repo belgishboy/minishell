@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 17:52:57 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:41:08 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	fd_outfile(t_seq *seq, char *arg)
 	if (arg[1] == '>')
 	{
 		seq->fd[1] = open(trm_whtsp(&arg[2], 1), \
-			O_RDWR | O_APPEND | O_CREAT, 0777);
+			O_RDWR | O_APPEND | O_CREAT | O_CLOEXEC, 0777);
 	}
 	else
 	{
