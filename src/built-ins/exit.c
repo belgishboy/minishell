@@ -69,6 +69,10 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 	if (s->input)
 		free(s->input);
 	if (pid)
+	{
+		waitpid(pid, NULL, 0);
 		printf("exit\n");
+		close_fd();
+	}
 	exit(err_num);
 }
