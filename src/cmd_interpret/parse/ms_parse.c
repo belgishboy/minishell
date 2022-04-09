@@ -66,7 +66,8 @@ int	arg_parsing(char **split, t_seq *seq)
 	int	arg_cnt;
 
 	arg_cnt = count_args(split);
-	seq->cmd_args = ft_calloc(arg_cnt + 1, sizeof (char *));
+	if (!seq->cmd_args)
+		seq->cmd_args = ft_calloc(arg_cnt + 1, sizeof (char *));
 	if (!seq->cmd_args)
 		return (1);
 	i = 0;
@@ -114,8 +115,6 @@ int	parse(t_shell *sh, int i)
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
 		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
 			del_list(path);
-		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
-			return ((i + 1) * -1);//ERROR 
 		if (init_fd(sh->seq[i], sh->seq[i]->split))
 			del_list(path);
 		if (init_fd(sh->seq[i], sh->seq[i]->split))

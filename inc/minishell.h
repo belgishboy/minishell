@@ -118,6 +118,7 @@ void	delvar(t_list *elem);
 t_list	*create_env(char **p_env);
 char	**env_copy(t_list *p_env);
 void	del_list(char **list);
+t_list	*de_key(t_list *env, char *line);
 t_list	*finder(t_list *env, char *key);
 int		keyerror(char *input);
 
