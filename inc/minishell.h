@@ -40,7 +40,7 @@
 ** GLOBAL VARIABLE
 */
 
-int	err_num;
+char	err_num;
 
 /*
 ** MACROS

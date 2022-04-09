@@ -6,7 +6,7 @@
 /*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 19:12:41 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:37:38 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	shell(char **env)
 			launch_cmd(&s);
 		free(s.input);
 	}
-	ms_exit(&s, NULL, 1);
-	return (0);
+	exit(0); // leaks but the other one didn't work yet, tmrw i'll work there
+	return (ms_exit(&s, NULL, 1));
 }
 
 /**
