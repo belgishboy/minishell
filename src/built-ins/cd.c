@@ -41,8 +41,8 @@ void    cd(char **array, t_shell *shell, pid_t pid)
 	(void)	pid;
 
 	check = NULL;
-	oldpwd = (char *)malloc(MAX_DIR * sizeof(char));
-	newpwd = (char *)malloc(MAX_DIR * sizeof(char));
+	oldpwd = NULL;
+	newpwd = NULL;
 	check = getcwd(oldpwd, MAX_DIR);
 	if (check == NULL)
 		return ;
@@ -53,8 +53,10 @@ void    cd(char **array, t_shell *shell, pid_t pid)
 	updatenew(shell, newpwd);
 	if (check == NULL)
 		return ;
-	free(oldpwd);
-	free(newpwd);
+	if (oldpwd)
+		free(oldpwd);
+	if (newpwd)
+		free(newpwd);
 }
 /*
 void	cd(char **array, t_shell *shell, pid_t pid)
