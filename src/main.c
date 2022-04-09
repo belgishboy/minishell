@@ -28,13 +28,14 @@ int	shell(char **env)
 	{
 		s.input = readline(PROMPT);
 		if (!s.input)
-			return (err_num);
+			break ;
 		add_history(s.input);
 		interpret(&s, &s.input);
 		if (!extract_cmd(&s))
 			launch_cmd(&s);
 		free(s.input);
 	}
+	ms_exit(&s, NULL, 1);
 }
 
 /**
