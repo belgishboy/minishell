@@ -6,7 +6,7 @@
 /*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/08 19:10:46 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:37:14 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	ms_echo(char **array, pid_t pid)
 	}
 	while (array[i] && !pid)
 	{
-		printf("%s ", array[i]);
+		printf("%s", array[i]);
 		i++;
+		if (array[i])
+			printf (" ");
 	}
-	if (!pid)
-		printf("\b");
+	//if (!pid)
+	//	printf("\b");
 	if (!flag && !pid)
 		printf("\n");
 	err_num = 0;
