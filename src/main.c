@@ -35,7 +35,8 @@ int	shell(char **env)
 			launch_cmd(&s);
 		free(s.input);
 	}
-	ms_exit(&s, NULL, 1);
+	exit(0); // leaks but the other one didn't work yet, tmrw i'll work there
+	return (ms_exit(&s, NULL, 1));
 }
 
 /**
