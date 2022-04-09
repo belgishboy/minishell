@@ -35,5 +35,5 @@ void	init_sig(void)
 	sig.sa_flags = SA_SIGINFO;
 	sig.sa_sigaction = sighandler;
 	sigaction(SIGINT, &sig, NULL);
-	sigaction(SIGQUIT, &sig, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
