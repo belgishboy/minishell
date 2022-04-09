@@ -52,7 +52,7 @@ void	cleanup_env(t_list *l)
 */
 int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 {
-	if (q->cmd_args[1])
+	if (q && q->cmd_args[1])
 	{
 		if (ft_isnumeric(q->cmd_args[1]))
 			ms_error(255, ft_strjoin("exit: ", q->cmd_args[1]), \
