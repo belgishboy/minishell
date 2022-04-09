@@ -58,7 +58,10 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 			ms_error(255, ft_strjoin("exit: ", q->cmd_args[1]), \
 			"numeric argiment required\n", (int)pid);
 		else if (q->cmd_args[2])
-			ms_error(1, ft_strjoin("exit: ", ""), "too many arguments\n", (int)pid);
+		{
+			ms_error(1, ft_strjoin("exit", ""), "too many arguments\n", (int)pid);
+			return (err_num);
+		}
 		else
 			err_num = ft_atoi(q->cmd_args[1]);
 	}
