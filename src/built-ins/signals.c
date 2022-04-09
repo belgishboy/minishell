@@ -4,7 +4,7 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 {
 	(void) info;
 	(void) context;
-	if (signum == SIGUSR1 || signum == SIGINT)
+	if (signum == SIGINT)
 		sigint_handler(signum);
 }
 
@@ -14,20 +14,16 @@ void	sighandler(int signum, siginfo_t *info, void *context)
 */
 void	sigint_handler(int signum)
 {
-	static int	check;
-
-	check = 1;
-	if (signum == SIGUSR1)
-		check *= -1;
-	if (signum == SIGINT && check < 0)
+	if (signum == SIGINT)
 	{
 		printf("\n");
 		rl_replace_line("", 0);
-		rl_redisplay();
 		rl_on_new_line();
+		rl_redisplay();
 	}
 	else if (signum == SIGQUIT)
 	{
+		printf("\b\b");
 		return ;
 	}
 }
@@ -40,5 +36,4 @@ void	init_sig(void)
 	sig.sa_sigaction = sighandler;
 	sigaction(SIGINT, &sig, NULL);
 	sigaction(SIGQUIT, &sig, NULL);
-	sigaction(SIGUSR1, &sig, NULL);
 }
