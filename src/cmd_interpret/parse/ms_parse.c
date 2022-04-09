@@ -66,7 +66,8 @@ int	arg_parsing(char **split, t_seq *seq)
 	int	arg_cnt;
 
 	arg_cnt = count_args(split);
-	seq->cmd_args = ft_calloc(arg_cnt + 1, sizeof (char *));
+	if (!seq->cmd_args)
+		seq->cmd_args = ft_calloc(arg_cnt + 1, sizeof (char *));
 	if (!seq->cmd_args)
 		return (1);
 	i = 0;
@@ -103,24 +104,28 @@ void	init_seq(t_seq *seq)
  * @param sh [t_shell *] shell struct
  * @return 0 if successful, # of what seq[#] if fail
 */
-int	parse(t_shell *sh)
+int	parse(t_shell *sh, int i)
 {
-	int	i;
+	char	**path;
 
-	i = 0;
+	path = ft_path(sh);
 	while (sh->seq[i])
 	{
 		init_seq(sh->seq[i]);
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
 		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
-			return ((i + 1) * -1);//ERROR 
+			del_list(path);
+		if (init_fd(sh->seq[i], sh->seq[i]->split))
+			del_list(path);
 		if (init_fd(sh->seq[i], sh->seq[i]->split))
 			return (1);
 		init_cmd(sh->seq[i]);
 		if (sh->seq[i]->wht_cmd == 1)
 			sh->seq[i]->path_cmd = \
-				ft_get_path(sh->seq[i]->cmd_args, ft_path(sh));
+				ft_get_path(sh->seq[i]->cmd_args, path);
 		i ++;
 	}
+	if (path)
+		del_list(path);
 	return (0);
 }
