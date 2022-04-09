@@ -42,15 +42,15 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
 
 	i = 0;
 	count = 1;
-	while (in[i])
+	while (in && in[i])
 	{
 		if (in[i] == D_Q || in[i] == S_Q)
 			i = pipe_quote(i + 1, in[i], in);
 		if (in[i] == PIPE)
 		{
-			if (in[i + 1] != PIPE)
+			if (in[i + 1] && in[i + 1] != PIPE)
 				count ++;
-			if (in[i + 1] && in[i + 1] == PIPE)// check
+			if (in[i + 1] && in[i + 1] == PIPE)
 				return (-1);
 		}
 		i ++;
