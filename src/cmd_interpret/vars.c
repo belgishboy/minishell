@@ -27,7 +27,7 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 
 	i = 0;
 	new = ft_calloc(ft_strlen(line) + ft_strlen(add) + 10, sizeof(char));
-	while (i < pos)
+	while (i < pos && line[i])
 	{
 		new[i] = line[i];
 		i++;
@@ -77,31 +77,34 @@ int	extract_rep(char *line, t_list *env, char **replace)
  * @param s [t_shell*] our shell
  * @param line [char**] address of the given line, for reallocation
  * @return [void]
+ * 
+ * in function	i[0] -> index in line
+ * 				i[1] -> status in whether in between quotes
+ * 				i[2] -> keylength of the replacement variable
 */
 void	interpret(t_shell *s, char **line)
 {
-	int		i;
-	int		state;
-	int		keylen;
+	int		i[3];
 	char	*replacement;
 
-	i = 0;
-	state = 0;
-	while ((*line)[i])
+	i[0] = 0;
+	i[1] = 0;
+	while ((*line)[i[0]])
 	{
-		if ((*line)[i] == '\'' && state == 0)
-			state = 1;
-		else if ((*line)[i] == '\'' && state == 1)
-			state = 0;
-		if ((*line)[i] == '$' && state == 0)
+		if ((*line)[i[0]] == '\'' && i[1] == 0)
+			i[1] = 1;
+		else if ((*line)[i[0]] == '\'' && i[1] == 1)
+			i[1] = 0;
+		if ((*line)[i[0]] == '$' && i[1] == 0)
 		{
-			keylen = extract_rep(&(*line)[i + 1], s->env, &replacement);
-			if (replacement)
+			i[2] = extract_rep(&(*line)[i[0] + 1], s->env, &replacement);
+			if (replacement[0])
 			{
-				(*line) = insert_string((*line), replacement, i, keylen + 2);
-				i += ft_strlen(replacement);
-				free(replacement);
+				(*line) = insert_string((*line), replacement, i[0], i[2] + 2);
+				i[0] += ft_strlen(replacement);
 			}
+			if (replacement)
+				free(replacement);
 		}
 		i++;
 	}
