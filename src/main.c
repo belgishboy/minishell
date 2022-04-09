@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 12:57:19 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:12:41 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	shell(char **env)
 		free(s.input);
 	}
 	ms_exit(&s, NULL, 1);
+	return (0);
 }
 
 /**
