@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:43:10 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 14:52:34 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:56:06 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2])
 		close(fd[1]);
 		if (dup2(fd[0], STDIN_FILENO) == -1)
 			write(1, "dup2 Parent failed\n", 19);
-		ms_exec_builtins(sh, seq, pid);
 		waitpid(pid, NULL, 0);
+		ms_exec_builtins(sh, seq, pid);
 		close(fd[0]);
 	}
 }
