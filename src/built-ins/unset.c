@@ -82,7 +82,7 @@ t_list	*de_key(t_list *env, char *line)
 	t_list	*res;
 
 	i = 0;
-	if (!ft_isalpha(line[0]) || !(line[0] == '_'))
+	if (!(ft_isalpha(line[0]) || line[0] == '_'))
 		return (NULL);
 	while (line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
 		i++;
