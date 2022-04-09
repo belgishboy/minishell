@@ -1,4 +1,5 @@
 #include "../../../inc/minishell.h"
+
 /**
  * @brief execute the builtins and commands respectively in child and parent
  * @param s [t_shell*] shell
