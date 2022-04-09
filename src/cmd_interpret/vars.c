@@ -48,7 +48,6 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 	return (new);
 }
 
-
 int	extract_rep(char *line, t_list *env, char **replace)
 {
 	t_list	*var;
@@ -69,7 +68,7 @@ int	extract_rep(char *line, t_list *env, char **replace)
 	}
 	*replace = ft_strdup(((t_cont *)var->content)->value);
 	return ((int)ft_strlen(((t_cont *)var->content)->key));
-} 
+}
 
 /**
  * @brief edit the given string and replace indicators of
@@ -106,7 +105,7 @@ void	interpret(t_shell *s, char **line)
 			if (replacement)
 				free(replacement);
 		}
-		i++;
+		i[0]++;
 	}
 }
 
