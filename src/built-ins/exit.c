@@ -73,5 +73,5 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		free(s->input);
 	if (pid)
 		printf("exit\n");
-	exit(err_num);
+	exit(0);
 }
