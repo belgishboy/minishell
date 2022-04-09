@@ -28,7 +28,7 @@ t_cont	*envar(char *p_var)
 	if (eq)
 	{
 		i = ft_strlen(p_var) - ft_strlen(eq);
-		var->key = ft_calloc(i + 1, sizeof(char));
+		var->key = ft_calloc(i + 3, sizeof(char));
 		ft_strlcpy(var->key, p_var, i + 1);
 		var->value = ft_strdup(p_var + i + 1);
 	}
@@ -132,11 +132,11 @@ char	**env_copy(t_list *p_env)
 		env[i] = ft_calloc(ft_strlen(((t_cont *)temp->content)->key) + \
 							ft_strlen(((t_cont *)temp->content)->value) + 3, 1);
 		ft_strlcpy(env[i], ((t_cont *)temp->content)->key, \
-							ft_strlen(((t_cont *)temp->content)->key) + 1);
+							ft_strlen(((t_cont *)temp->content)->key));
 		env[i][ft_strlen(env[i])] = '=';
 		ft_strlcpy(env[i] + ft_strlen(env[i]), ((t_cont *)temp->content)->\
 								value, ft_strlen(((t_cont *)temp->content)->\
-																value) + 1);
+																value));
 		temp = temp->next;
 		i++;
 	}
