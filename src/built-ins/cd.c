@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/08 18:29:06 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:45:38 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	updatenew(t_shell *shell, char *new_pwd)
 
 	new = finder(shell->env, "PWD");
 	free(((t_cont *)new->content)->value);
-	((t_cont *)new->content)->value = new_pwd;
+	((t_cont *)new->content)->value = ft_strdup(new_pwd);
 }
 
 void    cd(char **array, t_shell *shell, pid_t pid)
