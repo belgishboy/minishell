@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_extract_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:11:31 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 15:33:27 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:31:36 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ int	extract_cmd(t_shell *sh)
 		flag = -1;
 	else
 		flag = parse(sh, 0);
+	if (flag)
+	{
+		clean_seq(sh);
+		close_fd();
+	}
 	return (flag);
 }
