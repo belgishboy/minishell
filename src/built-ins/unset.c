@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:08:04 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/05 15:08:05 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:21:13 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param input [char*]
  * @return [int] 0->passes 1->fails
 */
-int	keyerror(char *input)
+int	keyer(char *input)
 {
 	int	i;
 
@@ -38,19 +38,19 @@ int	keyerror(char *input)
  * @param s [t_shell*] shell
  * @param q [t_seq*]	sequence
  * @param pid [pid_t]	child-or-not pid
+ * @param i [int] always 1 
 */
-void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
+void	ms_unset(t_shell *s, t_seq *q, pid_t pid, int i)
 {
 	t_list	*new;
 	t_list	*tmp;
-	int		i;
 
-	i = 1;
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if ((keyerror(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '=')) && !pid)
-			ms_error(1, ft_strjoin("unset: ", q->cmd_args[i]), "not a valid identifier\n", (int)pid);
+		if ((keyer(q->cmd_args[i]) || ft_strchr(q->cmd_args[i], '=')) && !pid)
+			ms_error(1, ft_strjoin("unset: ", q->cmd_args[i]),
+				"not a valid identifier\n", (int)pid);
 		else if (new)
 		{
 			tmp = s->env;
@@ -66,7 +66,7 @@ void	ms_unset(t_shell *s, t_seq *q, pid_t pid)
 		}
 		i++;
 	}
-	err_num = 0;
+	g_errnum = 0;
 }
 
 /**

@@ -82,7 +82,7 @@ void	export_all(t_list *env)
 		i++;
 	}
 	del_list(c_env);
-	err_num = 0;
+	g_errnum = 0;
 }
 
 /**
@@ -117,20 +117,20 @@ t_list	*finder(t_list *env, char *key)
  * @param s [t_shell*] shell
  * @param q [t_seq*]	sequence
  * @param pid [pid_t]	child-or-not pid
+ * @param i [int] always 1, too many lines
 */
-void	ms_export(t_shell *s, t_seq *q, pid_t pid)
+void	ms_export(t_shell *s, t_seq *q, pid_t pid, int i)
 {
 	t_list	*new;
-	int		i;
 
 	if (!q->cmd_args[1] && !pid)
 		return (export_all(s->env));
-	i = 1;
 	while (q->cmd_args[i])
 	{
 		new = finder(s->env, q->cmd_args[i]);
-		if (keyerror(q->cmd_args[i]))
-			ms_error(1, ft_strjoin("export: ", q->cmd_args[i]), "not a valid identifier\n", (int)pid);
+		if (keyer(q->cmd_args[i]))
+			ms_error(1, ft_strjoin("export: ", q->cmd_args[i]),
+				"not a valid identifier\n", (int)pid);
 		else if (new)
 		{
 			free(((t_cont *)new->content)->value);
@@ -144,7 +144,7 @@ void	ms_export(t_shell *s, t_seq *q, pid_t pid)
 			ft_lstadd_back(&s->env, ft_lstnew(envar(q->cmd_args[i])));
 		i++;
 	}
-	err_num = 0;
+	g_errnum = 0;
 }
 
 // // gcc env.c ../../lft/libft.a && ./a.out

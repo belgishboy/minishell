@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:47:08 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 09:50:44 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:15:49 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,24 @@ char	*ft_get_path( char **cmd, char **path)
 	char	*temp;
 
 	x = 0;
-	if (path != NULL)
-		while (path[x])
-		{
-			temp = ft_strjoin(path[x], *cmd);
-			if (!access(temp, X_OK) && !access(temp, F_OK))
-				return (temp);
-			free(temp);
-			x ++;
-		}
+	if (!path)
+	{
+		ms_error(127, ft_strjoin(*cmd, ": Path not found"), "\n", 1);
+		return (NULL);
+	}
+	while (path[x])
+	{
+		temp = ft_strjoin(path[x], *cmd);
+		if (!access(temp, X_OK) && !access(temp, F_OK))
+			return (temp);
+		free(temp);
+		x ++;
+	}
 	temp = (char *) ft_calloc(ft_strlen(*cmd) + 1, sizeof(char));
 	ft_strlcpy(temp, *cmd, ft_strlen(*cmd) + 1);
 	if (!access(*cmd, X_OK) && !access(*cmd, F_OK))
 		return (temp);
-	ms_error(127, ft_strjoin("no such file or directory: ", *cmd), "\n", 1);
+	ms_error(127, ft_strjoin(*cmd, ": command not found"), "\n", 1);
 	free(temp);
 	return (NULL);
 }
@@ -67,7 +71,7 @@ char	**ft_path(t_shell *s)
 	pth = finder(s->env, "PATH=");
 	if (!pth)
 		return (NULL);
-	path = ft_split(((t_cont*)pth->content)->value, ':');
+	path = ft_split(((t_cont *)pth->content)->value, ':');
 	if (!path)
 		return (NULL);
 	ft_add_slash(path);

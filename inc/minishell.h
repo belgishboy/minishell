@@ -34,13 +34,11 @@
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
-//# include </Users/hlehmann/goinfre/.brew/opt/readline/inlcude/readline/readline.h>
-//# include </Users/hlehmann/goinfre/.brew/opt/readline/include/readline/history.h>
 /*
 ** GLOBAL VARIABLE
 */
 
-char	err_num;
+char	g_errnum;
 
 /*
 ** MACROS
@@ -57,23 +55,6 @@ char	err_num;
 /*
 **	STRUCTS
 */
-
-typedef struct s_seq	t_seq;
-
-/**
- * Main Struct
- * @param env linked t_list for enviroment
- * @param seq Seq Struct array 
- * @param n_cmds [int] nbr of pipe splits needed
- * @param input string containing the whole input from the user
-*/
-typedef struct s_shell
-{
-	t_list	*env;
-	t_seq	**seq;
-	int		n_cmds;
-	char	*input;
-}	t_shell;
 
 /**
  * Sequence struct
@@ -95,6 +76,21 @@ typedef struct s_seq
 	int		wht_cmd;
 	int		nbr_arg;
 }	t_seq;
+
+/**
+ * Main Struct
+ * @param env linked t_list for enviroment
+ * @param seq Seq Struct array 
+ * @param n_cmds [int] nbr of pipe splits needed
+ * @param input string containing the whole input from the user
+*/
+typedef struct s_shell
+{
+	t_list	*env;
+	t_seq	**seq;
+	int		n_cmds;
+	char	*input;
+}	t_shell;
 
 /*
 **Environment Content Struct
@@ -120,7 +116,7 @@ char	**env_copy(t_list *p_env);
 void	del_list(char **list);
 t_list	*de_key(t_list *env, char *line);
 t_list	*finder(t_list *env, char *key);
-int		keyerror(char *input);
+int		keyer(char *input);
 
 //	signals
 
@@ -166,8 +162,8 @@ void	ms_echo(char **array, pid_t pid);
 void	cd(char **array, t_shell *shell, pid_t pid);
 void	pwd(pid_t pid);
 void	ms_env(t_shell *s, t_seq *q, pid_t pid);
-void	ms_export(t_shell *s, t_seq *q, pid_t pid);
-void	ms_unset(t_shell *s, t_seq *q, pid_t pid);
+void	ms_export(t_shell *s, t_seq *q, pid_t pid, int i);
+void	ms_unset(t_shell *s, t_seq *q, pid_t pid, int i);
 
 int		shell(char **env);
 
