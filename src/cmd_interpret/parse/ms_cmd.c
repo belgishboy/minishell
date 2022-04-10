@@ -27,7 +27,7 @@ char	*ft_get_path( char **cmd, char **path)
 			free(temp);
 			x ++;
 		}
-	temp = (char *) malloc(ft_strlen(*cmd) * sizeof(char));
+	temp = (char *) ft_calloc(ft_strlen(*cmd) + 1, sizeof(char));
 	ft_strlcpy(temp, *cmd, ft_strlen(*cmd) + 1);
 	if (!access(*cmd, X_OK) && !access(*cmd, F_OK))
 		return (temp);
