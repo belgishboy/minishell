@@ -6,7 +6,7 @@
 /*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 19:37:38 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/10 13:01:24 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	shell(char **env)
 
 	init_sig();
 	s.env = create_env(env);
-	err_num = 0;
 	while (1)
 	{
 		s.input = readline(PROMPT);
