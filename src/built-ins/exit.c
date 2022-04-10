@@ -12,7 +12,7 @@
 */
 void	ms_error(int error, char *sub, char *msg, int p)
 {
-	err_num = ((unsigned short) error) % 256;
+	g_errnum = ((unsigned short) error) % 256;
 	if (msg)
 	{
 		if (p != 0)
@@ -40,6 +40,16 @@ void	cleanup_env(t_list *l)
 	}
 }
 
+void	clean_exit(t_shell *s)
+{
+	if (s && s->seq)
+		clean_seq(s);
+	if (s && s->env)
+		cleanup_env(s->env);
+	if (s && s->input)
+		free(s->input);
+}
+
 /**
  * @brief clean and exit the shell
  * @param s [t_shell*] shell
@@ -59,23 +69,18 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 			"numeric argiment required\n", (int)pid);
 		else if (q->cmd_args[2])
 		{
-			ms_error(1, ft_strjoin("exit", ""), "too many arguments\n", (int)pid);
-			return (err_num);
+			ms_error(1, ft_strjoin("exit", ""),
+				"too many arguments\n", (int)pid);
+			return (g_errnum);
 		}
 		else
-			err_num = ft_atoi(q->cmd_args[1]);
+			g_errnum = ft_atoi(q->cmd_args[1]);
 	}
-	if (s && s->seq)
-		clean_seq(s);
-	if (s && s->env)
-		cleanup_env(s->env);
-	if (s && s->input)
-		free(s->input);
+	clean_exit(s);
 	if (pid)
 	{
 		waitpid(pid, NULL, 0);
 		printf("exit\n");
-
 		close_fd();
 	}
 	exit(0);

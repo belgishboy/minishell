@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:57:14 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/09 16:37:14 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:21:13 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,7 @@ void	ms_echo(char **array, pid_t pid)
 		if (array[i])
 			printf (" ");
 	}
-	//if (!pid)
-	//	printf("\b");
 	if (!flag && !pid)
 		printf("\n");
-	err_num = 0;
+	g_errnum = 0;
 }
-
-/*void	ms_echo(char **array)
-{
-	int	i;
-	int	nl;
-
-	i = 1;
-	nl = 1;
-	if (ft_strncmp(array[i], "-n", ft_strlen(array[i])))
-	{
-		nl = 0;
-		i++;
-	}
-	while (array[i])
-	{
-		printf("%s ", array[i]);
-		i++;
-	}
-	printf("\b");
-	if (nl)
-		printf("\n");
-}*/

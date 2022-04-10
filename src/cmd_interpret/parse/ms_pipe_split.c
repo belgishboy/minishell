@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 16:05:58 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:17:39 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	pipe_quote(int pos, char c, char *in)
  * @param in [char *] string input
  * @return [int] number of splits needed
 */
-int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; triple |||?
+int	count_pipe(char *in)
 {
 	int	i;
 	int	count;
@@ -66,7 +66,7 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
  * @param pos2 [int] always '0' (because I have too many lines)
  * @return 1 if error in pipe count, 0 if succes
 */
-int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be split here?
+int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)
 {
 	int	n_pipes;
 
