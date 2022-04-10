@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:43:10 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 13:02:33 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:19:14 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_pipe(t_shell *sh, t_seq *seq)
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			write(1, "dup2 Child failed\n", 18);
-		sigint_handler(SIGUSR1);
 		ms_exec_builtins(sh, seq, pid);
 		exit(127);
 	}
