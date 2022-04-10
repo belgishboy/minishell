@@ -6,7 +6,7 @@
 /*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:47:08 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 17:52:47 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/08 09:50:44 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@ char	*ft_get_path( char **cmd, char **path)
 	char	*temp;
 
 	x = 0;
-	while (path[x])
-	{
-		temp = ft_strjoin(path[x], *cmd);
-		if (!access(temp, X_OK) && !access(temp, F_OK))
-			return (temp);
-		free(temp);
-		x ++;
-	}
-	temp = (char *) malloc(ft_strlen(*cmd) * sizeof(char));
+	if (path != NULL)
+		while (path[x])
+		{
+			temp = ft_strjoin(path[x], *cmd);
+			if (!access(temp, X_OK) && !access(temp, F_OK))
+				return (temp);
+			free(temp);
+			x ++;
+		}
+	temp = (char *) ft_calloc(ft_strlen(*cmd) + 1, sizeof(char));
 	ft_strlcpy(temp, *cmd, ft_strlen(*cmd) + 1);
 	if (!access(*cmd, X_OK) && !access(*cmd, F_OK))
 		return (temp);
@@ -64,6 +65,8 @@ char	**ft_path(t_shell *s)
 	t_list	*pth;
 
 	pth = finder(s->env, "PATH=");
+	if (!pth)
+		return (NULL);
 	path = ft_split(((t_cont*)pth->content)->value, ':');
 	if (!path)
 		return (NULL);

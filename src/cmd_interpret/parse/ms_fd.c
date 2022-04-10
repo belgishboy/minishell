@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 13:18:12 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:41:08 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	fd_infile(t_seq *seq, char *arg)
 		if (seq->fd[0] != 0)
 			close(seq->fd[0]);
 		if (!access(arg, F_OK))
-			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDONLY, 0777);
+			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDWR, 0777);
 		else
 		{
-			err_num = access(arg, F_OK);
+			ms_error(access(arg, F_OK), ft_strdup(""), "\b\bno such file or directory\n", 1);
 			return (1);
 		}
 	}
@@ -41,12 +41,12 @@ int	fd_outfile(t_seq *seq, char *arg)
 	if (arg[1] == '>')
 	{
 		seq->fd[1] = open(trm_whtsp(&arg[2], 1), \
-			O_RDWR | O_APPEND | O_CREAT, 0777);
+			O_RDWR | O_APPEND | O_CREAT | O_CLOEXEC, 0777);
 	}
 	else
 	{
 		seq->fd[1] = open(trm_whtsp(&arg[1], 1), \
-			O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			O_RDWR | O_CREAT | O_TRUNC, 0777);
 	}
 	return (0);
 }

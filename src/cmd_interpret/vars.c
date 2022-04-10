@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:53 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/05 13:59:53 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:20:02 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 	char	*new;
 
 	i = 0;
-	new = ft_calloc(ft_strlen(line) + ft_strlen(add) + 10, sizeof(char));
-	while (i < pos)
+	new = ft_calloc(ft_strlen(line) + ft_strlen(add) + 1, sizeof(char));
+	while (i < pos && line[i])
 	{
 		new[i] = line[i];
 		i++;
@@ -48,33 +48,26 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 	return (new);
 }
 
-
 int	extract_rep(char *line, t_list *env, char **replace)
 {
-	int		i;
-	char	*key;
-	t_list	*envar;
+	t_list	*var;
 
-	i = 0;
 	if (line[0] == '?')
-		*replace = ft_itoa(err_num);
+		*replace = ft_itoa(((unsigned short)err_num % 256));
 	if (line[0] == '0')
 		*replace = ft_strdup("minishell");
-	if (line[0] == '0' || line[0] == '?')
+	if (line[0] == '\0')
+		*replace = ft_strdup("$");
+	if (line[0] == '0' || line[0] == '?' || line[0] == '\0')
 		return (2);
-	if (!ft_isalpha(line[0]) && line[0] != '_')
+	var = de_key(env, line);
+	if (!var)
 	{
 		*replace = ft_strdup("");
-		return (0);
+		return (42);
 	}
-	while (line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
-		i++;
-	key = malloc((i + 1) * sizeof(char));
-	ft_strlcpy(key, line, i);
-	envar = finder(env, key);
-	free(key);
-	*replace = ft_strdup(((t_cont *)envar->content)->value);
-	return (i);
+	*replace = ft_strdup(((t_cont *)var->content)->value);
+	return ((int)ft_strlen(((t_cont *)var->content)->key));
 }
 
 /**
@@ -83,33 +76,36 @@ int	extract_rep(char *line, t_list *env, char **replace)
  * @param s [t_shell*] our shell
  * @param line [char**] address of the given line, for reallocation
  * @return [void]
+ * 
+ * in function	i[0] -> index in line
+ * 				i[1] -> status in whether in between quotes
+ * 				i[2] -> keylength of the replacement variable
 */
 void	interpret(t_shell *s, char **line)
 {
-	int		i;
-	int		state;
-	int		keylen;
+	int		i[3];
 	char	*replacement;
 
-	i = 0;
-	state = 0;
-	while ((*line)[i])
+	i[0] = 0;
+	i[1] = 0;
+	while ((*line)[i[0]])
 	{
-		if ((*line)[i] == '\'')
+		if ((*line)[i[0]] == '\'' && i[1] == 0)
+			i[1] = 1;
+		else if ((*line)[i[0]] == '\'' && i[1] == 1)
+			i[1] = 0;
+		if ((*line)[i[0]] == '$' && i[1] == 0)
 		{
-			if (state == 0)
-				state = 1;
-			else
-				state = 0;
+			i[2] = extract_rep(&(*line)[i[0] + 1], s->env, &replacement);
+			if (replacement[0])
+			{
+				(*line) = insert_string((*line), replacement, i[0], i[2] + 2);
+				i[0] += ft_strlen(replacement);
+			}
+			if (replacement)
+				free(replacement);
 		}
-		if ((*line)[i] == '$' && state == 0)
-		{
-			keylen = extract_rep(&(*line)[i + 1], s->env, &replacement);
-			(*line) = insert_string((*line), replacement, i, keylen + 2);
-			i += ft_strlen(replacement);
-			free(replacement);
-		}
-		i++;
+		i[0]++;
 	}
 }
 

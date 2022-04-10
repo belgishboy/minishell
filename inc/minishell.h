@@ -36,12 +36,11 @@
 # include <readline/history.h>
 //# include </Users/hlehmann/goinfre/.brew/opt/readline/inlcude/readline/readline.h>
 //# include </Users/hlehmann/goinfre/.brew/opt/readline/include/readline/history.h>
-
 /*
 ** GLOBAL VARIABLE
 */
 
-int	err_num;
+char	err_num;
 
 /*
 ** MACROS
@@ -119,12 +118,14 @@ void	delvar(t_list *elem);
 t_list	*create_env(char **p_env);
 char	**env_copy(t_list *p_env);
 void	del_list(char **list);
+t_list	*de_key(t_list *env, char *line);
 t_list	*finder(t_list *env, char *key);
 int		keyerror(char *input);
 
 //	signals
 
 void	init_sig(void);
+void	sigint_handler(int signum);
 
 // EXTRACT
 
@@ -142,7 +143,7 @@ char	*rmv_quotes(char *s, int f);
 char	*ft_get_path( char **cmd, char **path);
 int		init_fd(t_seq *seq, char **sp);
 char	**ft_path(t_shell *s);
-int		parse(t_shell *sh);
+int		parse(t_shell *sh, int i);
 
 // Launch
 
@@ -155,6 +156,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid);
 
 void	clean_seq(t_shell *sh);
 void	ms_error(int error, char *sub, char *msg, int p);
+int		close_fd(void);
 
 /*
 **	MAIN

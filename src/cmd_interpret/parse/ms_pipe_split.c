@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:28:27 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 16:05:58 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ int	count_pipe(char *in)// what if it ends with a pipe == missing bash cmd; trip
 
 	i = 0;
 	count = 1;
-	while (in[i])
+	while (in && in[i])
 	{
 		if (in[i] == D_Q || in[i] == S_Q)
 			i = pipe_quote(i + 1, in[i], in);
 		if (in[i] == PIPE)
 		{
-			if (in[i + 1] != PIPE)
+			if (in[i + 1] && in[i + 1] != PIPE)
 				count ++;
-			if (in[i + 1] && in[i + 1] == PIPE)// check
+			if (in[i + 1] && in[i + 1] == PIPE)
 				return (-1);
 		}
 		i ++;
@@ -83,13 +83,13 @@ int	pipe_split(t_shell *shell, char *in, int pos1, int pos2)// << needs to be sp
 				pos2 = pipe_quote(pos2 + 1, in[pos2], in);
 			pos2 ++;
 		}
-		if (!in[pos2] || in[pos2 + 1] != PIPE)
+		if (!in[pos2] || (in[pos2 + 1] && in[pos2 + 1] != PIPE))
 		{
 			shell->seq[n_pipes] = ft_calloc(sizeof(t_seq), 1);
 			shell->seq[n_pipes ++]->seq = ft_substr(in, pos1, pos2 - pos1);
 			pos1 = ++ pos2;
 		}
-		while (in[pos2] == PIPE && in[pos2])
+		while (pos2 < (int)ft_strlen(in) && in[pos2] && in[pos2] == PIPE)
 			pos2 ++;
 	}
 	return (0);

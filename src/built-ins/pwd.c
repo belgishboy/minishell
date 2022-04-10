@@ -28,5 +28,4 @@ void	pwd(pid_t pid)
 	if (!pid)
 		printf("%s\n", path);
 	err_num = 0;
-	return ;
 }

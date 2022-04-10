@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ms_close_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/13 16:54:48 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/08 17:15:02 by hlehmann         ###   ########.fr       */
+/*   Created: 2022/04/08 17:06:05 by vheymans          #+#    #+#             */
+/*   Updated: 2022/04/08 18:22:40 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../../inc/minishell.h"
 
-size_t	ft_strlen(const char *str)
+int	close_fd(void)
 {
-	size_t	i;
+	int	i;
 
-	i = 0;
-	while (str && str[i] != '\0')
-		i++;
-	return (i);
+	i = 3;
+	while (i < 1024)
+	{
+		close(i);
+		i ++;
+	}
+	return (0);
 }

@@ -1,4 +1,5 @@
 #include "../../../inc/minishell.h"
+
 /**
  * @brief execute the builtins and commands respectively in child and parent
  * @param s [t_shell*] shell
@@ -11,7 +12,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 
 	p_env = env_copy(s->env);
 	if (q->wht_cmd == 1 && !pid)
-		execve(q->path_cmd, q->cmd_args, p_env);
+		err_num = execve(q->path_cmd, q->cmd_args, p_env);
 	else
 	{
 		if (q->wht_cmd == 2)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdahlhof <cdahlhof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/06 09:00:31 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:28:33 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,36 @@ void	updatenew(t_shell *shell, char *new_pwd)
 
 	new = finder(shell->env, "PWD");
 	free(((t_cont *)new->content)->value);
-	((t_cont *)new->content)->value = new_pwd;
+	((t_cont *)new->content)->value = ft_strdup(new_pwd);
 }
 
+void	cd(char **array, t_shell *shell, pid_t pid)
+{
+	char	*oldpwd;
+	char	*newpwd;
+
+	(void) pid;
+	oldpwd = NULL;
+	newpwd = NULL;
+	oldpwd = getcwd(oldpwd, MAX_DIR);
+	if (oldpwd == NULL)
+		return ;
+	if (chdir(array[1]) == 0)
+	{
+		updateold(shell);
+		newpwd = getcwd(newpwd, MAX_DIR);
+		updatenew(shell, newpwd);
+	}
+	else
+		if (pid != 0)
+			ms_error(1, ft_strjoin("cd: no such file or directory: ", \
+				array[1]), "\n", pid);
+	if (oldpwd)
+		free(oldpwd);
+	if (newpwd)
+		free(newpwd);
+}
+/*
 void	cd(char **array, t_shell *shell, pid_t pid)
 {
 	char	*oldpwd;
@@ -59,3 +86,4 @@ void	cd(char **array, t_shell *shell, pid_t pid)
 	if (check != NULL)
 		return ;
 }
+*/
