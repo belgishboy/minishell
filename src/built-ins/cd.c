@@ -6,7 +6,7 @@
 /*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:50:26 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/09 15:45:38 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:28:33 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,27 @@ void	updatenew(t_shell *shell, char *new_pwd)
 	((t_cont *)new->content)->value = ft_strdup(new_pwd);
 }
 
-void    cd(char **array, t_shell *shell, pid_t pid)
+void	cd(char **array, t_shell *shell, pid_t pid)
 {
-	char    *oldpwd;
-	char    *newpwd;
-	char    *check;
-	(void)	pid;
+	char	*oldpwd;
+	char	*newpwd;
 
-	check = NULL;
+	(void) pid;
 	oldpwd = NULL;
 	newpwd = NULL;
-	check = getcwd(oldpwd, MAX_DIR);
-	if (check == NULL)
+	oldpwd = getcwd(oldpwd, MAX_DIR);
+	if (oldpwd == NULL)
 		return ;
-	updateold(shell);
-	chdir(array[1]);
-	check = NULL;
-	check = getcwd(newpwd, MAX_DIR);
-	updatenew(shell, newpwd);
-	if (check == NULL)
-		return ;
+	if (chdir(array[1]) == 0)
+	{
+		updateold(shell);
+		newpwd = getcwd(newpwd, MAX_DIR);
+		updatenew(shell, newpwd);
+	}
+	else
+		if (pid != 0)
+			ms_error(1, ft_strjoin("cd: no such file or directory: ", \
+				array[1]), "\n", pid);
 	if (oldpwd)
 		free(oldpwd);
 	if (newpwd)

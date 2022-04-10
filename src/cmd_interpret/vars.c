@@ -26,7 +26,7 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 	char	*new;
 
 	i = 0;
-	new = ft_calloc(ft_strlen(line) + ft_strlen(add) + 10, sizeof(char));
+	new = ft_calloc(ft_strlen(line) + ft_strlen(add) + 1, sizeof(char));
 	while (i < pos && line[i])
 	{
 		new[i] = line[i];

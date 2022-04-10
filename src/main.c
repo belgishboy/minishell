@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 12:57:19 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:37:38 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ int	shell(char **env)
 	{
 		s.input = readline(PROMPT);
 		if (!s.input)
-			return (err_num);
+			break ;
 		add_history(s.input);
 		interpret(&s, &s.input);
 		if (!extract_cmd(&s))
 			launch_cmd(&s);
 		free(s.input);
 	}
+	exit(0); // leaks but the other one didn't work yet, tmrw i'll work there
+	return (ms_exit(&s, NULL, 1));
 }
 
 /**
