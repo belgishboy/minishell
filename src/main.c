@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 12:57:19 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 13:01:24 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	shell(char **env)
 
 	init_sig();
 	s.env = create_env(env);
-	err_num = 0;
 	while (1)
 	{
 		s.input = readline(PROMPT);
@@ -35,7 +34,8 @@ int	shell(char **env)
 			launch_cmd(&s);
 		free(s.input);
 	}
-	ms_exit(&s, NULL, 1);
+	exit(0); // leaks but the other one didn't work yet, tmrw i'll work there
+	return (ms_exit(&s, NULL, 1));
 }
 
 /**

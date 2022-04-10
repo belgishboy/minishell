@@ -65,11 +65,11 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		else
 			err_num = ft_atoi(q->cmd_args[1]);
 	}
-	if (s->seq)
+	if (s && s->seq)
 		clean_seq(s);
-	if (s->env)
+	if (s && s->env)
 		cleanup_env(s->env);
-	if (s->input)
+	if (s && s->input)
 		free(s->input);
 	if (pid)
 	{
