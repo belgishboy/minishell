@@ -83,5 +83,7 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		printf("exit\n");
 		close_fd();
 	}
-	exit(0);
+	if (q && !q->cmd_args[1])
+		exit(0);
+	exit(g_errnum);
 }

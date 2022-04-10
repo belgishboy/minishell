@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -l readline
+FLAGS = -Wall -Werror -Wextra
 RM = rm -f
 LFT = ./lft
 SR = ./src/
@@ -40,7 +40,7 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	make bonus -C $(LFT)
-	$(CC) $(FLAGS) $(SRC) $(LFT)/libft.a -o $(NAME) -I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline	
+	$(CC) $(FLAGS) $(SRC) $(LFT)/libft.a -o $(NAME) -I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -l readline
 
 clean:
 	make clean -C $(LFT)
