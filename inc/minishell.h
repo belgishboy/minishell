@@ -121,6 +121,8 @@ int		keyer(char *input);
 //	signals
 
 void	init_sig(void);
+int		is_running(pid_t pid);
+void	sig_handler_child(int signum);
 void	sigint_handler(int signum);
 
 // EXTRACT
@@ -144,8 +146,8 @@ int		parse(t_shell *sh, int i);
 // Launch
 
 int		launch_cmd(t_shell *sh);
-void	ft_pipe(t_shell *sh, t_seq *seq, int status);
-void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2], int status);
+void	ft_pipe(t_shell *sh, t_seq *seq);
+void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2]);
 void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid);
 
 // Clean

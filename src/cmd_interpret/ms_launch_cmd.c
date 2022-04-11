@@ -37,10 +37,10 @@ int	launch_cmd(t_shell *sh)
 			g_errnum = -1;
 			return (write(tmp_fd[1], "dup2 Top failed\n", 16));
 		}
-		ft_pipe(sh, sh->seq[i], 0);
+		ft_pipe(sh, sh->seq[i]);
 		i ++;
 	}
-	ft_pipe_last(sh, sh->seq[i], sh->seq[i]->fd, 0);
+	ft_pipe_last(sh, sh->seq[i], sh->seq[i]->fd);
 	dup2(tmp_fd[0], STDIN_FILENO);
 	dup2(tmp_fd[1], STDOUT_FILENO);
 	close(tmp_fd[0]);
