@@ -21,8 +21,9 @@ void	ms_error(int error, char *sub, char *msg, int p)
 			write(2, sub, ft_strlen(sub));
 			write(2, ": ", 2);
 			write(2, msg, ft_strlen(msg));
-			free(sub);
 		}
+		if (sub)
+			free(sub);
 	}
 }
 
