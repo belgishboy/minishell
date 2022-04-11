@@ -1,6 +1,22 @@
 #include "../../../inc/minishell.h"
 
-void	ms_exec_extension(t_shell *s, t_seq *q, pit_t pid);
+void	ms_exec_extension(t_shell *s, t_seq *q, pid_t pid)
+{
+	if (q->wht_cmd == 2)
+		ms_echo(q->cmd_args, pid);
+	else if (q->wht_cmd == 3)
+		cd(q->cmd_args, s, pid);
+	else if (q->wht_cmd == 4)
+		pwd(pid);
+	else if (q->wht_cmd == 5)
+		ms_export(s, q, pid, 1);
+	else if (q->wht_cmd == 6)
+		ms_unset(s, q, pid, 1);
+	else if (q->wht_cmd == 7)
+		ms_env(s, q, pid);
+	else if (q->wht_cmd == 8)
+		ms_exit(s, q, pid);
+}
 
 /**
  * @brief execute the builtins and commands respectively in child and parent
@@ -26,22 +42,4 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 			g_errnum = errno;
 	}
 	del_list(p_env);
-}
-
-void	ms_exec_extension(t_shell *s, t_seq *q, pit_t pid)
-{
-	if (q->wht_cmd == 2)
-		ms_echo(q->cmd_args, pid);
-	else if (q->wht_cmd == 3)
-		cd(q->cmd_args, s, pid);
-	else if (q->wht_cmd == 4)
-		pwd(pid);
-	else if (q->wht_cmd == 5)
-		ms_export(s, q, pid, 1);
-	else if (q->wht_cmd == 6)
-		ms_unset(s, q, pid, 1);
-	else if (q->wht_cmd == 7)
-		ms_env(s, q, pid);
-	else if (q->wht_cmd == 8)
-		ms_exit(s, q, pid);
 }

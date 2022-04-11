@@ -49,7 +49,7 @@ clean:
 fclean: clean
 	make fclean -C $(LFT)
 	$(RM) $(NAME)
-	rm minishell_bonus
+	- rm minishell_bonus
 
 
 bonus:

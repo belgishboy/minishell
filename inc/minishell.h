@@ -122,6 +122,8 @@ int		keyer(char *input);
 
 void	init_sig(void);
 void	sigint_handler(int signum);
+int		is_running(pid_t pid);
+void	sig_handler_child(int signum);
 
 // EXTRACT
 
