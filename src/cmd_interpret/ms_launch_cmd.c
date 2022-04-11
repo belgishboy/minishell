@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_launch_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 17:41:00 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:25:21 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	launch_cmd(t_shell *sh)
 	close(tmp_fd[0]);
 	close(tmp_fd[1]);
 	clean_seq(sh);
-	close_fd();
+	//close_fd();
 	return (0);
 }

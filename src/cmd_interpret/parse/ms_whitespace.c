@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_whitespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:38:34 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 17:18:20 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:12:08 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	is_whspace(char *s, int dir)
 */
 char	*trm_whtsp(char *s, int dir)
 {
-	char	*trim;
 	int		pos1;
 	int		pos2;
 
@@ -79,6 +78,5 @@ char	*trm_whtsp(char *s, int dir)
 		pos2 = ft_strlen(s);
 	if (pos2 <= pos1)
 		return ("");
-	trim = ft_substr(s, pos1, pos2 - pos1);
-	return (trim);
+	return (ft_substr(s, pos1, pos2 - pos1));
 }
