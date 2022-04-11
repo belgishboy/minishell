@@ -18,10 +18,8 @@ void	sigint_handler(int signum)
 	{
 		printf("\n");
 		rl_replace_line("", 0);
-		
 		if (is_running(0) != 0)
 		{
-			//printf("now redisplay");
 			rl_on_new_line();
 			rl_redisplay();
 		}
