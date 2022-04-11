@@ -53,7 +53,7 @@ int	count_pipe(char *in)
 			else
 			{
 				ms_error(258, ft_strjoin
-					("syntax error near unexpected token `", &in[i]), "'\n", 1);
+					("syntax error near unexpected token `|'", ""), "\n", 1);
 				return (-1);
 			}
 		}
