@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 16:30:04 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:08:17 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	parse(t_shell *sh, int i)
 			sh->seq[i]->path_cmd = \
 				ft_get_path(sh->seq[i]->cmd_args, path);
 		if (sh->seq[i]->wht_cmd == 1 && !sh->seq[i]->path_cmd)
-			return (1);
+			return (free_2dstr(path) + 1);
 		i ++;
 	}
 	if (path)
