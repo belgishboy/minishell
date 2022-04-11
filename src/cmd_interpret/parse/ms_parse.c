@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:50:54 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/11 11:29:50 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:46:22 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	count_args(char **split)
 /**
  * @param split [char **] char array to be worked on
  * @param seq	[t_seq *] sequance to be worked on
+ * @param i [int] always '0' (because I have too many lines)
  * @return [int] 0 if succesful, 1 if malloc error
 */
-int	arg_parsing(char **split, t_seq *seq)
+int	arg_parsing(char **split, t_seq *seq, int i)
 {
-	int	i;
 	int	x;
 	int	arg_cnt;
 
@@ -70,18 +70,20 @@ int	arg_parsing(char **split, t_seq *seq)
 		seq->cmd_args = ft_calloc(arg_cnt + 1, sizeof (char *));
 	if (!seq->cmd_args)
 		return (1);
-	i = 0;
 	x = 0;
-	while (i < arg_cnt)
+	while (split[x])
 	{
-		while (is_split(split[x][0]) == 3)
+		if (is_split(split[x][0]) == 3)
 		{
 			split[x] = rmv_quotes(split[x], 1);
 			x ++;
 		}
-		seq->cmd_args[i] = rmv_quotes(split[x], 0);
-		i ++;
-		x ++;
+		else
+		{
+			seq->cmd_args[i] = rmv_quotes(split[x], 0);
+			i ++;
+			x ++;
+		}
 	}
 	return (0);
 }
@@ -113,7 +115,7 @@ int	parse(t_shell *sh, int i)
 	{
 		init_seq(sh->seq[i]);
 		arg_split(sh->seq[i]->seq, sh->seq[i], 0, 0);
-		if (arg_parsing(sh->seq[i]->split, sh->seq[i]))
+		if (arg_parsing(sh->seq[i]->split, sh->seq[i], 0))
 			del_list(path);
 		if (init_fd(sh->seq[i], sh->seq[i]->split))
 		{
