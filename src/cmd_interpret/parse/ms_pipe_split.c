@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:36:20 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 17:17:39 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 10:31:03 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ int	count_pipe(char *in)
 		{
 			if (in[i + 1] && in[i + 1] != PIPE)
 				count ++;
-			if (in[i + 1] && in[i + 1] == PIPE)
+			else
+			{
+				ms_error(258, ft_strjoin
+					("syntax error near unexpected token `", &in[i]), "'\n", 1);
 				return (-1);
+			}
 		}
 		i ++;
 	}
