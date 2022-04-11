@@ -60,7 +60,7 @@ int	extract_rep(char *line, t_list *env, char **replace)
 	if (line[0] == '\0')
 		*replace = ft_strdup("$");
 	if (line[0] == '0' || line[0] == '?' || line[0] == '\0')
-		return (2);
+		return (1);
 	var = de_key(env, line);
 	if (!var)
 	{

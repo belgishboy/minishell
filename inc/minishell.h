@@ -33,6 +33,7 @@
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <errno.h>
 /*
 ** GLOBAL VARIABLE
 */
@@ -121,6 +122,8 @@ int		keyer(char *input);
 
 void	init_sig(void);
 void	sigint_handler(int signum);
+int		is_running(pid_t pid);
+void	sig_handler_child(int signum);
 
 // EXTRACT
 
