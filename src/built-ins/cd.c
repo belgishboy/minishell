@@ -59,6 +59,7 @@ void	cd(char **array, t_shell *shell, pid_t pid)
 		updateold(shell);
 		newpwd = getcwd(newpwd, MAX_DIR);
 		updatenew(shell, newpwd);
+		g_errnum = 0;
 	}
 	else
 		if (pid != 0)
