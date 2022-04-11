@@ -20,10 +20,6 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 	else
 	{
 		ms_exec_extension(s, q, pid);
-		if (!pid)
-			exit(0);
-		else
-			g_errnum = errno;
 	}
 	del_list(p_env);
 }
