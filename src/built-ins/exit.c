@@ -21,7 +21,8 @@ void	ms_error(int error, char *sub, char *msg, int p)
 			write(2, sub, ft_strlen(sub));
 			write(2, ": ", 2);
 			write(2, msg, ft_strlen(msg));
-			free(sub);
+			if (sub)
+				free(sub);
 		}
 	}
 }
@@ -83,7 +84,5 @@ int	ms_exit(t_shell *s, t_seq *q, pid_t pid)
 		printf("exit\n");
 		close_fd();
 	}
-	if (q && !q->cmd_args[1])
-		exit(0);
 	exit(g_errnum);
 }

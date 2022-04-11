@@ -6,7 +6,7 @@
 /*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:35:52 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/06 16:20:07 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:06:53 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 /**
  * frees each of *s and then s
  * @param s [char **]
- * @return void
+ * @return [int] 0
 */
-void	free_2dstr(char **s)
+int	free_2dstr(char **s)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		free(s[i]);
 		i ++;
 	}
 	free(s);
+	return (0);
 }

@@ -1,6 +1,6 @@
 #include "../../../inc/minishell.h"
 
-void	ms_exec_extension(t_shell *s, t_seq *q, pit_t pid);
+void	ms_exec_extension(t_shell *s, t_seq *q, pid_t pid);
 
 /**
  * @brief execute the builtins and commands respectively in child and parent
@@ -28,7 +28,7 @@ void	ms_exec_builtins(t_shell *s, t_seq *q, pid_t pid)
 	del_list(p_env);
 }
 
-void	ms_exec_extension(t_shell *s, t_seq *q, pit_t pid)
+void	ms_exec_extension(t_shell *s, t_seq *q, pid_t pid)
 {
 	if (q->wht_cmd == 2)
 		ms_echo(q->cmd_args, pid);
