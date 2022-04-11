@@ -16,12 +16,23 @@ void	updateold(t_shell *shell)
 {
 	t_list	*old;
 	t_list	*new;
+	char	*tmp;
+	char	*tmp2;
 
 	old = finder(shell->env, "OLDPWD");
 	new = finder(shell->env, "PWD");
-	free(((t_cont *)old->content)->value);
-	((t_cont *)old->content)->value = \
-		ft_strdup(((t_cont *)new->content)->value);
+	if (old)
+	{
+		free(((t_cont *)old->content)->value);
+		((t_cont *)old->content)->value = \
+			ft_strdup(((t_cont *)new->content)->value);
+	}
+	else
+	{
+		tmp = ft_strjoin("OLDPWD=", ((t_cont *)new->content)->value);
+		ft_lstadd_back(&s->env, ft_lstnew(envar(tmp));
+		free(tmp);
+	}
 }
 
 void	updatenew(t_shell *shell, char *new_pwd)
