@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_launch_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/11 11:25:21 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:41:00 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	launch_cmd(t_shell *sh)
 			g_errnum = -1;
 			return (write(tmp_fd[1], "dup2 Top failed\n", 16));
 		}
-		ft_pipe(sh, sh->seq[i]);
+		ft_pipe(sh, sh->seq[i], 0);
 		i ++;
 	}
-	ft_pipe_last(sh, sh->seq[i], sh->seq[i]->fd);
+	ft_pipe_last(sh, sh->seq[i], sh->seq[i]->fd, 0);
 	dup2(tmp_fd[0], STDIN_FILENO);
 	dup2(tmp_fd[1], STDOUT_FILENO);
 	close(tmp_fd[0]);
 	close(tmp_fd[1]);
 	clean_seq(sh);
-	//close_fd();
+	close_fd();
 	return (0);
 }
