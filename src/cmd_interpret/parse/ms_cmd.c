@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:47:08 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 16:29:12 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:15:49 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_path(t_shell *s)
 	pth = finder(s->env, "PATH=");
 	if (!pth)
 		return (NULL);
-	path = ft_split(((t_cont*)pth->content)->value, ':');
+	path = ft_split(((t_cont *)pth->content)->value, ':');
 	if (!path)
 		return (NULL);
 	ft_add_slash(path);

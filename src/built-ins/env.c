@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:09:28 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/04/05 15:09:29 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:21:13 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	ms_env(t_shell *s, t_seq *q, pid_t pid)
 
 	if (q->cmd_args[1] && !pid)
 	{
-		ms_error(127, ft_strjoin("env: ", q->cmd_args[1]), "invalid use of function", pid);
+		ms_error(127, ft_strjoin("env: ", q->cmd_args[1]),
+			"invalid use of function", pid);
 		return ;
 	}
 	temp = s->env;
@@ -110,7 +111,7 @@ void	ms_env(t_shell *s, t_seq *q, pid_t pid)
 							((t_cont *)temp->content)->value);
 		temp = temp->next;
 	}
-	err_num = 0;
+	g_errnum = 0;
 }
 
 /**
@@ -142,24 +143,3 @@ char	**env_copy(t_list *p_env)
 	}
 	return (env);
 }
-
-// // gcc env.c ../../lft/libft.a && ./a.out
-// int main(int argc, char **argv, char **env)
-// {
-// 	if (argc == 1000 || !argv[0])
-// 		return (1110);
-// 	printf("%i\b", argc);
-
-// 	t_shell s;
-// 	s.env = create_env(env);
-// 	ms_env(&s);
-// 	printf("\n\n\n");
-// 	char **copy = env_copy(s.env);
-// 	for (int i = 0; copy[i]; i++)
-// 	{
-// 		printf("copy:%s\n", copy[i]);
-// 		free (copy[i]);
-// 	}
-// 	free(copy);
-// 	return (0);
-// }

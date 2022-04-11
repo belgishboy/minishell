@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_free_seq.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 11:59:43 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/07 12:32:19 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:14:29 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param seq [t_seq *] seq struct to be freed
  * @return [void]
 */
-void	free_seq(t_seq *seq)// close the fd?
+void	free_seq(t_seq *seq)
 {
 	if (seq->seq)
 		free(seq->seq);

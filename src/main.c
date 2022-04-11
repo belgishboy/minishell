@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 15:15:24 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 13:01:24 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:40:21 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	shell(char **env)
 			launch_cmd(&s);
 		free(s.input);
 	}
-	exit(0); // leaks but the other one didn't work yet, tmrw i'll work there
-	return (ms_exit(&s, NULL, 1));
+	exit(0);
+	return (0);
 }
 
 /**
@@ -49,10 +49,10 @@ int	shell(char **env)
 */
 int	main(int argc, char **argv, char **env)
 {
-	err_num = 0;
+	g_errnum = 0;
 	if (argc != 1 && strncmp(argv[0], "./minishell", strlen(argv[0])))
 	{
-		printf("error\n");//CLEMENS
+		printf("No Arguments required\n");
 		return (0);
 	}
 	shell(env);

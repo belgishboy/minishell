@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_whitespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:38:34 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 15:24:23 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:18:20 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,5 @@ char	*trm_whtsp(char *s, int dir)
 	if (pos2 <= pos1)
 		return ("");
 	trim = ft_substr(s, pos1, pos2 - pos1);
-	// if (s)
-	// 	free(s);
 	return (trim);
 }

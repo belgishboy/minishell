@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 16:41:08 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:17:14 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	fd_infile(t_seq *seq, char *arg)
 {
 	if (arg[1] == '<')
 	{
-		// printf("Error, We didn't do '<<'\n");
 		return (0);
 	}
 	else
@@ -27,7 +26,8 @@ int	fd_infile(t_seq *seq, char *arg)
 			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDWR, 0777);
 		else
 		{
-			ms_error(access(arg, F_OK), ft_strdup(""), "\b\bno such file or directory\n", 1);
+			ms_error(access(arg, F_OK), ft_strdup(""),
+				"\b\bno such file or directory\n", 1);
 			return (1);
 		}
 	}

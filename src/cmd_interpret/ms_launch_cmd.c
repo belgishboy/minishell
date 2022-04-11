@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_launch_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:28 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/08 18:43:10 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:41:00 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	launch_cmd(t_shell *sh)
 	tmp_fd[0] = dup(0);
 	tmp_fd[1] = dup(1);
 	i = 0;
-	// err_num = 0;
-	while (i < sh->n_cmds - 1 && !err_num)
+	while (i < sh->n_cmds - 1 && !g_errnum)
 	{
-		if (dup2(sh->seq[i]->fd[0], STDIN_FILENO) == -1 || dup2(sh->seq[i]->fd[1], STDOUT_FILENO) == -1)
+		if (dup2(sh->seq[i]->fd[0], STDIN_FILENO) == -1 || \
+			dup2(sh->seq[i]->fd[1], STDOUT_FILENO) == -1)
 		{
-			err_num = -1;
-			return (write(tmp_fd[1], "dup2 Top failed\n", 16));//CLEMENS
+			g_errnum = -1;
+			return (write(tmp_fd[1], "dup2 Top failed\n", 16));
 		}
 		ft_pipe(sh, sh->seq[i]);
 		i ++;

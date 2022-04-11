@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:43:10 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 13:02:33 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:14:59 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_pipe_last(t_shell *sh, t_seq *seq, int s_fd[2])
 	int		fd[2];
 
 	if (pipe(fd))
-		write(2, "Pipe Falure\n", 12); //CLEMENS
+		write(2, "Pipe Falure\n", 12);
 	pid = fork();
 	if (pid < 0)
 		write(2, "The Fork failed\n", 16);
@@ -47,7 +47,7 @@ void	ft_pipe(t_shell *sh, t_seq *seq)
 	int		fd[2];
 
 	if (pipe(fd))
-		write(2, "Pipe Falure\n", 12); //CLEMENS
+		write(2, "Pipe Falure\n", 12);
 	pid = fork();
 	if (pid < 0)
 		write(2, "The Fork failed\n", 16);
@@ -56,7 +56,6 @@ void	ft_pipe(t_shell *sh, t_seq *seq)
 		close(fd[0]);
 		if (dup2(fd[1], STDOUT_FILENO) == -1)
 			write(1, "dup2 Child failed\n", 18);
-		sigint_handler(SIGUSR1);
 		ms_exec_builtins(sh, seq, pid);
 		exit(127);
 	}

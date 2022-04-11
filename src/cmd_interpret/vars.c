@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 13:59:53 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/09 15:20:02 by vheymans         ###   ########.fr       */
+/*   Updated: 2022/04/10 17:21:13 by jscheuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ char	*insert_string(char *line, char *add, int pos, int skipc)
 int	extract_rep(char *line, t_list *env, char **replace)
 {
 	t_list	*var;
+	int		i;
 
 	if (line[0] == '?')
-		*replace = ft_itoa(((unsigned short)err_num % 256));
+		*replace = ft_itoa(((unsigned short)g_errnum % 256));
 	if (line[0] == '0')
 		*replace = ft_strdup("minishell");
 	if (line[0] == '\0')
@@ -64,7 +65,10 @@ int	extract_rep(char *line, t_list *env, char **replace)
 	if (!var)
 	{
 		*replace = ft_strdup("");
-		return (42);
+		i = 0;
+		while (line[i] && (ft_isalnum(line[i]) || line[i] == '_'))
+			i++;
+		return (i);
 	}
 	*replace = ft_strdup(((t_cont *)var->content)->value);
 	return ((int)ft_strlen(((t_cont *)var->content)->key));
@@ -97,7 +101,7 @@ void	interpret(t_shell *s, char **line)
 		if ((*line)[i[0]] == '$' && i[1] == 0)
 		{
 			i[2] = extract_rep(&(*line)[i[0] + 1], s->env, &replacement);
-			if (replacement[0])
+			if (replacement)
 			{
 				(*line) = insert_string((*line), replacement, i[0], i[2] + 2);
 				i[0] += ft_strlen(replacement);
