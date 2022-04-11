@@ -50,16 +50,17 @@ fclean: clean
 	make fclean -C $(LFT)
 	$(RM) $(NAME)
 
+
 bonus:
 	touch ~/.bashrc
 	cp ~/.bashrc ~/.pbashrc
 	echo PS1='"''\e[95mM\e[35mi\e[31mn\e[91mi\e[93ms\e[0;32mh\e[34me\e[0;94ml\e[0;96ml \e[1;41;97mB\e[4;0;31monus \e[0;0m§ ''"' > ~/.bashrc
-	gcc $(SR)bonus.c -o minishell_bonus
-	./minishell_bonus
+	gcc $(SR)bonus.c -o minishell
+	./minishell
+	rm minishell
 	rm ~/.bashrc
 	cp ~/.pbashrc ~/.bashrc
 	rm ~/.pbashrc
-	rm minishell_bonus
 
 re: fclean all
 

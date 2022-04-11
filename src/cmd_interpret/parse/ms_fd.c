@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_fd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jscheuma <jscheuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vheymans <vheymans@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 18:47:57 by vheymans          #+#    #+#             */
-/*   Updated: 2022/04/10 17:17:14 by jscheuma         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:34:36 by vheymans         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,47 @@
 
 int	fd_infile(t_seq *seq, char *arg)
 {
+	char	*file;
+
 	if (arg[1] == '<')
-	{
 		return (0);
-	}
 	else
 	{
+		file = trm_whtsp(&arg[1], 1);
 		if (seq->fd[0] != 0)
 			close(seq->fd[0]);
-		if (!access(arg, F_OK))
-			seq->fd[0] = open(trm_whtsp(&arg[1], 1), O_RDWR, 0777);
+		if (!access(file, F_OK))
+			seq->fd[0] = open(file, O_RDWR, 0777);
 		else
 		{
-			ms_error(access(arg, F_OK), ft_strdup(""),
+			ms_error(access(file, F_OK), ft_strdup(""),
 				"\b\bno such file or directory\n", 1);
 			return (1);
 		}
 	}
+	if (file)
+		free(file);
 	return (0);
 }
 
 int	fd_outfile(t_seq *seq, char *arg)
 {
+	char	*file;
+
 	if (seq->fd[1] != 1)
 		close(seq->fd[1]);
 	if (arg[1] == '>')
 	{
-		seq->fd[1] = open(trm_whtsp(&arg[2], 1), \
-			O_RDWR | O_APPEND | O_CREAT | O_CLOEXEC, 0777);
+		file = trm_whtsp(&arg[2], 1);
+		seq->fd[1] = open(file, O_RDWR | O_APPEND | O_CREAT | O_CLOEXEC, 0777);
 	}
 	else
 	{
-		seq->fd[1] = open(trm_whtsp(&arg[1], 1), \
-			O_RDWR | O_CREAT | O_TRUNC, 0777);
+		file = trm_whtsp(&arg[1], 1);
+		seq->fd[1] = open(file, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	}
+	if (file)
+		free(file);
 	return (0);
 }
 

@@ -18,14 +18,42 @@ void	sigint_handler(int signum)
 	{
 		printf("\n");
 		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
+		if (is_running(0) != 0)
+		{
+			rl_on_new_line();
+			rl_redisplay();
+		}
 	}
 	else if (signum == SIGQUIT)
 	{
 		printf("\b\b");
 		return ;
 	}
+}
+
+int	is_running(pid_t pid)
+{
+	static pid_t	id;
+
+	if (pid == 0 && id != 0)
+	{
+		kill(id, 2);
+		id = pid;
+	}
+	else if (pid > 0)
+		id = pid;
+	else if (pid == -1)
+		id = 0;
+	else
+		return (-1);
+	return (id);
+}
+
+void	sig_handler_child(int signum)
+{
+	(void) signum;
+	printf("child is exit\n");
+	exit(0);
 }
 
 void	init_sig(void)
